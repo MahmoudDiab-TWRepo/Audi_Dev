@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admission/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">
+                    <a href="/Admission/types/Create" class="btn btn-success waves-effect waves-light"> <i class="bx bx-plus font-size-16 align-middle me-2"></i> Add Type</a>
+                </h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/Admission">Home</a></li>
+                        <li class="breadcrumb-item active">Types</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive" style="padding-bottom:30px;">
+
+                        <table id="table_Slider" class=" table table-bordered tableOtherdite">
+                            <thead class="DarkThead">
+                                <tr>
+
+                                    <th><p>#</p></th>
+                                    <th> <p>Action</p> </th>
+
+                                    <th> <p>Type Name</p> </th>
+                                    <th><p>Category </p></th>
+                                    <th><p>Date From </p></th>
+                                    <th><p>Date To </p></th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+
+
+                                <tr>
+                                    <td><p>1</p></td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn nav-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-horizontal-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item align-middle " href="/Admission/Types/Edit/"><i class="bx bx-edit font-size-16 me-1"></i>@Resources.Global.Edit</a>
+                                                <a class="dropdown-item text-danger align-middle btn_delete" data-id="" href="#"><i class="bx bx-trash font-size-16 me-1"></i>@Resources.Global.Delete</a>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><p>Name Type</p></td>
+                                    <td><p>Name Category</p></td>
+                                    <td><p>Date From</p></td>
+                                    <td><p>Date To </p></td>
+                                </tr>
+
+
+
+
+                            </tbody>
+
+
+
+
+
+                        </table>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div> <!-- end col -->
+
+    </div>
+
+</div>
+
+
+
+

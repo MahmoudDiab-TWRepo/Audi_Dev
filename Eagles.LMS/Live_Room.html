@@ -1,0 +1,127 @@
+﻿
+<html>
+<head>
+    <title>join </title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src='https://meet.jit.si/external_api.js'></script>
+    <link rel="stylesheet" href="alll.css">
+
+
+    <style>
+        #jitsiConferenceFrame0 {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .leftwatermark {
+            display: none !important;
+            background-image: none;
+        }
+
+        #jitsiConferenceFrame0 .watermark {
+            display: none !important;
+        }
+
+        #react {
+            display: none;
+        }
+
+        .logo {
+            position: absolute;
+            width: 220px;
+            height: 120px;
+            display: block;
+            background: #bf2117;
+            border-radius: 0 0 10px;
+        }
+
+            .logo h2 {
+                position: absolute;
+                top: 15%;
+                right: 15px;
+                font-size: 45px;
+                text-transform: uppercase;
+                font-weight: 900;
+                font-family: sans-serif;
+                color: #fff;
+            }
+
+            .logo p {
+                position: absolute;
+                top: 60%;
+                font-size: 18px;
+                padding: 0 10px;
+                text-transform: uppercase;
+                letter-spacing: 14px;
+                color: #c5c5c5;
+                font-weight: 500;
+                font-family: sans-serif;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="holder" id="meet">
+        <div class="logo">
+            <h2>eaglez</h2>
+            <p>accadimy</p>
+        </div>
+
+    </div>
+
+    <script>
+
+        window.onbeforeunload = function ()
+        {
+
+            if (confirm("Are you sure?"))
+            {
+              EndLiveVideo(VideoId);
+            }
+          return false;
+
+
+        };
+
+		 function EndLiveVideo(id)
+        {
+            $.ajax({
+                type: "GET",
+                 url: "http://heshamallam4edu.com/api/web/LiveVideo/End?id="+id,
+                 data: {},
+                 success: function (response) {
+
+
+                }
+            })
+        }
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+ let Name=  getUrlParameter('Name'),
+ VideoId=getUrlParameter('Id');
+
+const domain = 'meet.jit.si';
+const options = {
+    roomName: Name,
+    width: 1080,
+    height: 800,
+    parentNode: document.querySelector('#meet'),
+devices: {
+        audioInput: '<deviceLabel>',
+        audioOutput: '<deviceLabel>',
+        videoInput: '<deviceLabel>'
+    },
+};
+const api = new JitsiMeetExternalAPI(domain, options);
+
+
+    </script>
+    <script async src="https://drv.tw/inc/wd.js"></script>
+</body>
+</html>

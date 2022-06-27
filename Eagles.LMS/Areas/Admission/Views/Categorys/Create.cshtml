@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admission/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">Add Category</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/Admission/Categorys">Home</a></li>
+                        <li class="breadcrumb-item active">Add Category</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label"> Name </label>
+                                            <input class="form-control" type="text" placeholder="Category Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-2 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Discription</label>
+                                            <div>
+                                                <textarea required="" class="form-control" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+
+
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="foooterbuttons">
+                            <button type="submit" class="btn btn-success waves-effect waves-light">
+                                <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
+                            </button>
+                            <a href="/Admission/News" class="btn btn-danger waves-effect waves-light">
+                                <i class="fa fa-backspace back font-size-16 align-middle me-2"></i> @Resources.Global.Back
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+    </div>
+
+</div>
+
+

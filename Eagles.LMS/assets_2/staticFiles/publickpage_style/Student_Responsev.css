@@ -1,0 +1,84 @@
+﻿body {
+}
+
+@media(max-width:768px) {
+    .imagelogo_student {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .student_name_logo .Student_code {
+        text-align: center;
+    }
+    .tab_links ul li {
+
+        float: none;
+
+    }
+    .privet_vediows .vedios_privete_content .folders_list {
+        border-left: none;
+        border-right: none;
+        max-height: 450px;
+        overflow: auto;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-bottom: 15px;
+    }
+    .Welcom_name {
+
+        margin: 5px 0;
+    }
+    .imagelogo_student img {
+        width: 85px;
+ 
+    }
+    .vedio_frame video {
+   
+        width: 100%;
+    
+    }
+    .top_bar_contact_list li:not(:last-child) {
+        margin-right: 0;
+    }
+    .login_button {
+        width: max-content;
+
+        padding: 0 10px;
+    }
+    .holder_vdio {
+        width: 97%;
+        height: 95%;
+        margin-top: -110px;
+    }
+        .holder_vdio .previow {
+            width: 92.2%;
+            position: absolute;
+            top: 29.5%;
+            height: auto;
+            left: 4.2%;
+            overflow: hidden;
+            background: #000;
+        }
+
+    .page_title .title_content ul {
+        display: block;
+    }
+        .page_title .title_content ul li {
+            float: none;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+    .page_title {
+        padding: 0;
+        background: #eee;
+        margin-bottom: 50px;
+        z-index: 1;
+        padding-top: 15px;
+    }
+            .page_title .title_content ul li a {
+                color: #ff8a33;
+                display: block;
+                width: 100%;
+            }
+    }

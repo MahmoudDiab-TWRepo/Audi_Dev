@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "PublicLogin";
+    Layout = null;
+    bool en = true;
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teatchers-login-2019</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/StaticFiles/css/bootstrap.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,700,900" rel="stylesheet">
+    <!-- <link href="/StaticFiles/css/font-awesome.min.css" rel="stylesheet">-->
+    <link href="/StaticFiles/css/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="/StaticFiles/css/hover.css" rel="stylesheet">
+    @if (en)
+    {
+        <link href="/StaticFiles/css/login-register.css" rel="stylesheet">
+    }
+    else
+    {
+    <link href="/StaticFiles/css/login-register-rtl.css" rel="stylesheet">}
+
+    <link href="/StaticFiles/css/animate.css" rel="stylesheet">
+    @*<link rel="stylesheet" type="text/css" href="/StaticFiles/css/bootstrap4/bootstrap.min.css">*@
+    <link href="~/StaticFiles/toastr.css" rel="stylesheet" />
+
+    <!-- <link href="/StaticFiles///maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">-->
+    <!--[if lt IE 9]>
+    <script src="/StaticFiles/js/html5shiv.min.js"></script>
+    <script src="/StaticFiles/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="log-reg">
+        <div class="log-back">
+            <div class="log-box wow zoomIn">
+                <div class="row other-row">
+                    <div class="col-lg-12 other-col">
+                        <div class="inputes">
+                            <div class="titels wow bounceIn delay-05">
+                                <img src="~/StaticFiles/avatar-user.png" />
+
+                                <h3>@Resources.Global.AccountIsPending</h3>
+                                <p>@Resources.Global.AdminApproval <span><br /><a href="/Home/Index"> @Resources.Global.Goto  @Resources.Global.Home</a></span></p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
+
+    <script src="/StaticFiles/js/jquery-3.3.1.min.js"></script>
+    <script src="/StaticFiles/css/bootstrap4/popper.js"></script>
+    <script src="/StaticFiles/css/bootstrap4/bootstrap.min.js"></script>
+    <script src="/StaticFiles/js/bootstrap.min.js"></script>
+    <script src="/StaticFiles/js/main.js"></script>
+    <script src="/StaticFiles/js/bootstrap-select.min.js"></script><!--https://silviomoreto.github.io/bootstrap-select/examples/ -->
+    <script src="/StaticFiles/js/wow.min.js"></script>
+    <script>new WOW().init();</script>
+
+    <script src="~/StaticFiles/toastr.js"></script>
+
+
+</body>
+</html>

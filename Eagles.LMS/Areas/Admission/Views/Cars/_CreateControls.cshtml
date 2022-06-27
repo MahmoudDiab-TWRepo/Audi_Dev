@@ -1,0 +1,174 @@
+﻿
+<div class="form-group col-sm-12 fl-r">
+    <table class="table table-striped- table-bordered table-hover table-checkable display res" id="tblCatCreate">
+
+
+        <tbody>
+
+
+            <tr ng-cloak ng-repeat="property in CategoryPropeties track by $index">
+
+                <td ng-if="property.DataType==0">
+
+                    <div class=" col-sm-12 fl-r mt-4 ">
+                        <div class="kt-input-icon kt-input-icon--left">
+                            <input ng-model="property.PropertyName" name="PropertyName{{$index + 1}}" type="text" class="form-control circle" id="{{$index}}">
+
+                            <span class="placeholder">   {{propName[$index]}} </span>
+                            <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                <span><i class="la la-barcode"></i></span>
+                            </span>
+                        </div>
+                    </div>
+                    <input type="hidden" ng-model="property.Id" placeholder="Price">
+
+                </td>
+
+                <td ng-if="property.DataType==1">
+
+                    <div class=" col-sm-12 fl-r mt-4 ">
+                        <div class="kt-input-icon kt-input-icon--left">
+                            <input ng-model="property.PropertyName" name="PropertyName{{$index + 1}}" type="number" class="form-control circle" id="{{$index}}">
+
+                            <span class="placeholder">   {{propName[$index]}} </span>
+                            <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                <span><i class="la la-barcode"></i></span>
+                            </span>
+                        </div>
+                    </div>
+                    <input type="hidden" ng-model="property.Id" placeholder="Price">
+
+                </td>
+                <td ng-if="property.DataType==2">
+                    <div class=" col-sm-12 fl-r mt-4 ">
+                        <div class="kt-input-icon kt-input-icon--left">
+                            @*<input ng-model="property.PropertyName" name="PropertyName{{$index + 1}}" type="checkbox" class=" circle" id="{{$index}}">
+
+                            <span class="placeholder">    </span>*@
+
+
+                            <div class="chiller_cb" style=" width: 130px;">
+                                <label for="{{$index}}" style="width: auto;height: auto;margin: 0;padding-right: 4rem;">{{propName[$index]}}:</label>
+                                <input ng-model="property.PropertyName" class="form-control circle count"  id="{{$index}}" name="PropertyName{{$index + 1}}" type="checkbox">
+                                <span style="right: 30px;"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <input type="hidden" ng-model="property.Id" placeholder="Price">
+                </td>
+
+                <td ng-if="property.DataType==3">
+
+                    <div class=" col-sm-12 fl-r mt-4">
+                        <div class="kt-input-icon kt-input-icon--left">
+                            <textarea ng-model="property.PropertyName" name="PropertyName{{$index + 1}}" type="text" class="form-control circle" id="{{$index}}">
+</textarea>
+
+                            <span class="placeholder">   {{propName[$index]}} </span>
+                            <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                <span><i class="la la-barcode"></i></span>
+                            </span>
+                        </div>
+                    </div>
+                    <input type="hidden" ng-model="property.Id" placeholder="Price">
+
+                </td>
+
+                <td ng-if="property.DataType==4">
+
+                    <div class=" col-sm-12 fl-r mt-4">
+                        <div class="kt-input-icon kt-input-icon--left">
+                            <input ng-model="property.PropertyName" name="PropertyName{{$index + 1}}" type="date" class="form-control circle" id="{{$index}}">
+
+                            <span class="placeholder">   {{propName[$index]}} </span>
+                            <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                <span><i class="la la-barcode"></i></span>
+                            </span>
+                        </div>
+                    </div>
+                    <input type="hidden" ng-model="property.Id" placeholder="Price">
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<table class="table table-striped- table-bordered table-hover table-checkable display res" id="tblCatEdit">
+
+
+    <tbody>
+
+
+        <tr ng-cloak ng-repeat="property in CategoryPropetiesEdit track by $index">
+
+            <td ng-if="property.DataType==0">
+                {{property.PropertyName}}:  <div class="kt-input-icon kt-input-icon--left">
+                    <input ng-model="property.PropertyNameValue" name="PropertyName{{$index + 1}}" type="text" class="form-control circle" id="{{$index}}">
+                    <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                        <span><i class="la la-barcode"></i></span>
+                    </span>
+                </div>
+
+                <input type="hidden" ng-model="property.Id" placeholder="Price">
+                @*<input type="text" ng-model="property.PropertyName" name="PropertyName{{$index + 1}}" placeholder="property.PropertyName" id="{{$index}}">*@
+
+            </td>
+            <td ng-if="property.DataType==1">
+
+                {{property.PropertyName}}: <div class="kt-input-icon kt-input-icon--left">
+                    <input ng-model="property.PropertyNameValue" name="PropertyName{{$index + 1}}" type="number" class="form-control circle" id="{{$index}}">
+                    <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                        <span><i class="la la-barcode"></i></span>
+                    </span>
+                </div>
+
+
+            </td>
+            <td ng-if="property.DataType==2">
+                {{property.PropertyName}}: <div class="">
+                    <div class="kt-input-icon kt-input-icon--left">
+                        <input style="cursor:pointer" type="checkbox" ng-model="property.PropertyNameBoolean" class="form-control circle count" />
+                    </div>
+                </div>
+
+                @*<span>{{property.PropertyName}}</span>  <input type="checkbox" ng-model="property.IsRequired" />*@
+            </td>
+            <td ng-if="property.DataType==3">
+
+                <div class="form-group col-sm-12 fl-r">
+                    <div class="kt-input-icon kt-input-icon--left">
+                        <textarea ng-model="property.PropertyNameValue" name="PropertyName{{$index + 1}}" type="text" class="form-control circle" id="{{$index}}">
+                      </textarea>
+
+                        <span class="placeholder">   {{::propName[$index]}} </span>
+                        <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                            <span><i class="la la-barcode"></i></span>
+                        </span>
+                    </div>
+                </div>
+                <input type="hidden" ng-model="property.Id" placeholder="Price">
+
+            </td>
+            <td ng-if="property.DataType==4">
+                {{property.PropertyName}}:  <div class="kt-input-icon kt-input-icon--left">
+                    <input ng-model="property.PropertyNameValue" name="PropertyName{{$index + 1}}" value="{{property.PropertyNameValue}}"  type="date" class="form-control circle" id="{{$index}}">
+                    <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                        <span><i class="la la-barcode"></i></span>
+                    </span>
+                </div>
+
+                <input type="hidden" ng-model="property.Id" placeholder="Price">
+                @*<input type="text" ng-model="property.PropertyName" name="PropertyName{{$index + 1}}" placeholder="property.PropertyName" id="{{$index}}">*@
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@*<div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-danger btn-elevate btn-elevate-air fl-l"><i class="fa fa-times"></i> Close</button>
+        <button type="button" ng-click="AddCategoryProperty()" class="btn btn-success btn-elevate btn-elevate-air fl-l"><i class="add"></i> Add</button>
+
+    </div>*@
+

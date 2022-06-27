@@ -1,0 +1,255 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admission/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid" ng-controller="categoryCtrl">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">Add Dynamic Features</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/Admission/types">Home</a></li>
+                        <li class="breadcrumb-item active">Add Dynamic Features</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row mb-5">
+
+        <div class="col-12">
+            <div class="card mb-5">
+                <div class="card-body">
+                    <div class="row">
+
+
+
+
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Name </label>
+                                        <input class="form-control" type="text" placeholder="Category Name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-2 col-xs-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Discription</label>
+                                        <div>
+                                            <textarea required="" class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="mb-3">
+                                        <div class="table-responsive" style="padding-bottom:30px;">
+
+                                            <table id="" class=" table table-bordered tableOtherdite">
+                                                <thead class="DarkThead">
+                                                    <tr>
+
+                                                        <th><p>#</p></th>
+                                                        <th> <p>Property Name</p> </th>
+                                                        <th><p>Data Type </p></th>
+                                                        <th><p>Is Required </p></th>
+                                                        <th> <p>Delete</p> </th>
+                                                    </tr>
+                                                </thead>
+
+
+                                                <tbody>
+
+
+                                                    <tr>
+                                                        <td><p>1</p></td>
+
+                                                        <td>
+                                                            <div class="">
+                                                                <input class="form-control" type="text" placeholder="Type Name">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="">
+                                                                <select class="form-control select2">
+                                                                    <option>Select</option>
+
+                                                                    <option value="AK">Alaska</option>
+                                                                    <option value="HI">Hawaii</option>
+
+                                                                    <option value="CA">California</option>
+                                                                    <option value="NV">Nevada</option>
+                                                                    <option value="OR">Oregon</option>
+                                                                    <option value="WA">Washington</option>
+
+                                                                    <option value="AZ">Arizona</option>
+                                                                    <option value="CO">Colorado</option>
+                                                                    <option value="ID">Idaho</option>
+                                                                    <option value="MT">Montana</option>
+                                                                    <option value="NE">Nebraska</option>
+                                                                    <option value="NM">New Mexico</option>
+                                                                    <option value="ND">North Dakota</option>
+                                                                    <option value="UT">Utah</option>
+                                                                    <option value="WY">Wyoming</option>
+
+                                                                </select>
+
+                                                            </div>
+                                                        </td>
+                                                        <td><input type="checkbox" class="form-check-input mt-2" /></td>
+                                                        <td><button class="btn btn-danger"><i class="bx bx-trash"></i></button></td>
+                                                    </tr>
+
+
+                                                    @*<tr ng-cloak ng-repeat="categoryProprty in CategoryPropeties track by $index">*@
+                                                    <tr ng-cloak ng-repeat="">
+
+                                                        <td>
+                                                            <div class=" col-sm-12 fl-r">
+                                                                <div class="kt-input-icon kt-input-icon--left">
+                                                                    <input ng-class="{'propertyNameStyling': categoryProprty.IsInValid }"
+                                                                           ng-keyup="addNewProperty($index)" type="text" ng-model="categoryProprty.PropertyName" class="form-control circle" autocomplete="off" placeholder="Property Name" />
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class=" col-sm-12 fl-r">
+                                                                <div ng-cloak="" class="kt-input-icon kt-input-icon--left">
+                                                                    <select ng-model="categoryProprty.DataType" class="form-control">
+                                                                        <option selected>String</option>
+                                                                        <option>Number</option>
+                                                                        <option>Boolean</option>
+                                                                        <option>Description</option>
+                                                                        <option>DateTime</option>
+
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                        </td>
+                                                        <td>
+                                                            <div class=" col-sm-12 fl-r">
+                                                                <div class="kt-input-icon kt-input-icon--left">
+                                                                    <input style="cursor: pointer;height: 25px; width: 25px;" type="checkbox" ng-model="categoryProprty.IsRequired" class=" circle count" required="" />
+                                                                </div>
+                                                            </div>
+                                                            @*<div class="">
+                    <div class="chiller_cb" style=" width: 130px;">
+                        <label for="myCheckbox1" style="width: auto;height: auto;margin: 0;padding-right: 3rem;">Is Required:</label>
+                        <input class="form-control circle count" id="myCheckbox1" ng-model="categoryProprty.IsRequired" type="checkbox">
+                        <span style="right: 30px;"></span>
+                    </div>
+                </div>*@
+                                                            @*<div class="form-check">
+                    <label>
+                        <input type="checkbox" name="check" checked> <span class="label-text">Option 01</span>
+                    </label>
+                </div>*@
+                                                        </td>
+                                                        <td>
+                                                            <button ng-click="deleteProperty($index,categoryProprty.Id)" class="btn btn-danger DeleteButton btn-elevate btn-lg"><i class="fa fa-trash-alt"></i>Delete</button>
+                                                        </td>
+                                                    </tr>
+
+
+
+
+                                                </tbody>
+
+
+
+
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="mb-3">
+                                        <label class="form-label"> Type Name </label>
+                                        <input class="form-control" type="text" placeholder="Type Name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Category</label>
+                                        <select class="form-control select2">
+                                            <option>Select</option>
+
+                                            <option value="AK">Alaska</option>
+                                            <option value="HI">Hawaii</option>
+
+                                            <option value="CA">California</option>
+                                            <option value="NV">Nevada</option>
+                                            <option value="OR">Oregon</option>
+                                            <option value="WA">Washington</option>
+
+                                            <option value="AZ">Arizona</option>
+                                            <option value="CO">Colorado</option>
+                                            <option value="ID">Idaho</option>
+                                            <option value="MT">Montana</option>
+                                            <option value="NE">Nebraska</option>
+                                            <option value="NM">New Mexico</option>
+                                            <option value="ND">North Dakota</option>
+                                            <option value="UT">Utah</option>
+                                            <option value="WY">Wyoming</option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div> <!-- end col -->
+
+
+        <div class="col-lg-12 col-md-12">
+            <div class="card mb-5">
+                <div class="card-body">
+                    <div class="foooterbuttons">
+                        <button type="submit" class="btn btn-success waves-effect waves-light">
+                            <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
+                        </button>
+                        <a href="/Admission/News" class="btn btn-danger waves-effect waves-light">
+                            <i class="fa fa-backspace back font-size-16 align-middle me-2"></i> @Resources.Global.Back
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@section EndBody{
+    <script src="~/assets_NewDash/Category/Services/CategoryFactory.js"></script>
+    <script src="~/assets_NewDash/Category/Controllers/CategoryForCrudController.js"></script>
+}

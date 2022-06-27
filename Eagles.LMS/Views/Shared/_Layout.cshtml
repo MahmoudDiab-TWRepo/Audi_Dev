@@ -1,0 +1,764 @@
+﻿@using Eagles.LMS.BLL
+@using Eagles.LMS.App_GlobalResources
+
+@{
+    UnitOfWork ctx = new UnitOfWork();
+
+    string UserID;
+    User user = null;
+    if (Session["User_Key"] != null)
+    {
+        UserID = Session["User_Key"].ToString();
+        user = ctx.UserManager.GetBy(int.Parse(UserID));
+
+    }
+
+
+    bool en = true;
+    var url = Context.Request.CurrentExecutionFilePath;
+    if (Request.Cookies["Language"] != null)
+    {
+        en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+
+    }
+
+
+
+}
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+    @*<title>@ViewBag.Title</title>*@
+    <title>Audi Car Center</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- Stylesheets -->
+    <link href="~/assets_Audi/css/bootstrap.css" rel="stylesheet">
+    <link href="~/assets_Audi/css/style.css" rel="stylesheet">
+    <link href="~/assets_Audi/css/icons.min.css" rel="stylesheet" />
+    <link href="~/assets_Audi/css/responsive.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="~/assets_Audi/images/Audiimg/logo.svg" type="image/x-icon">
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+    @*@if (en)
+        {
+            <link rel="stylesheet" type="text/css" href="~/assets_NewPublic/css/style.css" />
+        }
+        else
+        {
+            <link href="https://fonts.googleapis.com/css?family=Cairo:300,400,700,900" rel="stylesheet">
+            <link href="~/assets_NewPublic/css/Style_RTL.css" rel="stylesheet" />
+
+        }*@
+
+    <link rel="icon" href="~/assets_Audi/images/Audiimg/logo.svg" type="image/x-icon">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    @RenderSection("EndHeader", required: false)
+
+
+</head>
+
+<body>
+
+    <div class="language" style="display:none">
+        @if (en)
+        {
+            @*<a href="/Home/ChangeLanguage?SelectedLanguage=en&redirect=@url"><img class="img_lang" src="~/assets_NewPublic/images/buying4.png" /> <p> EN</p></a>*@
+            <a href="/Home/ChangeLanguage?SelectedLanguage=ar-EG&redirect=@url"> <p> @Resources.Global.Arabic</p></a>
+        }
+        else
+        {
+            <a href="/Home/ChangeLanguage?SelectedLanguage=en&redirect=@url"> <p> @Resources.Global.English</p></a>
+            @*<a href="/Home/ChangeLanguage?SelectedLanguage=ar-EG&redirect=@url"><img class="img_lang" src="~/assets_NewPublic/images/buying4.png" /> <p> AR</p></a>*@
+
+        }
+
+
+    </div>
+
+
+
+
+    <div class="page-wrapper">
+
+
+        <!-- Preloader -->
+        <div class="preloader"></div>
+
+        <!-- Sidenav Bar -->
+        <section class="sidenav-bar">
+            <div class="nav-box">
+                <div class="inner-box">
+                    <div class="upper-box">
+                        <div class="btn-box"><button class="close-btn"><span class="fa fa-times"></span></button></div>
+                    </div>
+
+                    <!-- .Side Nav -->
+                    <nav class="side-nav">
+                        <ul class="navigation clearfix" id="nav">
+                            <li class="current">
+                                <a href="/">Models</a>
+
+                            </li>
+                            <li class="">
+                                <a href="/">Try</a>
+                            </li>
+                            <li class="">
+                                <a href="/">Buy</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="/">Ownership & Services</a>
+                                <ul>
+                                    <li><a href="/">Audi Innovation Award</a></li>
+                                    <li><a href="/">The World of Audi</a></li>
+                                    <li><a href="/">Audi Quattro</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /.Side-menu -->
+                    <!--
+                                    <div class="contact-info-box">
+
+                                        <div class="info-box">
+                                            <div class="icon-box"><span class="fa fa-home"></span></div>
+                                            <p> 107 Thawra st., Helioplis, Cairo, Egypt</p>
+                                        </div>
+
+
+                                        <div class="info-box">
+                                            <div class="icon-box"><span class="far fa-envelope"></span></div>
+                                            <p><a href="tel:16603"> 16603</a></p>
+                                            <p><a href="mailto:info@mbgeg.com"> info@mbgeg.com</a></p>
+                                        </div>
+                                    </div>
+                -->
+                </div>
+            </div>
+        </section>
+        <!--End Sidenav Bar -->
+        <!-- Start Main Content -->
+        <main id="content">
+
+            <!-- Header Span -->
+            <span class="header-span"></span>
+
+            <!-- Main Header-->
+            <header class="main-header header-style-two" style="">
+                <div class="outer-container">
+                    <div class="main-box clearfix">
+                        <div class="logo-box">
+                            <div class="logo"><a href="/"><img src="~/assets_Audi/images/Audiimg/logo.svg" alt="" title=""></a></div>
+                        </div>
+
+
+                        <div class="nav-outer">
+                            <!-- Main Menu -->
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+                                        <li class="current">
+                                            <a href="/">Models</a>
+
+                                        </li>
+                                        <li class="">
+                                            <a href="/">Try</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="/">Buy</a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="/">Ownership & Services</a>
+                                            <ul>
+                                                <li><a href="/">Audi Innovation Award</a></li>
+                                                <li><a href="/">The World of Audi</a></li>
+                                                <li><a href="/">Audi Quattro</a></li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li><a href="/">About</a></li>
+
+                                        <li><a href="/Home/Form1">Form</a></li>
+                                    </ul>
+
+                                </div>
+                            </nav>
+                            <!-- Main Menu End-->
+
+                            <div class="outer-box clearfix">
+
+                                <!-- Search Btn -->
+                                <div class="search-box">
+                                    <button class="search-btn"><i class="fa fa-search"></i></button>
+                                </div>
+
+                                <!-- Btn box -->
+                                <div class="btn-box no-touch"><button class="nav-toggler"><span></span></button></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!--End Main Header -->
+            <!-- Main Header-->
+            <header class="main-header header-style-two" style="display:none">
+                <div class="outer-container">
+                    <div class="main-box clearfix">
+                        <div class="logo-box">
+                            <div class="logo"><a href="index-2.html"><img src="images/logo.png" alt="" title=""></a></div>
+                        </div>
+
+                        <div class="nav-outer">
+                            <!-- Main Menu -->
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+                                        <li class="current dropdown">
+                                            <a href="index-2.html">Home</a>
+                                            <ul>
+                                                <li><a href="index-2.html">Home Showcase</a></li>
+                                                <li><a href="index-3.html">Home Carousel</a></li>
+                                                <li><a href="index-4.html">Home Banner</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="about-us.html">About</a>
+                                            <ul>
+                                                <li><a href="about-us.html">About Us</a></li>
+                                                <li><a href="about-me.html">About Me</a></li>
+                                                <li><a href="faqs.html">FAQ's</a></li>
+                                                <li><a href="team.html">Team</a></li>
+                                                <li><a href="pricing.html">Pricing</a></li>
+                                                <li><a href="coming-soon.html">Coming Soon</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="services.html">Services</a>
+                                            <ul>
+                                                <li><a href="services.html">All Services</a></li>
+                                                <li><a href="service-detail.html">Civil Enginerring</a></li>
+                                                <li><a href="service-detail.html">Oil & Gas Engineering</a></li>
+                                                <li><a href="service-detail.html">Chemical Engineering</a></li>
+                                                <li><a href="service-detail.html">Agriculture Engineering</a></li>
+                                                <li><a href="service-detail.html">Mechanical Engineering</a></li>
+                                                <li><a href="service-detail.html">Service Detail</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="projects.html">Projects</a>
+                                            <ul>
+                                                <li><a href="projects.html">Project with Filters</a></li>
+                                                <li><a href="projects-2.html">Project Slide Show</a></li>
+                                                <li><a href="project-detail.html">Project Detail</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="blog.html">Blog</a>
+                                            <ul>
+                                                <li><a href="blog.html">Blog with Sidebar</a></li>
+                                                <li><a href="blog-grid.html">Blog Grid View</a></li>
+                                                <li><a href="blog-single.html">Blog Single</a></li>
+                                                <li><a href="error-page.html">Error Page</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="shop.html">Shop</a>
+                                            <ul>
+                                                <li><a href="shop.html">Shop</a></li>
+                                                <li><a href="shop-single.html">Product Details</a></li>
+                                                <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                                                <li><a href="checkout.html">Checkout Page</a></li>
+                                                <li><a href="login.html">Registration Page</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+
+                                </div>
+                            </nav>
+                            <!-- Main Menu End-->
+
+                            <div class="outer-box clearfix">
+
+                                <!-- Search Btn -->
+                                <div class="search-box">
+                                    <button class="search-btn"><i class="fa fa-search"></i></button>
+                                </div>
+
+                                <!-- Btn box -->
+                                <div class="btn-box no-touch"><button class="nav-toggler"><span></span></button></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+            <!--End Main Header -->
+            <!-- Search Popup -->
+            <div class="search-popup">
+                <button class="close-search"><span class="fa fa-long-arrow-alt-up"></span></button>
+                <form method="post" action="#">
+                    <div class="form-group">
+                        <input type="search" name="search-field" value="" placeholder="Search" required="">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+            <!-- End Search Popup -->
+            <div class="DemonstratorTop">
+                <div class="container">
+                    <div class="DemonstratorCont">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                                <div class="tititileDemo">
+                                    <h2>Demonstrator and Used Cars in Stock</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                                <div class="SearchFavoret">
+                                    <ul>
+                                        <li>
+                                            <div class=" ItemFAVSer">
+                                                <a href="/" class="LINFAVSEr">
+                                                    <span class="sc_tb_icon_count_wrap">
+                                                        <i class="bx bx-star"></i>
+                                                    </span>
+                                                    <span>Favourites</span>
+                                                </a>
+                                            </div>
+
+                                        </li>
+
+                                        <li>
+                                            <div class="search-box ItemFAVSer">
+                                                <button class="search-btn LINFAVSEr">
+                                                    <span class="sc_tb_icon_count_wrap">
+                                                        <i class="bx bx-search"></i>
+                                                    </span>
+                                                    <span>New Search</span>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            @*<div class="col-lg-12">
+                                <div class="UnderDemons">
+                                    <h2>Cars near: <a href="#">Cairns QLD, Australia, 50 km radius</a></h2>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="otherheader">
+                <div class="container">
+                    <div class="otherhedcont">
+                        <ul class="otheruihead">
+                            <li class="Active1">
+                                <a href="/" class="linkheditem page-scroll">Model</a>
+                            </li>
+                            <li class="Active2">
+                                <a href="/Home/Price" class="linkheditem page-scroll">Price</a>
+                            </li>
+                            <li class="Active3">
+                                <a href="/Home/Engine" class="linkheditem page-scroll"> Engine</a>
+                            </li>
+                            <li class="Active4">
+                                <a href="/Home/Equipment" class="linkheditem page-scroll"> Equipment</a>
+                            </li>
+                            <li class="Active5">
+                                <a href="/Home/Colour" class="linkheditem page-scroll"> Colour</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pageContent">
+                @RenderBody()
+            </div>
+
+            <div class="footerAudi">
+                <div class="container">
+                    <div class="FooterContnt">
+                        <div class="upperFootr">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="FooteruperItem">
+                                        <h2>Model</h2>
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    All models
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    SUV
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Sportback
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Electric
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    R & RS Range
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Upcoming Models
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    e-tron Hub
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="FooteruperItem">
+                                        <h2>Try</h2>
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    Build Your Audi
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Test Drive
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Find a Dealer
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Audi driving experience
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="FooteruperItem">
+                                        <h2>Buy</h2>
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    View Cars in Stock
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Offers and Pricing
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Audi Store
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Service Plans
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Audi Financial Services
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Pre-owned Cars
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Audi Insurance
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="FooteruperItem">
+                                        <h2>Ownership</h2>
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    Book a Service
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    myAudi Australia
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Service Information
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Warranty
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Takata Airbag Safety recalls
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Complaint Handling Process
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="FooteruperItem">
+                                        <h2>Connect</h2>
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    New Car Enquiry
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Request a Test Drive
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Find a Dealer
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Contact Us
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    Careers
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="socilalinks">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fab fa-weixin"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="bx bxl-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="bx bxl-youtube"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="bx bxl-facebook"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="copyRight">
+                            <ul>
+                                <li>
+                                    <p>© 2022 AUDI AG. All rights reserved</p>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Privacy Policy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Terms & Conditions
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Compliance & Risk Management
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="DiscriptionFooter">
+                            <p>Drive Away price is for the State or Territory where the Dealer is located. If you register the vehicle in a different State or Territory, the advertised Drive Away price may vary from that above as a result of differences in price components such as stamp duty or registration fees.</p>
+
+                            <p>Information relating to the vehicle's price, images, mileage, stock ID and status of the vehicle as a demonstrator vehicle, used vehicle or certified pre-owned vehicle have been supplied by the selling Audi Dealer. Audi Australia Pty Ltd does not warrant the accuracy of any of this information and to the extent permitted by law is not liable for any claims or losses of any nature, including, but not limited to, damages, expenses, lost profits, punitive, special, indirect or consequential losses/damages caused by reliance on this information. Description of the vehicle's standard and optional/special equipment and technical data correspond to those features of the vehicle as at the date of first delivery of the vehicle when it was new; however, changes may have been made to the vehicle since that time. Please contact the selling Audi Dealer to confirm the current equipment configuration and technical data of the vehicle as at the date of inquiry.</p>
+                            <p>²Fuel consumption figures according to ADR 81/02 derived from laboratory testing. Factors including but not limited to driving style, road and traffic conditions, environmental influences, vehicle condition and accessories fitted (including without limitation, wheel size fitted), will in practice in the real world lead to figures which generally differ from those advertised. Advertised figures are meant for comparison amongst vehicles only.</p>
+                            <p>
+                                Personal and Non-Commercial Use Only
+                                Use of this website (as applicable) is for your personal and non-commercial use only. You must not, without the written approval of Audi Australia:
+                                <br />
+                                - modify, copy, distribute, transmit, display, perform, reproduce, publish or license any material;
+                                <br />
+                                - use or attempt to use any material published on the website to create any website or publication;
+                                <br />
+                                - mirror or frame any website or page within the website;
+                                <br />
+                                - use any automated process of any sort to query, access or copy any material on the website or generate or compile any document or database based on the material published on the website; or
+                                <br />
+                                - transfer or sell any information, functionality or products or services offered on this website;
+                            </p>
+                            <p>Audi Australia may terminate your right to access and use the website at any time.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <!-- End Main Content -->
+
+
+
+        <div class="FixedLinkServ">
+            <ul>
+                <li>
+                    <a href="#" class="itemFixed">
+                        <div class="cx-icon"><svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M12,22.5 C17.7989899,22.5 22.5,17.7989899 22.5,12 C22.5,6.20101013 17.7989899,1.5 12,1.5 C6.20101013,1.5 1.5,6.20101013 1.5,12 C1.5,17.7989899 6.20101013,22.5 12,22.5 Z M5.07298279,19.9270172 L9.22310256,15.7768974 M18.9325867,19.9325867 L14.7738315,15.7738315 L18.9325867,19.9325867 Z M22.424397,10.5 L15.094574,10.5 M8.90007019,10.5 L1.58805685,10.5 M12,17 C14.209139,17 15.5,15.5 15.5,13.25 C15.5,12 15.5,10.5 14.5,9.85000038 C13.6987234,9.32917088 10.2993641,9.330414 9.5,9.85000038 C8.5,10.5 8.5,12 8.5,13.25 C8.5,15.5 9.790861,17 12,17 Z" stroke="currentColor" stroke-width="1" fill="none" fill-rule="evenodd"></path></svg></div>
+                        <div class="name"><p>Book a Test Drive</p></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="itemFixed">
+                        <div class="cx-icon"><svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 17.5L9.5 21 7 23.5 4 23.5 3.5 23 5 21.5 5.5 20.5 3.5 18.5 2.5 19 1 20.5 0.5 20 0.5 17 3 14.5 6.5 14.5 14.5 6.5 14.5 3 17 0.5 20 0.5 20.5 1 18.7 2.7 18.5 3.5 20.5 5.5 21.3 5.3 23 3.5 23.5 4 23.5 7 21 9.5 17.5 9.5z" stroke="currentColor" stroke-width="1" fill="none" fill-rule="evenodd"></path></svg></div>
+                        <div class="name"><p>Build your Audi</p></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="itemFixed">
+                        <div class="cx-icon"><svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M6.4,9.5 L21.7,9.5 M5,5.5 L23,5.5 L20.5,13.5 L7.9,13.5 M19.5,22.5 C20.6045695,22.5 21.5,21.6045695 21.5,20.5 C21.5,19.3954305 20.6045695,18.5 19.5,18.5 C18.3954305,18.5 17.5,19.3954305 17.5,20.5 C17.5,21.6045695 18.3954305,22.5 19.5,22.5 Z M10.5,22.5 C11.6045695,22.5 12.5,21.6045695 12.5,20.5 C12.5,19.3954305 11.6045695,18.5 10.5,18.5 C9.3954305,18.5 8.5,19.3954305 8.5,20.5 C8.5,21.6045695 9.3954305,22.5 10.5,22.5 Z M0,1.5 L3.5,1.5 L9,16.5" stroke="currentColor" stroke-width="1" fill="none" fill-rule="evenodd"></path></svg></div>
+                        <div class="name"><p>Buy Online</p></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="itemFixed">
+                        <div class="cx-icon"><svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M11.5,14 L11.5,22.5 L3.5,22.5 C2.9,22.5 2.5,22.1 2.5,21.5 L2.5,1.5 L6.9,1.5 M11.5,16.5 L2.5,16.5 M11.5,2 L11.5,11 M16.3,11.2 L21.6,18.5 M12.5,12.5 C15.8137085,12.5 18.5,9.8137085 18.5,6.5 C18.5,3.1862915 15.8137085,0.5 12.5,0.5 C9.1862915,0.5 6.5,3.1862915 6.5,6.5 C6.5,9.8137085 9.1862915,12.5 12.5,12.5 Z" stroke="currentColor" stroke-width="1" fill="none" fill-rule="evenodd"></path></svg></div>
+                        <div class="name"><p>Find a Dealer</p></div>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+    <!-- Scroll To Top -->
+    <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+
+
+    <script src="~/assets_Audi/js/jquery.js"></script>
+    <script src="~/assets_Audi/js/popper.min.js"></script>
+    <script src="~/assets_Audi/js/bootstrap.min.js"></script>
+    <script src="~/assets_Audi/js/owl.js"></script>
+    <script src="~/assets_Audi/js/wow.js"></script>
+    <script src="~/assets_Audi/js/mixitup.js"></script>
+    <script src="~/assets_Audi/js/appear.js"></script>
+    <script src="~/assets_Audi/js/jquery.stellar.min.js"></script>
+    <script src="~/assets_Audi/js/jquery.fancybox.js"></script>
+    <script src="~/assets_Audi/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/assets_Audi/js/swiper.min.js"></script>
+    <script src="~/assets_Audi/js/TweenMax.min.js"></script>
+    <script src="~/assets_Audi/js/script.js"></script>
+    <script src="~/assets_Audi/js/headretwo.js"></script>
+    @RenderSection("EndBody", required: false)
+
+
+
+</body>
+</html>
