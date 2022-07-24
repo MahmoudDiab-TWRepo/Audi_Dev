@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="10px" viewBox="0 0 16 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon/speedometer</title>
+    <g id="⛔️-Symbols-⛔️" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Listing" transform="translate(-20.000000, -287.000000)" fill="#000000">
+            <g id="Icon/speedometer" transform="translate(20.000000, 287.000000)">
+                <g id="Group">
+                    <path d="M8,0.203125 C3.5888,0.203125 0,3.94145833 0,8.53666667 L0,8.82229167 L0.8228,8.82229167 L0.8228,8.53666667 C0.8228,4.41395833 4.0424,1.06020833 8,1.06020833 C11.9576,1.06020833 15.1772,4.41416667 15.1772,8.53666667 L15.1772,8.82229167 L16,8.82229167 L16,8.53666667 C16,3.94145833 12.4114,0.203125 8,0.203125 Z" id="Path" fill-rule="nonzero"></path>
+                    <path d="M8.6064,7.36833333 C8.2262,7.16416667 7.7916,7.18604167 7.4432,7.38645833 L3.1244,5.87020833 L6.8146,8.65604167 C6.86,9.068125 7.0948,9.44958333 7.475,9.65375 C8.0808,9.97916667 8.8252,9.73125 9.1378,9.10020833 C9.4502,8.46916667 9.2124,7.69375 8.6064,7.36833333 Z" id="Path" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

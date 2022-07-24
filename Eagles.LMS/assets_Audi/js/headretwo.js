@@ -12,6 +12,19 @@
                 $('.otherheader').removeClass("fixedhadertwo animated slideInDown");
             }
         });
+
+
+
+        $(window).on('scroll', function () {
+            if ($(this).scrollTop() > 150) {
+                $('.boxSall').addClass("fixedtwobox animated slideInDown");
+            }
+            else {
+                $('.boxSall').removeClass("fixedtwobox animated slideInDown");
+            }
+        });
+
+
         
         // scroll nice
           $('a.page-scroll').click(function() {

@@ -146,7 +146,7 @@
             <div class="AudiSearchCar">
                 <h2>Audi Used Car Search</h2>
                 <p>
-                    Here you can find an extensive range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and complete an online order.
+                    Here you can find the range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and make inquiry.
                 </p>
 
                 @*<div class="linksBenifits">
@@ -163,62 +163,64 @@
                     <div class="product-info-tabs">
                         <div class="prod-tabs tabs-box">
                             <ul class="tab-btns tab-buttons clearfix">
-                                <li data-tab="#prod-details" class="tab-btn">Models</li>
-                                <li data-tab="#prod-reviews" class="tab-btn active-btn">Body types</li>
+                                <li data-tab="#prod-details" class="tab-btn active-btn">Models</li>
+                                <li data-tab="#prod-reviews" class="tab-btn ">Body types</li>
                             </ul>
 
                             <div class="tabs-content">
 
                                 <!--Tab/models-->
-                                <div class="tab" id="prod-details">
+                                <div class="tab active-tab" id="prod-details">
 
 
                                         <div class="AllCars">
                                             @foreach (var item in _categoreis)
                                             {
-                                                <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
+                                            <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
 
-                                                    <div class="MainCarItem">
+                                                <div class="MainCarItem">
 
 
-                                                        <div class="Images">
-                                                            <img class="MainImgOne" src="@item.MainImageOne" />
-                                                            <img class="MainImgTwo" src="@item.MainImageTwo" />
-                                                        </div>
-                                                        <div class="CarTitle">
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input class="car_category" type="checkbox" id="@item.ID">
-                                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                    @item.Name <span class="CountCar">(1)</span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-
+                                                    <div class="Images">
+                                                        <img class="MainImgOne" src="@item.MainImageOne" />
+                                                        <img class="MainImgTwo" src="@item.MainImageTwo" />
                                                     </div>
+                                                    <div class="CarTitle">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input class="car_category" type="checkbox" id="@item.ID">
+                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                @item.Name <span class="CountCar">(1)</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="GroupChildCars">
+
                                                     @foreach (var itemtype in _types.Where(s => s.CategoryID == item.ID).ToList())
                                                     {
-                                                        <div class="GroupChildCars">
 
-                                                            <div class="ChildCarItem">
-                                                                <div class="Images">
-                                                                    <img class="MainImgOne" src="@itemtype.MainImageOne" />
-                                                                    @*<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />*@
-                                                                </div>
-                                                                <div class="CarTitle">
-                                                                    <div class="checkbox">
-                                                                        <label>
-                                                                            <input class="car_type" type="checkbox" id="@itemtype.ID">
-                                                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                            @item.Name @itemtype.Name <span class="CountCar">(1)</span>
-                                                                        </label>
-                                                                    </div>
+                                                        <div class="ChildCarItem">
+                                                            <div class="Images">
+                                                                <img class="MainImgOne" src="@itemtype.MainImageOne" />
+                                                                @*<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />*@
+                                                            </div>
+                                                            <div class="CarTitle">
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input class="car_type" type="checkbox" id="@itemtype.ID">
+                                                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                        @item.Name @itemtype.Name <span class="CountCar">(1)</span>
+                                                                    </label>
                                                                 </div>
                                                             </div>
-
-
                                                         </div>
+
+
+
                                                     }
+                                                </div>
                                                 </div>
 
 
@@ -231,53 +233,55 @@
 
 
 
-                <div class="tab active-tab" id="prod-reviews">
+                <div class="tab " id="prod-reviews">
                     <div class="AllCars">
                         @foreach (var item in _types)
                         {
-                            <div class="ItemOfCars" id="select_@item.ID" data-getname="select_@item.ID" onclick="getitem(`${this.id}`)">
+                        <div class="ItemOfCars" id="select_@item.ID" data-getname="select_@item.ID" onclick="getitem(`${this.id}`)">
 
-                                <div class="MainCarItem">
+                            <div class="MainCarItem">
 
 
-                                    <div class="Images">
-                                        <img class="MainImgOne" src="@item.MainImageOne" />
-                                        <img class="MainImgTwo" src="@item.MainImageTwo" />
-                                    </div>
-                                    <div class="CarTitle">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input class="car_type" type="checkbox" id="@item.ID">
-                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                @item.Name <span class="CountCar">(1)</span>
-                                            </label>
-                                        </div>
-                                    </div>
-
+                                <div class="Images">
+                                    <img class="MainImgOne" src="@item.MainImageOne" />
+                                    <img class="MainImgTwo" src="@item.MainImageTwo" />
                                 </div>
+                                <div class="CarTitle">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="car_type" type="checkbox" id="@item.ID">
+                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                            @item.Name <span class="CountCar">(1)</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="GroupChildCars">
                                 @foreach (var itemcategory in _categoreis.Where(s => s.ID == item.CategoryID).ToList())
                                 {
-                                    <div class="GroupChildCars">
 
-                                        <div class="ChildCarItem">
-                                            <div class="Images">
-                                                <img class="MainImgOne" src="@itemcategory.MainImageOne" />
-                                                @*<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />*@
-                                            </div>
-                                            <div class="CarTitle">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input class="car_category" type="checkbox" id="@itemcategory.ID">
-                                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                        @itemcategory.Name @item.Name <span class="CountCar">(1)</span>
-                                                    </label>
-                                                </div>
+
+                                    <div class="ChildCarItem">
+                                        <div class="Images">
+                                            <img class="MainImgOne" src="@itemcategory.MainImageOne" />
+                                            @*<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />*@
+                                        </div>
+                                        <div class="CarTitle">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input class="car_category" type="checkbox" id="@itemcategory.ID">
+                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                    @itemcategory.Name @item.Name <span class="CountCar">(1)</span>
+                                                </label>
                                             </div>
                                         </div>
-
-
                                     </div>
+
+
+
                                 }
+                            </div>
                             </div>
 
 
@@ -309,8 +313,8 @@
                     <div class="" id="price">
                         <div class="middle">
                             <div class="multi-range-slider">
-                                <input type="range" id="input-left" min="2005" max="2022" value="1">
-                                <input type="range" id="input-right" min="2005" max="2022" value="1">
+                                <input type="range" step="1" id="input-left" min="2005" max="2022" value="2005">
+                                <input type="range" step="1" id="input-right" min="2005" max="2022" value="2022">
                                 <div class="slider">
                                     <div class="track"></div>
                                     <div class="range"></div>
@@ -319,7 +323,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center justify-content-between mt-2">
+                        <div class="d-flex align-items-center justify-content-between mt-4">
                             <div> <span id="amount-left" class="font-weight-bold"></span> </div>
                             <div> <span id="amount-right" class="font-weight-bold"></span> </div>
                         </div>
@@ -421,7 +425,7 @@
                                                     </li>
                                                     <li>
                                                         <a class="DarkBG" href="#">
-                                                            Order now
+                                                            Enquire Now
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -502,12 +506,13 @@
                                 max = parseInt(_this.max);
 
                             _this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
+                         
 
                             var percent = ((_this.value - min) / (max - min)) * 100;
 
                             thumbLeft.style.left = percent + "%";
                             range.style.left = percent + "%";
-                            amountLeft.innerText = parseInt(percent * 1);
+                            amountLeft.innerText = parseInt(_this.value * 1);
                         }
                         setLeftValue();
 
@@ -522,7 +527,7 @@
 
                             var percent = ((_this.value - min) / (max - min)) * 100;
 
-                            amountRight.innerText = parseInt(percent * 100);
+                            amountRight.innerText = parseInt(_this.value * 1);
                             thumbRight.style.right = (100 - percent) + "%";
                             range.style.right = (100 - percent) + "%";
                         }
@@ -681,7 +686,7 @@
                                             //var desc= $("#descrip").text(jsonresponse[i].MainImageOne);
                                             //console.log(jsonresponse[i].Price);
                                             //console.log(jsonresponse[i].Categories);
-                                            $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImageOne + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].Categories.Name + jsonresponse[i].Types.Name + '</h1> <p>' + jsonresponse[i].Description + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>' + jsonresponse[i].NearestLocation + ' km - Dealer <br> Audi Centre Cairns</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/speedometer.png></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Power + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href=#>Explore vehicle</a> <li><a class=DarkBG href=#> Order now </a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                                            $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImageOne + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].Categories.Name + jsonresponse[i].Types.Name + '</h1> <p>' + jsonresponse[i].Description + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>' + jsonresponse[i].NearestLocation + ' km - Dealer <br> Audi Centre Cairns</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/speedometer.png></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Power + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href=#>Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
                                         }
 
                                     }, error: (error) => {

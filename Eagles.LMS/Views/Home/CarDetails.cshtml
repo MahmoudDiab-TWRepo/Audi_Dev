@@ -1,0 +1,466 @@
+﻿
+@{
+    ViewBag.Title = "CarDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@section EndHeader{
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <style>
+        .DemonstratorTop {
+            display: none;
+        }
+        .otherheader{
+            display:none;
+        }
+    </style>
+}
+<div class="CarDetauils">
+    <div class="container-fluid">
+        <div class="CarDetCont">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <div class="CarDetails">
+                        <div class="CarSlider">
+                            <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2 swiberGigImg">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/9.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/10.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/1.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/2.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/3.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/4.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/5.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/6.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/7.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/8.png" />
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                            <div thumbsSlider="" class="swiper mySwiper swibersmallimg">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/9.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/10.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/1.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/2.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/3.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/4.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/5.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/6.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/7.png" />
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/8.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="overflowData">
+                        <div class="titile">
+                            <h2>Overview</h2>
+                        </div>
+                        <div class="mushdistance">
+                            <div class="pppppp">
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                <span>2,300 km</span>
+                            </div>
+                        </div>
+                        <div class="overflowItemsss">
+                            <div class="row">
+                                @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="Itemss">
+                                        <h2>Registration</h2>
+                                        <p>NWW524</p>
+                                    </div>
+                                </div>*@
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="Itemss">
+                                        <h2>Transmission</h2>
+                                        <p>Automatic</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="Itemss">
+                                        <h2>Fuel</h2>
+                                        <p>Petrol</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="Itemss">
+                                        <h2>Engine Size</h2>
+                                        <p>1498cc</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="Itemss">
+                                        <h2>Body</h2>
+                                        <p>Hatchback</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="Itemss">
+                                        <h2>Seats</h2>
+                                        <p>5</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="Itemss">
+                                        <h2>Colour</h2>
+                                        <p>Navarra Blue</p>
+                                    </div>
+                                </div>
+                                @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="Itemss">
+                                        <h2>Stock#</h2>
+                                        <p>175263</p>
+                                    </div>
+                                </div>*@
+                            </div>
+
+                        </div>
+
+
+                        <div class="Discriptonss">
+                            <div class="titile">
+                                <h2>Description</h2>
+                            </div>
+                            <div class="DiscCont">
+                                <p class="mb-4">The new Audi A3 Sportback. With expressive wheel arches, a wider track and a continuous shoulder line on the side. In conjunction with the new, enlarged Audi Singleframe in honeycomb look, the Audi A3 Sportback looks more athletic than ever before.</p>
+                                <p>Balance of Audi Cover</p>
+                                <p>- Audi Warranty - 5 years / 150,000 kms*</p>
+                                <p>- Audi Roadside Assist - 5 years / 150,000 kms*</p>
+                                <p>- Audi Motoring Plan - 3 years / 150,000 kms*</p>
+                                <p class="mb-4">*Whichever occurs first</p>
+                                <p>Audi A3 35 TFSI Advanced EG 57,900.00</p>
+                                <p>Navarra Blue</p>
+                                <p>Black/Rock Grey Leather</p>
+                                <p>17inch 5-Arm W-Spoke Alloys</p>
+                                <p>Twin Leather EG 2,700.00</p>
+                                <p>Front Sports Seats EG 1,000.00</p>
+                                <p class="mb-4">Comfort Package EG 800.00</p>
+                                <p>Comfort Package Includes:</p>
+                                <p>- Heated front seats</p>
+                                <p>- Electric front seats</p>
+                                <p>- 4-way lumbar support for front seats</p>
+                                <p>- Split folding rear seat</p>
+                                <p>- Storage package</p>
+
+                            </div>
+                        </div>
+
+                        <div class="Featuress">
+                            <div class="titile">
+                                <h2>Features</h2>
+                            </div>
+                            <ul class="feature-listing">
+                                <li>4 Door</li>
+                                <li>ABS Brakes</li>
+                                <li>Cruise Control</li>
+                                <li>Parking Sensors</li>
+                                <li>Power Steering</li>
+                                <li>Push Button Start Stop</li>
+                                <li>Traction Control</li>
+                                <li>Turbo</li>
+                                <li>Warranty</li>
+                                <li>Alloy Wheels</li>
+                                <li>Auto Headlights</li>
+                                <li>Central Locking</li>
+                                <li>Electric Mirrors</li>
+                                <li>Electric Windows</li>
+                                <li>Daytime Running Lights</li>
+                                <li>Remote Central Locking</li>
+                                <li>2 Sets Of Keys</li>
+                                <li>Air Conditioning</li>
+                                <li>Bluetooth</li>
+                                <li>Electric Drivers Seat</li>
+                                <li>Engine Start Button</li>
+                                <li>Leather Seats</li>
+                                <li>NZ New</li>
+                                <li>Radio</li>
+                                <li>Steering Wheel Controls</li>
+                            </ul>
+                        </div>
+
+                        <div class="FeulEconomy">
+                            <div class="titile">
+                                <h2>Fuel Economy</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <div class="imagess">
+                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/V355-3.png" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="feuecoDetails">
+                                        <ul class="c-stocksearch__details-content-fuel-infolist">
+                                            <li>Fuel Economy: 5.30L / 100km*</li>
+                                            <li>Yearly Cost: EG 1,860.00</li>
+                                            <li>C0<sub>2</sub>: 121g/km</li>
+                                            <li>
+                                                CO<sub>2</sub> Rating:
+
+                                                <span class="fas fa-star"></span>
+                                                <span class="fas fa-star"></span>
+                                                <span class="fas fa-star"></span>
+                                                <span class="fas fa-star-half-alt"></span>
+                                                <span class="far fa-star"></span>
+                                                <span class="far fa-star"></span>
+                                            </li>
+                                        </ul>
+                                        <p>Cost per year is an estimate based on petrol price of EG 2.50 per litre and an average distance of 14000 km. Emissions and Energy Economy figures standardised to 3P WLTP.</p>
+                                        <p>Source: <a href="#">EECA Energywise</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="boxSall">
+                        <h1>2021 Audi A3</h1>
+                        <h2>35 TFSI Advanced</h2>
+                        <p> EG 63,750 </p>
+
+                        <div class="linkssgroup">
+                            @*<a href="#" class="darklink"></a>*@
+                            <a class="darklink" data-toggle="modal" data-target=".bd-example-modal-lg"><span>Enquire now</span></a>
+
+                            @*<a href="#"><span>Finance</span></a>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="YouMayLike">
+    <div class="container-fluid">
+        <div class="titile">
+            <h2>
+                You may also like
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="likeItem">
+                    <div class="imagess">
+                        <img src="~/assets_Audi/images/Audiimg/CarImgs/11.png" />
+                    </div>
+                    <div class="detils">
+                        <h2>
+                            <a href="#"> Audi A3</a>
+                        </h2>
+                        <p>35 TFSI Advanced</p>
+
+                        <div class="dsdsd">
+                            <ul>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                    <span>0 km</span>
+                                </li>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
+                                    <span>1498cc</span>
+                                </li>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
+                                    <span>-</span>
+                                </li>
+                            </ul>
+                            <h4>EG 65,140</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="likeItem">
+                    <div class="imagess">
+                        <img src="~/assets_Audi/images/Audiimg/CarImgs/11.png" />
+                    </div>
+                    <div class="detils">
+                        <h2>
+                            <a href="#"> Audi A3</a>
+                        </h2>
+                        <p>35 TFSI Advanced</p>
+
+                        <div class="dsdsd">
+                            <ul>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                    <span>0 km</span>
+                                </li>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
+                                    <span>1498cc</span>
+                                </li>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
+                                    <span>-</span>
+                                </li>
+                            </ul>
+                            <h4>EG 65,140</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="likeItem">
+                    <div class="imagess">
+                        <img src="~/assets_Audi/images/Audiimg/CarImgs/11.png" />
+                    </div>
+                    <div class="detils">
+                        <h2>
+                            <a href="#"> Audi A3</a>
+                        </h2>
+                        <p>35 TFSI Advanced</p>
+
+                        <div class="dsdsd">
+                            <ul>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                    <span>0 km</span>
+                                </li>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
+                                    <span>1498cc</span>
+                                </li>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
+                                    <span>-</span>
+                                </li>
+                            </ul>
+                            <h4>EG 65,140</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="likeItem">
+                    <div class="imagess">
+                        <img src="~/assets_Audi/images/Audiimg/CarImgs/11.png" />
+                    </div>
+                    <div class="detils">
+                        <h2>
+                            <a href="#"> Audi A3</a>
+                        </h2>
+                        <p>35 TFSI Advanced</p>
+
+                        <div class="dsdsd">
+                            <ul>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                    <span>0 km</span>
+                                </li>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
+                                    <span>1498cc</span>
+                                </li>
+                                <li>
+                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
+                                    <span>-</span>
+                                </li>
+                            </ul>
+                            <h4>EG 65,140</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+@section EndBody{
+
+    @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>*@
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            spaceBetween: 5,
+            slidesPerView: 5,
+            freeMode: true,
+            watchSlidesProgress: true,
+            
+        });
+        var swiper2 = new Swiper(".mySwiper2", {
+            loop: true,
+            spaceBetween: 0,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+                swiper: swiper,
+            },
+        });
+    </script>
+}

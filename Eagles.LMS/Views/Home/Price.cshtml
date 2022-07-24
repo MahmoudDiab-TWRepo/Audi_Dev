@@ -51,7 +51,7 @@
             <div class="AudiSearchCar">
                 <h2>Audi Used Cars by Price</h2>
                 <p>
-                    Here you can find an extensive range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and complete an online order.
+                    Here you can find the range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and make inquiry.
                 </p>
 
                 <div class="linksBenifits">
@@ -1256,8 +1256,8 @@
         <div class="" id="price">
             <div class="middle">
                 <div class="multi-range-slider">
-                    <input type="range" id="input-left" min="0" max="320000" >
-                    <input type="range" id="input-right" min="0" max="320000" >
+                    <input type="range" id="input-left" step="10000" min="0" max="320000" value="10000" >
+                    <input type="range" id="input-right" step="10000" min="0" max="320000"  value="280000">
                     <div class="slider">
                         <div class="track"></div>
                         <div class="range"></div>
@@ -1266,9 +1266,9 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex align-items-center justify-content-between mt-2">
+            <div class="d-flex align-items-center justify-content-between mt-4">
                 <div> <span class="font-weight-bold"> From</span><span id="amount-left" class="font-weight-bold"></span> </div>
-                <div><span class="font-weight-bold"> To</span> <span id="amount-right" class="font-weight-bold"></span> </div>
+                <div><span class="font-weight-bold"> To </span> <span id="amount-right" class="font-weight-bold"></span> </div>
             </div>
         </div>
 
@@ -1707,7 +1707,7 @@
 
                 thumbLeft.style.left = percent + "%";
                 range.style.left = percent + "%";
-                amountLeft.innerText = parseInt(percent * 3200);
+                amountLeft.innerText = parseInt(_this.value * 1);
             }
             setLeftValue();
 
@@ -1721,7 +1721,7 @@
                 var percent = ((_this.value - min) / (max - min)) * 100;
 
                 
-                amountRight.innerText = parseInt(percent * 3200);
+                amountRight.innerText = parseInt(_this.value * 1);
                 thumbRight.style.right = (100 - percent) + "%";
                 range.style.right = (100 - percent) + "%";
             }

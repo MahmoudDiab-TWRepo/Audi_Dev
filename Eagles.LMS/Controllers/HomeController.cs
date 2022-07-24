@@ -106,6 +106,13 @@ namespace Eagles.LMS.Controllers
 
             return View();
         }
+        public ActionResult CarDetails()
+        {
+
+            return View();
+        }
+
+
 
         public ActionResult ChangeLanguage(string SelectedLanguage, string redirect)
         {

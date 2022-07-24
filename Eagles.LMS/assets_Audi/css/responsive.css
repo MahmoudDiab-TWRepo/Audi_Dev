@@ -813,3 +813,85 @@
 		margin-left: 0;
 	}
 }
+
+
+
+
+
+@media(max-width:768px) {
+	.fixedtwobox {
+		position: relative;
+		top: 0px;
+		width: 100%;
+	}
+
+	.YouMayLike .likeItem .imagess img {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.FifveItems .Itemlegend {
+		margin-bottom: 42px;
+		padding-top: 24px;
+		display: block;
+		border-top: 1px solid #ccc;
+		align-items: center;
+		justify-content: space-around;
+		text-align: center;
+	}
+
+		.FifveItems .Itemlegend .ItemOne {
+			margin-bottom: 45px;
+		}
+
+	.FixedLinkServ ul {
+		margin: 0;
+	}
+
+	.FeulEconomy .feuecoDetails ul {
+		column-count: 1;
+	}
+
+	.TapsCars .TapsCarCont .AllCars .ItemOfCars {
+		cursor: pointer;
+		margin-bottom: 0;
+		width: 50%;
+	}
+		.TapsCars .TapsCarCont .AllCars .ItemOfCars .GroupChildCars .ChildCarItem {
+			width: 50%;
+			border-bottom: none;
+			margin: 0;
+			max-height: none;
+			padding: 20px 15px;
+			display: inline-block;
+			float: left;
+		}
+		.TapsCars .TapsCarCont .AllCars .ItemOfCars .GroupChildCars {
+			flex: 1 0 200%;
+		}
+	.footerAudi .FooterContnt .upperFootr .row{
+		margin:0;
+	}
+	.otherheader .otherhedcont .otheruihead li {
+		float: left;
+		width: calc(100% / 3 );
+		text-align: center;
+	}
+	.ResultSearch .RaeltCont .underResultSec .ResultItem .ItemDetails {
+		padding: 15px;
+	}
+	.Drivetrain .DrivetrainCobent .row{
+		margin:0;
+	}
+	.ResultSearch .RaeltCont .UperReaselt .row{
+		margin:0;
+	}
+	.ResultSearch .RaeltCont .underResultSec .row{
+		margin:0;
+	}
+	.colour .CoulorCOntent .ColorGroup .colorItem {
+		display: inline-block;
+		margin: 0 5px;
+	}
+		}

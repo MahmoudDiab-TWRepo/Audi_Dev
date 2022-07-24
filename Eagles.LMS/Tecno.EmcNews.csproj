@@ -397,9 +397,9 @@
     </Compile>
     <Compile Include="Helper\SaveImages.cs" />
     <Compile Include="Helper\SendEmail.cs" />
-    <Compile Include="Migrations\202206271034280_intialproj.cs" />
-    <Compile Include="Migrations\202206271034280_intialproj.designer.cs">
-      <DependentUpon>202206271034280_intialproj.cs</DependentUpon>
+    <Compile Include="Migrations\202206271343051_intialserverproj.cs" />
+    <Compile Include="Migrations\202206271343051_intialserverproj.designer.cs">
+      <DependentUpon>202206271343051_intialserverproj.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountState.cs" />
@@ -712,8 +712,24 @@
     <Content Include="assets_Audi\images\Audiimg\6.png" />
     <Content Include="assets_Audi\images\Audiimg\7.png" />
     <Content Include="assets_Audi\images\Audiimg\8.png" />
+    <Content Include="assets_Audi\images\Audiimg\Audi50\Audi50.png" />
     <Content Include="assets_Audi\images\Audiimg\axle.png" />
     <Content Include="assets_Audi\images\Audiimg\bg1.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\1.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\10.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\11.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\2.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\3.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\4.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\5.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\6.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\7.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\8.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\9.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\engine.svg" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\fuel.svg" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\speedo.svg" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\V355-3.png" />
     <Content Include="assets_Audi\images\Audiimg\drivetrain.png" />
     <Content Include="assets_Audi\images\Audiimg\ee.jpeg" />
     <Content Include="assets_Audi\images\Audiimg\exterior-color.black.png" />
@@ -725,6 +741,11 @@
     <Content Include="assets_Audi\images\Audiimg\exterior-color.silver.png" />
     <Content Include="assets_Audi\images\Audiimg\exterior-color.white.png" />
     <Content Include="assets_Audi\images\Audiimg\exterior-color.yellow.png" />
+    <Content Include="assets_Audi\images\Audiimg\icons\blood.png" />
+    <Content Include="assets_Audi\images\Audiimg\icons\charging.png" />
+    <Content Include="assets_Audi\images\Audiimg\icons\co2-cloud.png" />
+    <Content Include="assets_Audi\images\Audiimg\icons\file.png" />
+    <Content Include="assets_Audi\images\Audiimg\icons\letter-c.png" />
     <Content Include="assets_Audi\images\Audiimg\j1.png" />
     <Content Include="assets_Audi\images\Audiimg\j10.png" />
     <Content Include="assets_Audi\images\Audiimg\j11.png" />
@@ -1653,6 +1674,17 @@
     <Content Include="assets_Audi\fonts\calibri-font-family\calibri-bold.ttf" />
     <Content Include="assets_Audi\fonts\calibri-font-family\calibri-italic.ttf" />
     <Content Include="assets_Audi\fonts\calibri-font-family\calibri-regular.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-BoldItalic_4.03.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-Bold_4.03.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-ExtendedBoldItalic_4.03.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-ExtendedBold_4.03.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-ExtendedItalic_4.03.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-ExtendedNormal_4.03.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-Italic_4.03.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-Normal_4.03.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-WideBold_4.03.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-WideLight_4.03.ttf" />
+    <Content Include="assets_Audi\AudiFonts\AudiType-WideNormal_4.03.ttf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -1936,6 +1968,7 @@
     <Content Include="Views\Home\Colour.cshtml" />
     <Content Include="Views\Home\Results.cshtml" />
     <Content Include="Views\Home\Form1.cshtml" />
+    <Content Include="Views\Home\CarDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2029,8 +2062,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Global.ar.resx" />
-    <EmbeddedResource Include="Migrations\202206271034280_intialproj.resx">
-      <DependentUpon>202206271034280_intialproj.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202206271343051_intialserverproj.resx">
+      <DependentUpon>202206271343051_intialserverproj.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
