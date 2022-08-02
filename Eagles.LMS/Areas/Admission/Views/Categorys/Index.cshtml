@@ -13,13 +13,13 @@
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                 <h4 class="mb-sm-0 font-size-18">
-                    <a href="/Admission/Services/Create" class="btn btn-success waves-effect waves-light"> <i class="bx bx-plus font-size-16 align-middle me-2"></i> Add Services</a>
+                    <a href="/Admission/Categorys/Create" class="btn btn-success waves-effect waves-light"> <i class="bx bx-plus font-size-16 align-middle me-2"></i> Add Category</a>
                 </h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="/Admission">Home</a></li>
-                        <li class="breadcrumb-item active">Services</li>
+                        <li class="breadcrumb-item active">Categorys</li>
                     </ol>
                 </div>
 
@@ -110,7 +110,7 @@
                     if (flag) {
                         $.ajax({
                             type: "POST",
-                            url: "/Admission/Services/Delete/" + entityId+"",
+                            url: "/Admission/Categorys/Delete/" + entityId+"",
                             success: (response) => {
                                 toastr.success('@Resources.Global.Theunithasbeensuccessfullydeleted', '', { timeOut: 10000 });
                                 self.closest('tr').remove();

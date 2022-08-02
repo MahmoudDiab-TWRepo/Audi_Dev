@@ -20,7 +20,7 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    margin: 0 auto;
+margin: 0 auto;
     height: 70px;
     padding: 0 calc(24px / 2) 0 0
 }
@@ -5596,3 +5596,51 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination li {
 
 
 
+.note-editor.note-airframe, .note-editor.note-frame {
+    border: 1px solid #e6e8ef;
+    /* border-radius: 6px; */
+}
+
+.note-toolbar {
+    position: relative;
+    background: #f7f8f9;
+}
+
+.note-editor .note-toolbar, .note-popover .popover-content {
+    margin: 0;
+    padding: 0 0 5px 5px;
+    background: #f00;
+    background: #f7f8f9;
+}
+
+.note-toolbar {
+    position: relative;
+    background: #f7f8f9 !important;
+}
+.note-btn.btn.btn-default {
+    color: #373e52;
+    padding: 5px 15px;
+    background: #ffffff;
+    border: 1px solid #e9edf1;
+    border-radius: 0;
+    font-size: 15px;
+}
+.note-editor.note-airframe .note-editing-area .note-editable, .note-editor.note-frame .note-editing-area .note-editable {
+    padding: 10px;
+    overflow: auto;
+    word-wrap: break-word;
+    height: 365px;
+}
+
+.FontCairo {
+    font-family: 'Cairo';
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #2a3042;
+    border-color: #2a3042;
+}
+.TextArea_Control {
+    min-height: 180px !important;
+}

@@ -12,6 +12,10 @@ using Eagles.LMS.DTO;
 using Eagles.LMS.Models;
 using Newtonsoft.Json;
 
+using System.IO;
+using System.ComponentModel.DataAnnotations.Schema;
+using Eagles.LMS.Helper;
+
 namespace Eagles.LMS.Controllers
 {
     public class HomeController : Controller
@@ -72,6 +76,55 @@ namespace Eagles.LMS.Controllers
             return Json(CarsList, JsonRequestBehavior.AllowGet);
 
         }
+
+
+        [HttpPost]
+        public JsonResult CarfilterType(CarModel carmodel)
+        {
+            UnitOfWork ctx = new UnitOfWork();
+            List<Car> cars = new List<Car>();
+            //Car journalMaster = Serializer.Deserialize<Ac_JournalMaster>(master);
+            //List<Ac_JournalDetails> journalDetails = serilizer.Deserialize<List<Ac_JournalDetails>>(details);
+            if (carmodel.CarType != null && carmodel.CarType.Length > 0)
+            {
+                foreach (var item in carmodel.CarType)
+                {
+                    var itemcar = ctx.carManager.GetAllBind().FirstOrDefault(s => s.TypeID == item);
+                    if (itemcar != null)
+                    {
+                        cars.Add(itemcar);
+                    }
+                }
+            }
+            if (carmodel.CarCategory != null && carmodel.CarCategory.Length > 0)
+            {
+                foreach (var itemcat in carmodel.CarCategory)
+                {
+                    var itemcar = ctx.carManager.GetAllBind().FirstOrDefault(s => s.CategoryId == itemcat);
+                    if (itemcar != null)
+                    {
+                        cars.Add(itemcar);
+                    }
+                }
+
+            }
+            var DIstinctcars = cars.ToList().Distinct();
+            if (carmodel.CarCategory == null && carmodel.CarType == null)
+            {
+                DIstinctcars = ctx.carManager.GetCarwithEquipments().ToList();
+
+            }
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string CarsList = JsonConvert.SerializeObject(DIstinctcars, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+
+
+            TempData["mydata"] = DIstinctcars;
+            return Json(CarsList, JsonRequestBehavior.AllowGet);
+
+        }
         public ActionResult Price()
         {
 
@@ -106,12 +159,107 @@ namespace Eagles.LMS.Controllers
 
             return View();
         }
-        public ActionResult CarDetails()
+        public ActionResult CarDetails(int? id)
+        {
+            var _car = new Car();
+            
+            bool en = true;
+
+            if (Request.Cookies["Language"] != null)
+            {
+                en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
+            }
+            if (en == true)
+            {
+                _car = new UnitOfWork().carManager.GetAll().Where(s => s.CarName != null).FirstOrDefault(s => s.ID == id);
+              
+            }
+
+            // Expression<Func<T, object>> criteria
+            else
+            {
+                _car = new UnitOfWork().carManager.GetAll().Where(s => s.CarName != null).FirstOrDefault(s => s.ID == id);
+            }
+            if (_car == null)
+                return View("NotFound");
+                _car.CarImages = new UnitOfWork().CarImagesManager.GetAllBind().Where(s => s.CarId == _car.ID).ToList();
+
+            //return Redirect("/Admission");
+            TempData["ID"] = _car.ID;
+
+            ViewBag.colorID = _car.ColorId;
+            //TempData["ColorID"] = _car.ColorId;
+            //return RedirectToAction("EnquiryForm");
+            return View(_car);
+            //return result;
+            //return View();
+        }
+        public ActionResult EnquiryForm(int? id)
+        {
+            if (id != null)
+                ViewBag.Id = id;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult EnquiryForm( EnquiryRequist enquiryRequist, HttpPostedFileBase uploadattachments)
+        {
+            ActionResult result = View(enquiryRequist);
+
+            if (ModelState.IsValid)
+            {
+                RequestStatus requestStatus;
+                if (uploadattachments != null)
+                {
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Plz Upload The Attachment");
+                }
+                else
+                {
+                    var ctx = new UnitOfWork();
+                    enquiryRequist.CreatedTime = DateTime.Now;
+                    ctx.EnquiryRequistManager.Add(enquiryRequist);
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+
+                    try
+                    {
+                        SendEmail sendEmail = new SendEmail();
+                        sendEmail.SendMail(new EmailDTO
+                        {
+                            To = "To Email",
+                            Message = "<h1 style='font-size:25px; line-height:1.5'>New Car Enquiry Request</h1>"
+                            + "<p style='font-size:15px; color: #000'>Thank You for Enquiry This Car</p>" + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Car Name :</b>" + enquiryRequist.CarID + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>First Name :</b>" + enquiryRequist.FirstName + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Last Name :</b>" + enquiryRequist.LastName + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Email :</b>" + enquiryRequist.Email + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Phone :</b>" + enquiryRequist.Mobile + "<br />"
+                            
+                            + "<b style='font-size:12px; line-height:1.5'>Message:</b>" + enquiryRequist.Message + "<br />" +
+                            "<br />",
+                            From = "web@empcnews.com",
+                            Subject = "New Contact Us"
+                        }, "Contact", enquiryRequist.Email);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                    return Redirect("/Home/ThanksPage");
+
+                }
+                TempData["RequestStatus"] = requestStatus;
+            }
+            return result;
+
+
+        }
+
+
+        public ActionResult ThanksPage()
         {
 
             return View();
         }
-
 
 
         public ActionResult ChangeLanguage(string SelectedLanguage, string redirect)

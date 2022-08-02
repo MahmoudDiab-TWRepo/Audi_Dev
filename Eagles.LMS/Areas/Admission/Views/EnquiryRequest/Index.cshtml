@@ -1,0 +1,77 @@
+﻿@model List<EnquiryRequist>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admission/Views/Shared/_Layout.cshtml";
+    int index = 1;
+    var ctx = new Eagles.LMS.BLL.UnitOfWork();
+
+}
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">
+                    Contact Us requistt
+                </h4>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive" style="padding-bottom:30px;">
+
+                        <table id="table_Slider" class=" table table-bordered tableOtherdite">
+                            <thead class="DarkThead">
+                                <tr>
+                                    <th> <p> Filsr Name</p> </th>
+                                    <th> <p>Last Name </p></th>
+                                    <th> <p>Email </p></th>
+                                    <th> <p>Phone Number</p> </th>
+                                    <th> <p>Car Name</p> </th>
+                                    <th> <p>Time Send </p></th>
+                                    <th> <p>Message </p></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td> <p>@item.FirstName</p> </td>
+                                    <td> <p>@item.LastName</p> </td>
+                                    <td> <p>@item.Email</p> </td>
+                                    <td> <p>@item.Mobile</p> </td>
+                                    <td> <p>@item.CarID</p> </td>
+                                    <td> <p>@item.CreatedTime</p> </td>
+                                    <td> <p>@item.Message</p> </td>
+                                </tr>
+                                    {
+                                        index += 1;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+
+    </div>
+
+</div>
+
+
+
+
+@section EndBody{
+
+}

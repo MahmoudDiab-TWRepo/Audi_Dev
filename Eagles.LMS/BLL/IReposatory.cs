@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +16,6 @@ namespace Eagles.LMS.BLL
         IEnumerable<TEntity> Add(ICollection<TEntity> entities);
         bool Delete(TEntity entity);
         bool Delete(int id);
-
         bool UpdateWithSave(TEntity entity);
         void UpdateWithoutSave(TEntity entity);
         bool Delete(IEnumerable<TEntity> entities);

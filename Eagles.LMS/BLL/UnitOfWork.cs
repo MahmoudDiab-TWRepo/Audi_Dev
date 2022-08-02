@@ -26,11 +26,10 @@ namespace Eagles.LMS.BLL
         public CategoryManager categoryManager { get { return new CategoryManager(ctx); } }
         public TypeManager typeManager { get { return new TypeManager(ctx); } }
         public CarManager carManager { get { return new CarManager(ctx); } }
+        public CarImagesManager CarImagesManager { get { return new CarImagesManager(ctx); } }
         public EquipmentManager equipmentManager { get { return new EquipmentManager(ctx); } }
-        
-
-
-
+        public EnquiryRequistManager EnquiryRequistManager { get { return new EnquiryRequistManager(ctx); } }
+        public ColorManager ColorManager { get { return new ColorManager(ctx); } }
 
 
 

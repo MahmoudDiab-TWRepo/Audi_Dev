@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Colour";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var ctx = new Eagles.LMS.BLL.UnitOfWork();
+    var _color = ctx.ColorManager.GetAllBind().ToList();
 }
 
 @section EndHeader{
@@ -24,6 +26,8 @@
 
             <div class="SeearchListItem">
                 <ul>
+
+                    
                     <li>
                         <div class="ItemSearch">
                             <span>FWD</span>
@@ -61,7 +65,7 @@
 
 
             <div class="AudiSearchCar">
-                <h2>Audi Used Cars by Colour</h2>
+                <h2>Audi Used Cars by Color</h2>
                 <p>
                     Here you can find range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and complete an online order.
                 </p>
@@ -76,24 +80,30 @@
                 <div class="container">
                     <div class="CoulorCOntent">
                         <div class="ColorGroup">
-                            <div class="colorItem">
-                                <div class="icgcheck">
-                                    <div class="image">
-                                        <img src="~/assets_Audi/images/Audiimg/exterior-color.black.png" />
+                            @foreach (var color in _color)
+                            {
+                                <div class="colorItem">
+                                    <div class="icgcheck">
+                                        <div class="image">
+                                            <img src="@color.ImageColor" />
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="@color.Name">
+                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="s">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        </label>
+                                    <div class="titilecolor">
+                                        <h2>@color.Name</h2>
                                     </div>
                                 </div>
-                                <div class="titilecolor">
-                                    <h2>Black</h2>
-                                </div>
-                            </div>
+                            }
 
-                            <div class="colorItem">
+
+
+
+                            @*<div class="colorItem">
                                 <div class="icgcheck">
                                     <div class="image">
                                         <img src="~/assets_Audi/images/Audiimg/exterior-color.blue.png" />
@@ -237,8 +247,8 @@
                                 <div class="titilecolor">
                                     <h2>Yellow</h2>
                                 </div>
-                            </div>
-                           
+                            </div>*@
+
                         </div>
                     </div>
                 </div>
@@ -281,17 +291,18 @@
         <div class="RaeltCont">
             <div class="UperReaselt">
                 <div class="row">
+
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="Resultcount">
-                            <h2><span>4</span>Result</h2>
+                            <h2><span>@*4*@</span>Results</h2>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="SortResBy">
-                            <label>Sort To</label>
+                            <label>Sort By</label>
                             <select>
-                                <option>Price ascending</option>
-                                <option>Price descending </option>
+                                @*<option>Price ascending</option>
+                        <option>Price descending </option>*@
                                 <option>Model ascending </option>
                                 <option>Model descending </option>
                                 <option>Distance ascending </option>
@@ -338,7 +349,7 @@
                                         </div>
                                         <div class="DistnItem">
                                             <div class="icon">
-                                                <img src="~/assets_Audi/images/Audiimg/speedometer.png" />
+                                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
                                             </div>
                                             <div class="DitinaDetails">
                                                 <p>
@@ -424,7 +435,7 @@
                                         </div>
                                         <div class="DistnItem">
                                             <div class="icon">
-                                                <img src="~/assets_Audi/images/Audiimg/speedometer.png" />
+                                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
                                             </div>
                                             <div class="DitinaDetails">
                                                 <p>
@@ -510,7 +521,7 @@
                                         </div>
                                         <div class="DistnItem">
                                             <div class="icon">
-                                                <img src="~/assets_Audi/images/Audiimg/speedometer.png" />
+                                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
                                             </div>
                                             <div class="DitinaDetails">
                                                 <p>
@@ -596,7 +607,7 @@
                                         </div>
                                         <div class="DistnItem">
                                             <div class="icon">
-                                                <img src="~/assets_Audi/images/Audiimg/speedometer.png" />
+                                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
                                             </div>
                                             <div class="DitinaDetails">
                                                 <p>

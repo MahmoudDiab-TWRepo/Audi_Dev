@@ -14,10 +14,22 @@ namespace Eagles.LMS.Web_Services
     public class GlobalServicesController : ApiController
     {
 
-
-
-       
+        [HttpPost]
+        [Route("api/GlobalServices/RemoveCarImg")]
+        public async Task<IHttpActionResult> EditUser(int id)
+        {
+            UnitOfWork ctx = new UnitOfWork();
+            var CarImg = ctx.CarImagesManager.GetBy(id);
+            if (CarImg != null)
+            {
+                ctx.CarImagesManager.Delete(CarImg);
+                return Ok();
+            }
+            return NotFound();
         }
+
+
+    }
 
 
 

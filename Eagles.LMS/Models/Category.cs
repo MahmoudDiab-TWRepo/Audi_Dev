@@ -17,6 +17,9 @@ namespace Eagles.LMS.Models
         public string MainImageOne { get; set; }
         public string MainImageTwo { get; set; }
 
+
+        public bool ShowInBodyType { get; set; }
+
         //public List<ServiceImages> ServiceImages { get; set; }
 
         //public DateTime CreateTime { get; set; }

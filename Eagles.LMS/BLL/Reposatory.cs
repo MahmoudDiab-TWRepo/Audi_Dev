@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 
 namespace Eagles.LMS.BLL
@@ -84,6 +85,9 @@ namespace Eagles.LMS.BLL
         {
             return Set.ToList();
         }
+
+
+
 
         public bool UpdateCollectionWithSave(ICollection<TEntity> entities)
         {

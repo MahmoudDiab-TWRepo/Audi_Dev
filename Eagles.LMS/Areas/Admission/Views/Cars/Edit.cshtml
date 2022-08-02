@@ -1,8 +1,386 @@
-﻿
+﻿@model Car
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admission/Views/Shared/_Layout.cshtml";
+    var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
+    var category = new Eagles.LMS.BLL.UnitOfWork().categoryManager.GetAllBind();
+    var types = new Eagles.LMS.BLL.UnitOfWork().typeManager.GetAllBind();
+    var Color = new Eagles.LMS.BLL.UnitOfWork().ColorManager.GetAllBind();
+
 }
 
-<h2>Edit</h2>
+<div class="container-fluid">
 
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">Edit Car</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/Admission/Cars">Home</a></li>
+                        <li class="breadcrumb-item active">Cars</li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+        @using (Html.BeginForm("Edit", "Cars", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(s => s.ID)
+            @Html.HiddenFor(s => s.MainImage)
+            @Html.HiddenFor(s => s.CreateTime)
+            @Html.HiddenFor(s => s.UserCreateId)
+            @Html.HiddenFor(s => s.Status)
+
+
+
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Car Name</label>
+                                            @Html.TextBoxFor(s => s.CarName, null, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Car Name"
+                                       })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Price</label>
+                                            @Html.TextBoxFor(s => s.Price, null, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Price"
+                                       })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Distance</label>
+                                            @Html.TextBoxFor(s => s.Distance, null, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Distance"
+                                       })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Transmission</label>
+                                            @Html.TextBoxFor(s => s.Transmission, null, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Transmission"
+                                       })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Engin Size</label>
+                                            @Html.TextBoxFor(s => s.EnginSize, null, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Engin Size"
+                                       })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Power</label>
+                                            @Html.TextBoxFor(s => s.Power, null, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Power"
+                                       })
+                                        </div>
+                                    </div>
+
+
+
+                                    @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="mb-3">
+                <label class="form-label">Fule</label>
+                @Html.DropDownListFor(x => Model.AlbumId, new SelectList(alboums,
+               "Id", "TitleEnglish"), htmlAttributes: new { @class = "form-control select2" })
+
+
+            </div>
+        </div>*@
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Body</label>
+                                            @Html.TextBoxFor(s => s.Body, null, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Body"
+                                       })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Color</label>
+                                            @Html.DropDownListFor(x => Model.ColorId, new SelectList(Color,
+                                           "Id", "Name"), htmlAttributes: new { @class = "form-control select2" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Seats</label>
+                                            @Html.TextBoxFor(s => s.NumSeats, null, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Seats"
+                                       })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Model Year</label>
+                                            @Html.TextBoxFor(s => s.ModelYear, null, new
+                                       {
+                                           @class = "form-control",
+                                           Type = "number",
+                                           placeholder = "Model Year"
+                                       })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Short Discription</label>
+                                            @Html.TextAreaFor(s => s.ShortDiscription, new
+                                       {
+                                           @class = "form-control",
+                                           placeholder = "Short Discription"
+                                           //@required = "required"
+                                       })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Description</label>
+                                            @Html.TextAreaFor(s => s.Description, new
+                                       {
+                                           @class = "form-control textarea",
+                                           placeholder = "Description "
+                                           //@required = "required"
+                                       })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Features</label>
+                                            @Html.TextAreaFor(s => s.Features, new
+                                       {
+                                           @class = "form-control textarea",
+                                           placeholder = "Features"
+                                           //@required = "required"
+                                       })
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Category</label>
+                                            @Html.DropDownListFor(x => Model.CategoryId, new SelectList(category,
+                                           "Id", "Name"), htmlAttributes: new { @class = "form-control select2" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Types</label>
+                                            @Html.DropDownListFor(x => Model.TypeID, new SelectList(types,
+                                           "Id", "Name"), htmlAttributes: new { @class = "form-control select2" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label for="uploadattachments" class="form-label">Car Main Image <span class="extiniosType">(jpg, png, peg, gif, jpg)</span><span class="extiniosType">(W:1500px, H:870px)</span></label>
+                                            <input class="form-control" name="uploadattachments" type="file" id="uploadattachments">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="mb-3">
+                                            @if (Model != null && Model.MainImage != null)
+                                            {
+                                                <img style="max-width: auto; height: 210px " src="@Model.MainImage" />
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
+                                            <label for="uploadattachments_multi" class="form-label">
+                                                Car Images [Optional] <span class="extiniosType">(jpg, png, peg, gif, jpg)</span><span class="extiniosType">(W:1500px, H:870px)</span>
+                                            </label>
+                                            <input multiple class="form-control" name="uploadattachments_multi" type="file" id="uploadattachments_multi">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">
+                                                Car Images
+                                            </label>
+                                        </div>
+                                    </div>
+                                    @if (Model.CarImages != null && Model.CarImages.Any())
+                                    {
+                                        <div class="ImagesGroup">
+                                            <div class="row">
+                                                @foreach (var item in Model.CarImages)
+                                                {
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 parentBox">
+                                                        <div class="ImageItem">
+                                                            <div class="Images">
+                                                                <img src="@item.Path" />
+                                                            </div>
+                                                            <div class="DeleteBtn">
+                                                                <a class=" btn_delete" data-id="@item.Id" href="#"><i class="bx bx-trash"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                    }
+
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+
+
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="foooterbuttons">
+                            <button type="submit" class="btn btn-success waves-effect waves-light">
+                                <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
+                            </button>
+                            <a href="/Admission/cars" class="btn btn-danger waves-effect waves-light">
+                                <i class="fa fa-backspace back font-size-16 align-middle me-2"></i> @Resources.Global.Back
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+
+</div>
+
+
+
+@section EndBody{
+
+    <script>
+        $(function () {
+
+  $("body").on("click", ".btn_delete", (s) => {
+                let self = $(s.currentTarget),
+                    entityId = self.attr('data-id');
+                bootbox.confirm("@Resources.Global.ConfirmDeleteoperation !", function (flag) {
+                    if (flag) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/api/GlobalServices/RemoveCarImg?id=" + entityId+"",
+                            success: (response) => {
+
+                                toastr.success('@Resources.Global.Theunithasbeensuccessfullydeleted', '', { timeOut: 10000 });
+                                self.closest('.parentBox').remove();
+                            }, error: (error) => {
+                                // unauthorize
+                                let errorMessage = manageAjaxError(error);
+                                pushNotification("danger", errorMessage);
+                            }
+                        });
+                    }
+                })
+            });
+        });
+
+
+        $("body").on("click", ".btn_deleteMainImage", (s) => {
+            let self = $(s.currentTarget),
+
+                    entityId = self.attr('data-id');
+                bootbox.confirm("@Resources.Global.ConfirmDeleteoperation !", function (flag) {
+                    if (flag) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/api/GlobalServices/RemoveServicesMainImg?id=" + entityId+"",
+                            success: (response) => {
+                                toastr.success('@Resources.Global.Theunithasbeensuccessfullydeleted', '', { timeOut: 10000 });
+                                $('#box_mainImg').remove();
+                                location.reload();
+                            }, error: (error) => {
+                                // unauthorize
+                                let errorMessage = manageAjaxError(error);
+                                pushNotification("danger", errorMessage);
+                            }
+                        });
+                    }
+                })
+            });
+    </script>
+
+    @if (requestStatus != null)
+    {
+
+        <script>
+
+              notify = $.notify({
+                  message: '@requestStatus.Message',
+
+              }, {
+
+                  type: '@requestStatus.Status' == 'Edited' ? "success" :"danger",
+                      animate: {
+                          enter: 'animated flipInY',
+                          exit: 'animated flipOutX',
+                      }
+                  });
+        </script>
+
+        TempData.Remove("RequestStatus");
+    }
+}

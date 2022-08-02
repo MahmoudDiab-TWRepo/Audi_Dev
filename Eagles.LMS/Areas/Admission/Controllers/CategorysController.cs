@@ -184,5 +184,30 @@ namespace Eagles.LMS.Areas.Admission.Controllers
             var userFromSesstion = HttpContext.Session["User_Key"];
             return Convert.ToInt32(userFromSesstion);
         }
+
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            UnitOfWork ctx = new UnitOfWork();
+            var entity = ctx.categoryManager.GetBy(id);
+            var user = ctx.UserManager.GetById(GetUserId());
+
+            //ctx.logManager.Add(new log
+            //{
+            //    UserId = GetUserId(),
+            //    ActionTime = DateTime.Now,
+            //    EntityId = id,
+            //    TableName = "Service",
+            //    Action = "Delete:Service",
+            //    LoginDate = user.LoginDate,
+            //    LogoutDate = user.LogoutDate,
+            //    ActionTitle = entity.TitleArabic
+            //});
+
+
+            ctx.categoryManager.Delete(entity);
+            return Json(JsonRequestBehavior.AllowGet);
+        }
     }
 }

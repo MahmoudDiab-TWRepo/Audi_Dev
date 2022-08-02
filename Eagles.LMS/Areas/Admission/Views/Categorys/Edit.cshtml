@@ -81,8 +81,8 @@
                                                                     <img src="@Model.MainImageOne" />
                                                                 </div>
                                                                 @*<div class="DeletemainImg">
-                                                                    <a class="btn_deleteMainImage" data-id="@Model.Id"><i class="bx bx-trash"></i></a>
-                                                                </div>*@
+                                        <a class="btn_deleteMainImage" data-id="@Model.Id"><i class="bx bx-trash"></i></a>
+                                    </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -124,8 +124,8 @@
                                                             <img src="@Model.MainImageTwo" />
                                                         </div>
                                                         @*<div class="DeleteBtn">
-                                                            <a class=" btn_delete" data-id="@item.Id" href="#"><i class="bx bx-trash"></i></a>
-                                                        </div>*@
+                                <a class=" btn_delete" data-id="@item.Id" href="#"><i class="bx bx-trash"></i></a>
+                            </div>*@
                                                     </div>
                                                 </div>
 
@@ -133,26 +133,41 @@
                                         </div>
 
                                         @*<table class="" style="display:none">
-                                            <tr>
-                                                <th>IMG</th>
-                                                <th>Remove</th>
-                                            </tr>
-                                            @foreach (var item in Model.ServiceImages)
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        <img style="width:100px;height:100px" src="@item.Path" />
-                                                    </td>
-                                                    <td>
+                <tr>
+                    <th>IMG</th>
+                    <th>Remove</th>
+                </tr>
+                @foreach (var item in Model.ServiceImages)
+                {
+                    <tr>
+                        <td>
+                            <img style="width:100px;height:100px" src="@item.Path" />
+                        </td>
+                        <td>
 
 
-                                                    </td>
-                                                </tr>
-                                            }
-                                        </table>*@
+                        </td>
+                    </tr>
+                }
+            </table>*@
                                     }
 
 
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.ShowInBodyType, new
+                                       {
+                                           @class = "form-check-input",
+                                           @id = "ckekshow",
+                                           placeholder = "Show In Body Type"
+                                       })
+                                            <label for="ckekshow" class="form-label" style="cursor:pointer;">Show In Body Type</label>
+
+                                        </div>
+
+
+                                    </div>
 
 
 
@@ -174,7 +189,7 @@
                             <button type="submit" class="btn btn-success waves-effect waves-light">
                                 <i class="bx bx-check-double font-size-16 align-middle me-2"></i> @Resources.Global.Save
                             </button>
-                            <a href="/Admission/Services" class="btn btn-danger waves-effect waves-light">
+                            <a href="/Admission/Categorys" class="btn btn-danger waves-effect waves-light">
                                 <i class="fa fa-backspace back font-size-16 align-middle me-2"></i> @Resources.Global.Back
                             </a>
                         </div>

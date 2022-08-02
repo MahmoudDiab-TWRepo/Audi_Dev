@@ -19,7 +19,7 @@ namespace Eagles.LMS.BLL
         }
         public  List<Car> GetCarwithEquipments()
         {
-            return Sets.Include(s => s.Equipment).Include(s=>s.ShownImage).ToList();
+            return Sets.Include(s => s.Equipment).Include(s=>s.CarImages).ToList();
         }
 
 

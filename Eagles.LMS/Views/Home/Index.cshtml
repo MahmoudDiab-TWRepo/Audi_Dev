@@ -29,6 +29,7 @@
     }
 
     var _categoreis = ctx.categoryManager.GetAllBind();
+    var _categoreisBodyType = ctx.categoryManager.GetAllBind().Where(s => s.ShowInBodyType == true).ToList();
     var _types = ctx.typeManager.GetAllBind();
 
 }
@@ -45,6 +46,13 @@
         .otherheader .otherhedcont .otheruihead li.Active1:hover a {
             color: #000;
         }
+
+
+        .container .content {
+            display: none;
+            padding: 5px;
+        }
+
     </style>
 }
 
@@ -59,79 +67,20 @@
         <div class="TapsCarCont">
 
             <div class="SeearchListItem">
-                <ul>
-                    <li>
-                        <div class="ItemSearch">
-                            <span> </span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3</span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3 </span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3 </span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3 </span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3</span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3 </span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3 </span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3 </span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3</span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3 </span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>A3 </span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
+                <ul id="dasdsad">
+                    @*@foreach (var item in _cars)
+            {
+                <li class="DeleteLI">
+                    <div class="ItemSearch">
+                        <span> </span>
+                        <button id="me" class="Remove"  onclick="DeleteItemFiltr()"><i class="bx bx-x"></i></button>
+                    </div>
+                </li>
+
+            }*@
+
+                </ul>
+                <ul id="dasdsad">
 
                     <li>
                         <div class="SearchClear">
@@ -233,62 +182,121 @@
 
 
 
-                <div class="tab " id="prod-reviews">
-                    <div class="AllCars">
-                        @foreach (var item in _types)
-                        {
-                        <div class="ItemOfCars" id="select_@item.ID" data-getname="select_@item.ID" onclick="getitem(`${this.id}`)">
+                                <div class="tab " id="prod-reviews">
 
-                            <div class="MainCarItem">
+                                    <div class="AllCars">
+                                        @foreach (var item in _categoreisBodyType)
+                                        {
+                                            <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
 
-
-                                <div class="Images">
-                                    <img class="MainImgOne" src="@item.MainImageOne" />
-                                    <img class="MainImgTwo" src="@item.MainImageTwo" />
-                                </div>
-                                <div class="CarTitle">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input class="car_type" type="checkbox" id="@item.ID">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                            @item.Name <span class="CountCar">(1)</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="GroupChildCars">
-                                @foreach (var itemcategory in _categoreis.Where(s => s.ID == item.CategoryID).ToList())
-                                {
+                                                <div class="MainCarItem">
 
 
-                                    <div class="ChildCarItem">
-                                        <div class="Images">
-                                            <img class="MainImgOne" src="@itemcategory.MainImageOne" />
-                                            @*<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />*@
-                                        </div>
-                                        <div class="CarTitle">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input class="car_category" type="checkbox" id="@itemcategory.ID">
-                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                    @itemcategory.Name @item.Name <span class="CountCar">(1)</span>
-                                                </label>
+                                                    <div class="Images">
+                                                        <img class="MainImgOne" src="@item.MainImageOne" />
+                                                        <img class="MainImgTwo" src="@item.MainImageTwo" />
+                                                    </div>
+                                                    <div class="CarTitle">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input class="car_category" type="checkbox" id="@item.ID">
+                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                @item.Name <span class="CountCar">(1)</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="GroupChildCars">
+
+                                                    @foreach (var itemtype in _types.Where(s => s.CategoryID == item.ID).ToList())
+                                                    {
+
+                                                        <div class="ChildCarItem">
+                                                            <div class="Images">
+                                                                <img class="MainImgOne" src="@itemtype.MainImageOne" />
+                                                                @*<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />*@
+                                                            </div>
+                                                            <div class="CarTitle">
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input class="car_type" type="checkbox" id="@itemtype.ID">
+                                                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                        @item.Name @itemtype.Name <span class="CountCar">(1)</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    }
+                                                </div>
                                             </div>
-                                        </div>
+
+
+                                        }
                                     </div>
 
 
 
-                                }
-                            </div>
-                            </div>
 
 
-                        }
-                    </div>
+                                    <div class="AllCars" style="display:none">
+                                        @foreach (var item in _types)
+                                        {
+                                            <div class="ItemOfCars" id="select_@item.ID" data-getname="select_@item.ID" onclick="getitem(`${this.id}`)">
 
-                </div>
+                                                <div class="MainCarItem">
+
+
+                                                    <div class="Images">
+                                                        <img class="MainImgOne" src="@item.MainImageOne" />
+                                                        <img class="MainImgTwo" src="@item.MainImageTwo" />
+                                                    </div>
+                                                    <div class="CarTitle">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input class="car_type" type="checkbox" id="@item.ID">
+                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                @item.Name <span class="CountCar">(1)</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="GroupChildCars">
+                                                    @foreach (var itemcategory in _categoreis.Where(s => s.ID == item.CategoryID).ToList())
+                                                    {
+
+
+                                                        <div class="ChildCarItem">
+                                                            <div class="Images">
+                                                                <img class="MainImgOne" src="@itemcategory.MainImageOne" />
+                                                                @*<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />*@
+                                                            </div>
+                                                            <div class="CarTitle">
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input class="car_category" type="checkbox" id="@itemcategory.ID">
+                                                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                        @itemcategory.Name @item.Name <span class="CountCar">(1)</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    }
+                                                </div>
+                                            </div>
+
+
+                                        }
+                                    </div>
+
+                                </div>
             </div>
                         </div>
 
@@ -338,7 +346,7 @@
             <div class="NextPage">
                 <div class="container">
                     <div class="linknextPage">
-                        <a href="/Home/Price">Price</a>
+                        <a href="/Home/Engine">Engine</a>
                     </div>
                 </div>
             </div>
@@ -357,10 +365,10 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="SortResBy">
-                                        <label>Sort To</label>
+                                        <label>Sort By</label>
                                         <select>
-                                            <option>Price ascending</option>
-                                            <option>Price descending </option>
+                                            @*<option>Price ascending</option>
+                                            <option>Price descending </option>*@
                                             <option>Model ascending </option>
                                             <option>Model descending </option>
                                             <option>Distance ascending </option>
@@ -380,8 +388,14 @@
                                     <div class="ResutContItem">
                                         <div class="Imagess">
                                             <div class="services-carousel owl-carousel owl-theme">
-                                       
-                                                @foreach (var image in item.ShownImage)
+
+                                                <div class="slide-item">
+                                                    <div class="images">
+                                                        <img src="@item.MainImage" />
+                                                    </div>
+                                                </div>
+
+                                                @foreach (var image in item.CarImages)
                                                 {
                                                     <div class="slide-item">
                                                         <div class="images">
@@ -393,8 +407,8 @@
                                             </div>
                                         </div>
                                         <div class="ItemDetails">
-                                            <h1>@item.Categories.Name @item.Types.Name</h1>
-                                            <p>@item.Description</p>
+                                            <h1> @item.CarName - @item.Categories.Name</h1>
+                                            <p>@item.ShortDiscription</p>
                                             <h2>@item.Price$</h2>
                                             <div class="LocationDistination">
                                                 <div class="DistnItem">
@@ -408,7 +422,7 @@
                                                 </div>
                                                 <div class="DistnItem">
                                                     <div class="icon">
-                                                        <img src="~/assets_Audi/images/Audiimg/speedometer.png" />
+                                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
                                                     </div>
                                                     <div class="DitinaDetails">
                                                         <p>
@@ -421,7 +435,7 @@
                                             <div class="LinaktElItem">
                                                 <ul>
                                                     <li>
-                                                        <a href="#">Explore vehicle</a>
+                                                        <a href="/Home/CarDetails/@item.ID">Explore vehicle</a>
                                                     </li>
                                                     <li>
                                                         <a class="DarkBG" href="#">
@@ -562,6 +576,9 @@
                             thumbRight.classList.remove("active");
                         });
                     });
+
+
+                    // Start Ajax Filter
                     $(".ItemOfCars").click(function () {
                         debugger;
                         $(".ItemOfCars").map(function () {
@@ -679,14 +696,16 @@
                                     success: (response) => {
                                         $(".CandDelete").remove();
 
-                                        debugger;
+                                       /* debugger;*/
                                         var jsonresponse = JSON.parse(response);
                                         console.log(jsonresponse);
                                         for (let i = 0; i < jsonresponse.length; i++) {
                                             //var desc= $("#descrip").text(jsonresponse[i].MainImageOne);
                                             //console.log(jsonresponse[i].Price);
                                             //console.log(jsonresponse[i].Categories);
-                                            $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImageOne + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].Categories.Name + jsonresponse[i].Types.Name + '</h1> <p>' + jsonresponse[i].Description + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>' + jsonresponse[i].NearestLocation + ' km - Dealer <br> Audi Centre Cairns</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/speedometer.png></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Power + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href=#>Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                                            debugger;
+                                            $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>' + jsonresponse[i].NearestLocation + ' km - Dealer <br> Audi Centre Cairns</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Power + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                                            $("#dasdsad").append('<li id="' + jsonresponse[i].Categories.ID + '" class="DeleteLI"><div class="ItemSearch"><span> ' + jsonresponse[i].Categories.Name + '</span><button class="Remove"><i class="bx bx-x"></i></button></div></li>')
                                         }
 
                                     }, error: (error) => {
@@ -709,6 +728,17 @@
                     });
 
 
+
+                  
+
+
+                    $(document).ready(function () {
+                        $(".ClearBTN").click(function () {
+                            $("li").remove(".DeleteLI");
+                        });
+                    });
+
+               
                 </script>
             }
 

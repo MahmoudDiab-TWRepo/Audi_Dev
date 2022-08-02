@@ -359,12 +359,16 @@
     <Compile Include="Areas\Admission\Controllers\CarsController.cs" />
     <Compile Include="Areas\Admission\Controllers\CategorysController.cs" />
     <Compile Include="Areas\Admission\Controllers\DynamicFeaturesController.cs" />
+    <Compile Include="Areas\Admission\Controllers\EnquiryRequestController.cs" />
     <Compile Include="Areas\Admission\Controllers\GroupsController.cs" />
     <Compile Include="Areas\Admission\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admission\Controllers\TypesController.cs" />
     <Compile Include="Areas\Admission\Controllers\UsersController.cs" />
+    <Compile Include="BLL\CarImagesManager.cs" />
     <Compile Include="BLL\CarManager.cs" />
     <Compile Include="BLL\CategoryManager.cs" />
+    <Compile Include="BLL\ColorManager.cs" />
+    <Compile Include="BLL\EnquiryRequistManager.cs" />
     <Compile Include="BLL\EquipmentManager.cs" />
     <Compile Include="BLL\GroupPriviageManager.cs" />
     <Compile Include="BLL\GroupsManager.cs" />
@@ -397,19 +401,54 @@
     </Compile>
     <Compile Include="Helper\SaveImages.cs" />
     <Compile Include="Helper\SendEmail.cs" />
-    <Compile Include="Migrations\202206271343051_intialserverproj.cs" />
-    <Compile Include="Migrations\202206271343051_intialserverproj.designer.cs">
-      <DependentUpon>202206271343051_intialserverproj.cs</DependentUpon>
+    <Compile Include="Migrations\202207281055029_EnquiryRequist.cs" />
+    <Compile Include="Migrations\202207281626266_EnquiryRequistUpdate2.cs" />
+    <Compile Include="Migrations\202207281626266_EnquiryRequistUpdate2.designer.cs">
+      <DependentUpon>202207281626266_EnquiryRequistUpdate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207310822537_AddColor.cs" />
+    <Compile Include="Migrations\202207310822537_AddColor.designer.cs">
+      <DependentUpon>202207310822537_AddColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207310846493_AddColor2.cs" />
+    <Compile Include="Migrations\202207310846493_AddColor2.designer.cs">
+      <DependentUpon>202207310846493_AddColor2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207310853335_AddColor3.cs" />
+    <Compile Include="Migrations\202207310853335_AddColor3.designer.cs">
+      <DependentUpon>202207310853335_AddColor3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207310912598_AddColor4.cs" />
+    <Compile Include="Migrations\202207310912598_AddColor4.designer.cs">
+      <DependentUpon>202207310912598_AddColor4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207310922010_AddColor5.cs" />
+    <Compile Include="Migrations\202207310922010_AddColor5.designer.cs">
+      <DependentUpon>202207310922010_AddColor5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207310929168_AddColor6.cs" />
+    <Compile Include="Migrations\202207310929168_AddColor6.designer.cs">
+      <DependentUpon>202207310929168_AddColor6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207311207122_AddColorSrver.cs" />
+    <Compile Include="Migrations\202207311207122_AddColorSrver.designer.cs">
+      <DependentUpon>202207311207122_AddColorSrver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202208011412591_UpdateCategoryBodtType.cs" />
+    <Compile Include="Migrations\202208011412591_UpdateCategoryBodtType.designer.cs">
+      <DependentUpon>202208011412591_UpdateCategoryBodtType.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountState.cs" />
     <Compile Include="Models\Assistance systems.cs" />
     <Compile Include="Models\Car.cs" />
+    <Compile Include="Models\CarImages.cs" />
     <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Color.cs" />
     <Compile Include="Models\DriveTrain.cs" />
     <Compile Include="Models\DynamicFeatures.cs" />
+    <Compile Include="Models\EnquiryRequist.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\Fuel.cs" />
     <Compile Include="Models\Group.cs" />
@@ -1046,6 +1085,8 @@
     <Content Include="assets_NewDash\libs\spectrum-colorpicker2\spectrum.min.css" />
     <Content Include="assets_NewDash\libs\spectrum-colorpicker2\spectrum.min.js" />
     <Content Include="assets_NewDash\libs\summernote\summernote-bs4.min.html" />
+    <Content Include="assets_NewDash\libs\summernote\summernote.min.css" />
+    <Content Include="assets_NewDash\libs\summernote\summernote.min.js" />
     <Content Include="assets_NewDash\libs\sweetalert2\sweetalert2.min.css" />
     <Content Include="assets_NewDash\libs\sweetalert2\sweetalert2.min.js" />
     <Content Include="assets_NewDash\libs\table-edits\build\table-edits.min.js" />
@@ -1685,6 +1726,12 @@
     <Content Include="assets_Audi\AudiFonts\AudiType-WideBold_4.03.ttf" />
     <Content Include="assets_Audi\AudiFonts\AudiType-WideLight_4.03.ttf" />
     <Content Include="assets_Audi\AudiFonts\AudiType-WideNormal_4.03.ttf" />
+    <Content Include="assets_NewDash\libs\summernote\font\summernote.eot" />
+    <Content Include="assets_NewDash\libs\summernote\font\summernote.ttf" />
+    <Content Include="assets_NewDash\libs\summernote\font\summernote.woff" />
+    <Content Include="assets_NewDash\libs\summernote\font\summernote.woff2" />
+    <Content Include="assets_NewDash\libs\summernote\font\summernoted41d.eot" />
+    <Content Include="Areas\Admission\Views\EnquiryRequest\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -1969,6 +2016,8 @@
     <Content Include="Views\Home\Results.cshtml" />
     <Content Include="Views\Home\Form1.cshtml" />
     <Content Include="Views\Home\CarDetails.cshtml" />
+    <Content Include="Views\Home\EnquiryForm.cshtml" />
+    <Content Include="Views\Home\ThanksPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2062,8 +2111,32 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Global.ar.resx" />
-    <EmbeddedResource Include="Migrations\202206271343051_intialserverproj.resx">
-      <DependentUpon>202206271343051_intialserverproj.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202207281626266_EnquiryRequistUpdate2.resx">
+      <DependentUpon>202207281626266_EnquiryRequistUpdate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207310822537_AddColor.resx">
+      <DependentUpon>202207310822537_AddColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207310846493_AddColor2.resx">
+      <DependentUpon>202207310846493_AddColor2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207310853335_AddColor3.resx">
+      <DependentUpon>202207310853335_AddColor3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207310912598_AddColor4.resx">
+      <DependentUpon>202207310912598_AddColor4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207310922010_AddColor5.resx">
+      <DependentUpon>202207310922010_AddColor5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207310929168_AddColor6.resx">
+      <DependentUpon>202207310929168_AddColor6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207311207122_AddColorSrver.resx">
+      <DependentUpon>202207311207122_AddColorSrver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208011412591_UpdateCategoryBodtType.resx">
+      <DependentUpon>202208011412591_UpdateCategoryBodtType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
