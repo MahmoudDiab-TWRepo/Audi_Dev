@@ -13,6 +13,8 @@ namespace Eagles.LMS.Models
         [Required]
         public string Name { get; set; }
         public  ICollection<Types> Types { get; set; }
+
+        public ICollection<SubItem> SubItem { get; set; }
         public  ICollection<Car> Cars { get; set; }
         public string MainImageOne { get; set; }
         public string MainImageTwo { get; set; }

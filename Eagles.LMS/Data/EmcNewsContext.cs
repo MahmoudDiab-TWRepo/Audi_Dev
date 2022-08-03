@@ -28,6 +28,8 @@ namespace Eagles.LMS.Data
         public DbSet<Car> cars { get; set; }
         public DbSet<Color> Color { get; set; }
 
+        public DbSet<SubItem> SubItem { get; set; }
+
         public DbSet<EnquiryRequist> EnquiryRequist { get; set; }
         public DbSet<CarImages> CarImages { get; set; }
         public DbSet<Equipment> Equipments { get; set; }

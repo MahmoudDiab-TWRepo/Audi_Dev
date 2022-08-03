@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     UnitOfWork ctx = new UnitOfWork();
-    var AllCar = ctx.carManager.GetAllBind();
+    var AllCar = ctx.carManager.GetAllBind().Where(s => s.ID != Model.ID).ToList();
 
     var id = ViewBag.Id;
     var colorID = ViewBag.colorID;
@@ -313,38 +313,42 @@
 
             @for (int i = 0; i < AllCar.Count; i++)
             {
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="likeItem">
-                        <div class="imagess">
 
-                            <img src="@AllCar[i].MainImage" />
-                        </div>
-                        <div class="detils">
-                            <h2>
-                                <a href="/Home/CarDetails/@AllCar[i].ID"> @AllCar[i].CarName</a>
-                            </h2>
-                            <p>@AllCar[i].ShortDiscription</p>
+             
 
-                            <div class="dsdsd">
-                                <ul>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
-                                        <span>@AllCar[i].Distance km</span>
-                                    </li>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
-                                        <span>@AllCar[i].EnginSize</span>
-                                    </li>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
-                                        <span>@AllCar[i].fuel</span>
-                                    </li>
-                                </ul>
-                                @*<h4>EG 65,140</h4>*@
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="likeItem">
+                            <div class="imagess">
+
+                                <img src="@AllCar[i].MainImage" />
+                            </div>
+                            <div class="detils">
+                                <h2>
+                                    <a href="/Home/CarDetails/@AllCar[i].ID"> @AllCar[i].CarName</a>
+                                </h2>
+                                <p>@AllCar[i].ShortDiscription</p>
+
+                                <div class="dsdsd">
+                                    <ul>
+                                        <li>
+                                            <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                            <span>@AllCar[i].Distance km</span>
+                                        </li>
+                                        <li>
+                                            <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
+                                            <span>@AllCar[i].EnginSize</span>
+                                        </li>
+                                        <li>
+                                            <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
+                                            <span>@AllCar[i].fuel</span>
+                                        </li>
+                                    </ul>
+                                    @*<h4>EG 65,140</h4>*@
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+     
 
                 if (i == 3)
                 {
@@ -355,98 +359,98 @@
 
 
             @*<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="likeItem">
-                        <div class="imagess">
-                            <img src="~/assets_Audi/images/Audiimg/CarImgs/11.png" />
-                        </div>
-                        <div class="detils">
-                            <h2>
-                                <a href="#"> Audi A3</a>
-                            </h2>
-                            <p>35 TFSI Advanced</p>
+            <div class="likeItem">
+                <div class="imagess">
+                    <img src="~/assets_Audi/images/Audiimg/CarImgs/11.png" />
+                </div>
+                <div class="detils">
+                    <h2>
+                        <a href="#"> Audi A3</a>
+                    </h2>
+                    <p>35 TFSI Advanced</p>
 
-                            <div class="dsdsd">
-                                <ul>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
-                                        <span>0 km</span>
-                                    </li>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
-                                        <span>1498cc</span>
-                                    </li>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
-                                        <span>-</span>
-                                    </li>
-                                </ul>
-                                <h4>EG 65,140</h4>
-                            </div>
-                        </div>
+                    <div class="dsdsd">
+                        <ul>
+                            <li>
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                <span>0 km</span>
+                            </li>
+                            <li>
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
+                                <span>1498cc</span>
+                            </li>
+                            <li>
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
+                                <span>-</span>
+                            </li>
+                        </ul>
+                        <h4>EG 65,140</h4>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="likeItem">
-                        <div class="imagess">
-                            <img src="~/assets_Audi/images/Audiimg/CarImgs/11.png" />
-                        </div>
-                        <div class="detils">
-                            <h2>
-                                <a href="#"> Audi A3</a>
-                            </h2>
-                            <p>35 TFSI Advanced</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="likeItem">
+                <div class="imagess">
+                    <img src="~/assets_Audi/images/Audiimg/CarImgs/11.png" />
+                </div>
+                <div class="detils">
+                    <h2>
+                        <a href="#"> Audi A3</a>
+                    </h2>
+                    <p>35 TFSI Advanced</p>
 
-                            <div class="dsdsd">
-                                <ul>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
-                                        <span>0 km</span>
-                                    </li>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
-                                        <span>1498cc</span>
-                                    </li>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
-                                        <span>-</span>
-                                    </li>
-                                </ul>
-                                <h4>EG 65,140</h4>
-                            </div>
-                        </div>
+                    <div class="dsdsd">
+                        <ul>
+                            <li>
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                <span>0 km</span>
+                            </li>
+                            <li>
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
+                                <span>1498cc</span>
+                            </li>
+                            <li>
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
+                                <span>-</span>
+                            </li>
+                        </ul>
+                        <h4>EG 65,140</h4>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="likeItem">
-                        <div class="imagess">
-                            <img src="~/assets_Audi/images/Audiimg/CarImgs/11.png" />
-                        </div>
-                        <div class="detils">
-                            <h2>
-                                <a href="#"> Audi A3</a>
-                            </h2>
-                            <p>35 TFSI Advanced</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="likeItem">
+                <div class="imagess">
+                    <img src="~/assets_Audi/images/Audiimg/CarImgs/11.png" />
+                </div>
+                <div class="detils">
+                    <h2>
+                        <a href="#"> Audi A3</a>
+                    </h2>
+                    <p>35 TFSI Advanced</p>
 
-                            <div class="dsdsd">
-                                <ul>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
-                                        <span>0 km</span>
-                                    </li>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
-                                        <span>1498cc</span>
-                                    </li>
-                                    <li>
-                                        <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
-                                        <span>-</span>
-                                    </li>
-                                </ul>
-                                <h4>EG 65,140</h4>
-                            </div>
-                        </div>
+                    <div class="dsdsd">
+                        <ul>
+                            <li>
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                <span>0 km</span>
+                            </li>
+                            <li>
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/engine.svg" />
+                                <span>1498cc</span>
+                            </li>
+                            <li>
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/fuel.svg" />
+                                <span>-</span>
+                            </li>
+                        </ul>
+                        <h4>EG 65,140</h4>
                     </div>
-                </div>*@
+                </div>
+            </div>
+        </div>*@
         </div>
     </div>
 

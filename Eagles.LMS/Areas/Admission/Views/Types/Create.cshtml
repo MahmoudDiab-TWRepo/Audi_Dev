@@ -115,3 +115,29 @@
 
 
 
+@section EndBody{
+
+
+    @if (requestStatus != null)
+    {
+
+
+
+        <script>
+
+              notify = $.notify({
+                  message: '@requestStatus.Message',
+
+              }, {
+
+                      type: '@requestStatus.Status' == 'Created' ? "success" :"danger",
+                      animate: {
+                          enter: 'animated flipInY',
+                          exit: 'animated flipOutX',
+                      }
+                  });
+        </script>
+
+        TempData.Remove("RequestStatus");
+    }
+}

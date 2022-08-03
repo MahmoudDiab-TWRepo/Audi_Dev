@@ -31,7 +31,7 @@ namespace Eagles.LMS.BLL
         public EnquiryRequistManager EnquiryRequistManager { get { return new EnquiryRequistManager(ctx); } }
         public ColorManager ColorManager { get { return new ColorManager(ctx); } }
 
-
+        public SubItemManager SubItemManager { get { return new SubItemManager(ctx); } }
 
 
 

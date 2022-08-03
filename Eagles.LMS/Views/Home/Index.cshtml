@@ -29,6 +29,8 @@
     }
 
     var _categoreis = ctx.categoryManager.GetAllBind();
+
+    var _SubItem = ctx.SubItemManager.GetAllBind();
     var _categoreisBodyType = ctx.categoryManager.GetAllBind().Where(s => s.ShowInBodyType == true).ToList();
     var _types = ctx.typeManager.GetAllBind();
 
@@ -147,7 +149,7 @@
                                                 </div>
                                                 <div class="GroupChildCars">
 
-                                                    @foreach (var itemtype in _types.Where(s => s.CategoryID == item.ID).ToList())
+                                                    @foreach (var itemtype in _SubItem.Where(s => s.CategoryID == item.ID).ToList())
                                                     {
 
                                                         <div class="ChildCarItem">
@@ -158,9 +160,9 @@
                                                             <div class="CarTitle">
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <input class="car_type" type="checkbox" id="@itemtype.ID">
+                                                                        <input class="car_type" type="checkbox" id="@itemtype.Id">
                                                                         <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                        @item.Name @itemtype.Name <span class="CountCar">(1)</span>
+                                                                         @itemtype.Name <span class="CountCar">(1)</span>
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -184,7 +186,7 @@
 
                                 <div class="tab " id="prod-reviews">
 
-                                    <div class="AllCars">
+                                    <div class="AllCars" style="display:none">
                                         @foreach (var item in _categoreisBodyType)
                                         {
                                             <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
@@ -209,7 +211,7 @@
                                                 </div>
                                                 <div class="GroupChildCars">
 
-                                                    @foreach (var itemtype in _types.Where(s => s.CategoryID == item.ID).ToList())
+                                                    @foreach (var itemtype in _SubItem.Where(s => s.CategoryID == item.ID).ToList())
                                                     {
 
                                                         <div class="ChildCarItem">
@@ -220,7 +222,7 @@
                                                             <div class="CarTitle">
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <input class="car_type" type="checkbox" id="@itemtype.ID">
+                                                                        <input class="car_type" type="checkbox" id="@itemtype.Id">
                                                                         <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                                                         @item.Name @itemtype.Name <span class="CountCar">(1)</span>
                                                                     </label>
@@ -242,7 +244,7 @@
 
 
 
-                                    <div class="AllCars" style="display:none">
+                                    <div class="AllCars" >
                                         @foreach (var item in _types)
                                         {
                                             <div class="ItemOfCars" id="select_@item.ID" data-getname="select_@item.ID" onclick="getitem(`${this.id}`)">
@@ -266,7 +268,7 @@
 
                                                 </div>
                                                 <div class="GroupChildCars">
-                                                    @foreach (var itemcategory in _categoreis.Where(s => s.ID == item.CategoryID).ToList())
+                                                    @foreach (var itemcategory in _SubItem.Where(s => s.TypeID == item.ID).ToList())
                                                     {
 
 
@@ -278,9 +280,9 @@
                                                             <div class="CarTitle">
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <input class="car_category" type="checkbox" id="@itemcategory.ID">
+                                                                        <input class="car_category" type="checkbox" id="@itemcategory.Id">
                                                                         <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                        @itemcategory.Name @item.Name <span class="CountCar">(1)</span>
+                                                                        @itemcategory.Name <span class="CountCar">(1)</span>
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -407,7 +409,7 @@
                                             </div>
                                         </div>
                                         <div class="ItemDetails">
-                                            <h1> @item.CarName - @item.Categories.Name</h1>
+                                            <h1> @item.CarName </h1>
                                             <p>@item.ShortDiscription</p>
                                             <h2>@item.Price$</h2>
                                             <div class="LocationDistination">

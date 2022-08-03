@@ -362,6 +362,7 @@
     <Compile Include="Areas\Admission\Controllers\EnquiryRequestController.cs" />
     <Compile Include="Areas\Admission\Controllers\GroupsController.cs" />
     <Compile Include="Areas\Admission\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admission\Controllers\SubItemController.cs" />
     <Compile Include="Areas\Admission\Controllers\TypesController.cs" />
     <Compile Include="Areas\Admission\Controllers\UsersController.cs" />
     <Compile Include="BLL\CarImagesManager.cs" />
@@ -377,6 +378,7 @@
     <Compile Include="BLL\PrivilageManager.cs" />
     <Compile Include="BLL\PrivilageRouteManager.cs" />
     <Compile Include="BLL\Reposatory.cs" />
+    <Compile Include="BLL\SubItemManager.cs" />
     <Compile Include="BLL\TypeManager.cs" />
     <Compile Include="BLL\UnitOfWork.cs" />
     <Compile Include="BLL\UserForLoginReposatory.cs" />
@@ -438,6 +440,10 @@
     <Compile Include="Migrations\202208011412591_UpdateCategoryBodtType.designer.cs">
       <DependentUpon>202208011412591_UpdateCategoryBodtType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208021224014_AddSubItem.cs" />
+    <Compile Include="Migrations\202208021224014_AddSubItem.designer.cs">
+      <DependentUpon>202208021224014_AddSubItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountState.cs" />
     <Compile Include="Models\Assistance systems.cs" />
@@ -459,6 +465,7 @@
     <Compile Include="Models\PrivilageRoute.cs" />
     <Compile Include="Models\Seats.cs" />
     <Compile Include="Models\ShownImages.cs" />
+    <Compile Include="Models\SubItem.cs" />
     <Compile Include="Models\Types.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserTybe.cs" />
@@ -1732,6 +1739,9 @@
     <Content Include="assets_NewDash\libs\summernote\font\summernote.woff2" />
     <Content Include="assets_NewDash\libs\summernote\font\summernoted41d.eot" />
     <Content Include="Areas\Admission\Views\EnquiryRequest\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\SubItem\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\SubItem\Create.cshtml" />
+    <Content Include="Areas\Admission\Views\SubItem\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2137,6 +2147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208011412591_UpdateCategoryBodtType.resx">
       <DependentUpon>202208011412591_UpdateCategoryBodtType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208021224014_AddSubItem.resx">
+      <DependentUpon>202208021224014_AddSubItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
