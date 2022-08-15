@@ -1,0 +1,539 @@
+﻿
+@{
+    ViewBag.Title = "Comparison";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
+    UnitOfWork ctx = new UnitOfWork();
+
+
+
+    //var Compair = ctx.ComparisonManager.GetAll().ToList();
+    var Compair = ctx.ComparisonManager.GetAllBind();
+
+    //var AllCars = new Eagles.LMS.BLL.UnitOfWork().carManager.GetAllBind().ToList();
+    var AllCars = ctx.carManager.GetAllBind();
+
+    HashSet<int> defrent = new HashSet<int>(Compair.Select(s => s.CarID));
+    var result = AllCars.Where(s => defrent.Contains(s.ID)).ToList();
+
+
+    var color = ctx.ColorManager.GetAllBind();
+
+    //HashSet<int> defrentColor = new HashSet<int>(color.Select(s => s.Id));
+    //var resultColor = AllCars.Where(s => defrent.Contains(s.c)).ToList();
+
+
+
+
+}
+
+@section EndHeader{
+    <style>
+        .otherheader {
+            display: none;
+        }
+
+        .DemonstratorTop .DemonstratorCont .tititileDemo h2 {
+            display: none;
+        }
+    </style>
+}
+
+<div class="ComparisonPage">
+    <div class="container">
+        <div class="PageTitle">
+            <h2>
+                Vehicle comparison
+            </h2>
+            <hr />
+        </div>
+
+
+        @*@for (int i = 0; i< result.Count; i++)
+            {
+
+                <p>@result[i].CarName</p>
+
+                if (i == 3)
+                {
+                    break;
+                }
+            }*@
+
+
+
+        <div class="CarItems">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"></div>
+
+
+                @for (int i = 0; i < result.Count; i++)
+                {
+
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 carCOLL">
+                        <div class="Carr">
+                            <div class="images">
+                                <img src="@result[i].MainImage" />
+                                <a href="#" data-id="@result[i].ID" class="AddFav btn_delete active"><i class="bx bx-star"></i></a>
+                            </div>
+                            <div class="carDetails">
+                                <a href="/Home/CarDetails/@result[i].ID"><h2>@result[i].CarName</h2></a>
+                                @*<p>Drive away price <span>$62,014.00</span></p>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    if (i == 3)
+                    {
+                        break;
+                    }
+                }
+
+
+                @*<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <div class="Carr">
+                            <div class="images">
+                                <img src="~/assets_Audi/images/Audiimg/CarImgs/27931336038.jpg" />
+                                <button class="AddFav active"><i class="bx bx-star"></i></button>
+                            </div>
+                            <div class="carDetails">
+                                <a href="#"><h2>Audi A3 Sedan 35 TFSI S tronic</h2></a>
+                                <p>Drive away price <span>$62,014.00</span></p>
+                            </div>
+                        </div>
+                    </div>*@
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FAQ's Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="row clearfix">
+                    <!-- Content Column -->
+                    <div class="content-column col-lg-12 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <!--Accordian Box-->
+                            <ul class="accordion-box">
+                                <!--Block-->
+                                <li class="accordion block wow fadeInUp">
+                                    <div class="acc-btn">
+                                        <div class="icon-outer">
+                                            <span class="icon icon-plus fa fa-angle-down"></span>
+                                        </div>
+                                        Vehicle data
+                                    </div>
+                                    <div class="acc-content">
+                                        <div class="content">
+                                            <div class="TapBody">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <div class="MainItem">
+                                                            <h2>Body types</h2>
+                                                        </div>
+                                                    </div>
+
+                                                    @for (int i = 0; i < result.Count; i++)
+                                                    {
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>@result[i].Types.Name</h2>
+                                                            </div>
+                                                        </div>
+
+
+                                                        if (i == 3)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+                                                    @*<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>Sedan</h2>
+                                                            </div>
+                                                        </div>*@
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <div class="MainItem">
+                                                            <h2>
+                                                                Mileage
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                    @for (int i = 0; i < result.Count; i++)
+                                                    {
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>@result[i].Distance</h2>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        if (i == 3)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+                                                    @*<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>2,218 km</h2>
+                                                            </div>
+                                                        </div>*@
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <div class="MainItem">
+                                                            <h2 class="exception">
+                                                                Exterior colour
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <div class="MainItem">
+                                                            <h2>
+                                                                Exterior
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+
+                                                    @for (int i = 0; i < result.Count; i++)
+                                                    {
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                             
+                                                                <h2>@result[i].ColorId</h2>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        if (i == 3)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+                                                    @*<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>
+                                                                    Floret Silver Metallic
+                                                                </h2>
+                                                            </div>
+                                                        </div>*@
+
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <div class="MainItem">
+                                                            <h2>
+                                                                Seats
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                    @for (int i = 0; i < result.Count; i++)
+                                                    {
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>@result[i].NumSeats</h2>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        if (i == 3)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+                                                    @*<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>
+                                                                    ــ
+                                                                </h2>
+                                                            </div>
+                                                        </div>*@
+
+                                                </div>
+
+                                                @*<div class="row">
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="MainItem">
+                                                                <h2>
+                                                                    Audi Approved :plus
+                                                                </h2>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>
+                                                                    ــ
+                                                                </h2>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2><i class="bx bx-check"></i></h2>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>ــ</h2>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!--Block-->
+
+
+                                <li class="accordion block wow fadeInUp">
+                                    <div class="acc-btn ">
+                                        <div class="icon-outer">
+                                            <span class="icon icon-plus fa fa-angle-down"></span>
+                                        </div>
+                                        Engine
+                                    </div>
+                                    <div class="acc-content ">
+                                        <div class="content">
+                                            <div class="TapBody">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <div class="MainItem">
+                                                            <h2>Engine Size</h2>
+                                                        </div>
+                                                    </div>
+                                                    @for (int i = 0; i < result.Count; i++)
+                                                    {
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>@result[i].EnginSize</h2>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        if (i == 3)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <div class="MainItem">
+                                                            <h2>Power Level</h2>
+                                                        </div>
+                                                    </div>
+                                                    @for (int i = 0; i < result.Count; i++)
+                                                    {
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>@result[i].Power</h2>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        if (i == 3)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <div class="MainItem">
+                                                            <h2>Displacement (l)</h2>
+                                                        </div>
+                                                    </div>
+                                                    @for (int i = 0; i < result.Count; i++)
+                                                    {
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>@result[i].Price</h2>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        if (i == 3)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="accordion block wow fadeInUp">
+                                    <div class="acc-btn ">
+                                        <div class="icon-outer">
+                                            <span class="icon icon-plus fa fa-angle-down"></span>
+                                        </div>
+                                        Driveline
+                                    </div>
+                                    <div class="acc-content ">
+                                        <div class="content">
+                                            <div class="TapBody">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <div class="MainItem">
+                                                            <h2>Transmission</h2>
+                                                        </div>
+                                                    </div>
+                                                    @for (int i = 0; i < result.Count; i++)
+                                                    {
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>@result[i].Transmission</h2>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        if (i == 3)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                                <li class="accordion block wow fadeInUp">
+                                    <div class="acc-btn ">
+                                        <div class="icon-outer">
+                                            <span class="icon icon-plus fa fa-angle-down"></span>
+                                        </div>
+                                        Fuel
+                                    </div>
+                                    <div class="acc-content ">
+                                        <div class="content">
+                                            <div class="TapBody">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                        <div class="MainItem">
+                                                            <h2>
+                                                                Fuel grade
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                    @for (int i = 0; i < result.Count; i++)
+                                                    {
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                                            <div class="ScondItem">
+                                                                <h2>@result[i].fuel</h2>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        if (i == 3)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+</div>
+
+
+
+
+@section EndBody{
+
+
+    <script src="~/Scripts_2/bootbox.min.js"></script>
+
+
+    @*<script>
+        $(function () {
+
+  $("body").on("click", ".btn_delete", (s) => {
+                let self = $(s.currentTarget),
+          entityId = self.attr('data-id');
+
+      alert('dddd');
+                bootbox.confirm("@Resources.Global.ConfirmDeleteoperation !", function (flag) {
+                    if (flag) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/DeleteComparison/" + entityId+"",
+                            success: (response) => {
+                                toastr.success('@Resources.Global.Theunithasbeensuccessfullydeleted', '', { timeOut: 10000 });
+                                self.closest('.carCOLL').remove();
+                            }, error: (error) => {
+                                // unauthorize
+                                let errorMessage = manageAjaxError(error);
+                                pushNotification("danger", errorMessage);
+                            }
+                        });
+                    }
+                })
+            });
+        });
+    </script>*@
+
+}

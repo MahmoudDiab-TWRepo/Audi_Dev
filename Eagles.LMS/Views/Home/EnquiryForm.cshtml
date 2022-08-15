@@ -1,13 +1,14 @@
 ﻿
-@model EnquiryRequist
+@model Comparison
 @{
 
     ViewBag.Title = "EnquiryForm";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
     UnitOfWork ctx = new UnitOfWork();
+
     var id = ViewBag.Id;
-    var car = new Eagles.LMS.BLL.UnitOfWork().carManager.GetAllBind().Where(s => s.ID == id).FirstOrDefault();
+    var carComp = new Eagles.LMS.BLL.UnitOfWork().carManager.GetAllBind().Where(s => s.ID == ).FirstOrDefault();
 
 }
 

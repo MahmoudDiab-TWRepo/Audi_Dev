@@ -44,7 +44,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                 {
 
 
-                    if (uploadattachments_multi == null || uploadattachments_multi.ContentLength == 0 || !
+                    if (uploadattachments_multi != null && uploadattachments_multi.ContentLength != 0 && 
                     uploadattachments_multi.ContentType.CheckImageExtention())
                     {
                         requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported two ,Plz Upload Image Only");
@@ -53,19 +53,36 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     else
                     {
                         string _rendom = new Random().Next(1, 999999999).ToString();
-                        string _rendomtwo = new Random().Next(1, 99999999).ToString();
+                       
                         //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
-                        string extentiontwo = System.IO.Path.GetExtension(uploadattachments_multi.FileName);
+                        
                         var fileName = _rendom + extention;
-                        var fileNametwo = _rendomtwo + extentiontwo;
+                        
 
                         var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
-                        var pathtwo = Path.Combine(Server.MapPath("~/attachments"), fileNametwo);
+                        
                         uploadattachments.SaveAs(path);
-                        uploadattachments_multi.SaveAs(pathtwo);
+                        
                         subItem.MainImageOne = $"/attachments/{fileName}";
-                        subItem.MainImageTwo = $"/attachments/{fileNametwo}";
+                       
+
+
+
+                        if (uploadattachments_multi != null)
+                        {
+
+                            string _rendomtwo = new Random().Next(1, 99999999).ToString();
+                            string extentiontwo = System.IO.Path.GetExtension(uploadattachments_multi.FileName);
+                            var fileNametwo = _rendomtwo + extentiontwo;
+                            var pathtwo = Path.Combine(Server.MapPath("~/attachments"), fileNametwo);
+                            uploadattachments_multi.SaveAs(pathtwo);
+                            subItem.MainImageTwo = $"/attachments/{fileNametwo}";
+
+                        }
+
+
+
                         var _ctx = new UnitOfWork();
 
                         int userId = GetUserId();
@@ -147,19 +164,19 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
 
                         string _rendom = new Random().Next(1, 999999999).ToString();
-                        string _rendomtwo = new Random().Next(1, 99999999).ToString();
+                        
                         //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
-                        string extentiontwo = System.IO.Path.GetExtension(uploadattachments_multi.FileName);
+                        
                         var fileName = _rendom + extention;
-                        var fileNametwo = _rendomtwo + extentiontwo;
+                        
 
                         var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
-                        var pathtwo = Path.Combine(Server.MapPath("~/attachments"), fileNametwo);
+                       
                         uploadattachments.SaveAs(path);
-                        uploadattachments_multi.SaveAs(pathtwo);
+                        
                         subItem.MainImageOne = $"/attachments/{fileName}";
-                        subItem.MainImageTwo = $"/attachments/{fileNametwo}";
+                        
                         //var _ctx = new UnitOfWork();
 
                         //int userId = GetUserId();
@@ -168,7 +185,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
 
 
-                        requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+                        requestStatus = new ManageRequestStatus().GetStatus(Status.Edited);
                         //result = RedirectToAction(nameof(Create));
 
 
@@ -178,6 +195,17 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
 
 
+
+                    }
+
+                    if (uploadattachments_multi != null)
+                    {
+                        string _rendomtwo = new Random().Next(1, 99999999).ToString();
+                        string extentiontwo = System.IO.Path.GetExtension(uploadattachments_multi.FileName);
+                        var fileNametwo = _rendomtwo + extentiontwo;
+                        var pathtwo = Path.Combine(Server.MapPath("~/attachments"), fileNametwo);
+                        uploadattachments_multi.SaveAs(pathtwo);
+                        subItem.MainImageTwo = $"/attachments/{fileNametwo}";
 
                     }
 

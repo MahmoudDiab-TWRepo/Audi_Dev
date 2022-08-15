@@ -33,7 +33,7 @@ namespace Eagles.LMS.BLL
 
         public SubItemManager SubItemManager { get { return new SubItemManager(ctx); } }
 
-
+        public ComparisonManager ComparisonManager { get { return new ComparisonManager(ctx); } }
 
     }
 }

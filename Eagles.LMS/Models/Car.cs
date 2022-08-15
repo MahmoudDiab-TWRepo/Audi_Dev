@@ -94,5 +94,7 @@ namespace Eagles.LMS.Models
         public DateTime EditeTime { get; set; }
         public int UserEditId { get; set; }
 
+        //public Comparison Comparison { get; set; }
+
     }
 }

@@ -82,172 +82,178 @@
                         <div class="ColorGroup">
                             @foreach (var color in _color)
                             {
-                                <div class="colorItem">
-                                    <div class="icgcheck">
-                                        <div class="image">
-                                            <img src="@color.ImageColor" />
+
+                                if (!string.IsNullOrEmpty(@color.ImageColor))
+                                {
+
+                                    <div class="colorItem">
+                                        <div class="icgcheck">
+                                            <div class="image">
+                                                <img src="@color.ImageColor" />
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="@color.Name">
+                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                </label>
+                                            </div>
                                         </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="@color.Name">
-                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                            </label>
+                                        <div class="titilecolor">
+                                            <h2>@color.Name</h2>
                                         </div>
                                     </div>
-                                    <div class="titilecolor">
-                                        <h2>@color.Name</h2>
-                                    </div>
-                                </div>
+                                }
+
                             }
 
 
 
 
                             @*<div class="colorItem">
-                                <div class="icgcheck">
-                                    <div class="image">
-                                        <img src="~/assets_Audi/images/Audiimg/exterior-color.blue.png" />
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="s">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="titilecolor">
-                                    <h2>blue</h2>
-                                </div>
-                            </div>
-                            <div class="colorItem">
-                                <div class="icgcheck">
-                                    <div class="image">
-                                        <img src="~/assets_Audi/images/Audiimg/othercolor.png" />
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="s">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="titilecolor">
-                                    <h2>Other</h2>
-                                </div>
-                            </div>
+            <div class="icgcheck">
+                <div class="image">
+                    <img src="~/assets_Audi/images/Audiimg/exterior-color.blue.png" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="s">
+                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                    </label>
+                </div>
+            </div>
+            <div class="titilecolor">
+                <h2>blue</h2>
+            </div>
+        </div>
+        <div class="colorItem">
+            <div class="icgcheck">
+                <div class="image">
+                    <img src="~/assets_Audi/images/Audiimg/othercolor.png" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="s">
+                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                    </label>
+                </div>
+            </div>
+            <div class="titilecolor">
+                <h2>Other</h2>
+            </div>
+        </div>
 
-                            <div class="colorItem">
-                                <div class="icgcheck">
-                                    <div class="image">
-                                        <img src="~/assets_Audi/images/Audiimg/exterior-color.gray.png" />
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="s">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="titilecolor">
-                                    <h2>Gray</h2>
-                                </div>
-                            </div>
-                            <div class="colorItem">
-                                <div class="icgcheck">
-                                    <div class="image">
-                                        <img src="~/assets_Audi/images/Audiimg/exterior-color.green.png" />
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="s">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="titilecolor">
-                                    <h2>Green</h2>
-                                </div>
-                            </div>
-                            <div class="colorItem">
-                                <div class="icgcheck">
-                                    <div class="image">
-                                        <img src="~/assets_Audi/images/Audiimg/exterior-color.orange.png" />
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="s">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="titilecolor">
-                                    <h2>Orange</h2>
-                                </div>
-                            </div>
-                            <div class="colorItem">
-                                <div class="icgcheck">
-                                    <div class="image">
-                                        <img src="~/assets_Audi/images/Audiimg/exterior-color.red.png" />
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="s">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="titilecolor">
-                                    <h2>Other</h2>
-                                </div>
-                            </div>
-                            <div class="colorItem">
-                                <div class="icgcheck">
-                                    <div class="image">
-                                        <img src="~/assets_Audi/images/Audiimg/exterior-color.silver.png" />
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="s">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="titilecolor">
-                                    <h2>Silver</h2>
-                                </div>
-                            </div>
-                            <div class="colorItem">
-                                <div class="icgcheck">
-                                    <div class="image">
-                                        <img src="~/assets_Audi/images/Audiimg/exterior-color.white.png" />
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="s">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="titilecolor">
-                                    <h2>White</h2>
-                                </div>
-                            </div>
-                            <div class="colorItem">
-                                <div class="icgcheck">
-                                    <div class="image">
-                                        <img src="~/assets_Audi/images/Audiimg/exterior-color.yellow.png" />
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="s">
-                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="titilecolor">
-                                    <h2>Yellow</h2>
-                                </div>
-                            </div>*@
+        <div class="colorItem">
+            <div class="icgcheck">
+                <div class="image">
+                    <img src="~/assets_Audi/images/Audiimg/exterior-color.gray.png" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="s">
+                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                    </label>
+                </div>
+            </div>
+            <div class="titilecolor">
+                <h2>Gray</h2>
+            </div>
+        </div>
+        <div class="colorItem">
+            <div class="icgcheck">
+                <div class="image">
+                    <img src="~/assets_Audi/images/Audiimg/exterior-color.green.png" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="s">
+                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                    </label>
+                </div>
+            </div>
+            <div class="titilecolor">
+                <h2>Green</h2>
+            </div>
+        </div>
+        <div class="colorItem">
+            <div class="icgcheck">
+                <div class="image">
+                    <img src="~/assets_Audi/images/Audiimg/exterior-color.orange.png" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="s">
+                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                    </label>
+                </div>
+            </div>
+            <div class="titilecolor">
+                <h2>Orange</h2>
+            </div>
+        </div>
+        <div class="colorItem">
+            <div class="icgcheck">
+                <div class="image">
+                    <img src="~/assets_Audi/images/Audiimg/exterior-color.red.png" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="s">
+                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                    </label>
+                </div>
+            </div>
+            <div class="titilecolor">
+                <h2>Other</h2>
+            </div>
+        </div>
+        <div class="colorItem">
+            <div class="icgcheck">
+                <div class="image">
+                    <img src="~/assets_Audi/images/Audiimg/exterior-color.silver.png" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="s">
+                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                    </label>
+                </div>
+            </div>
+            <div class="titilecolor">
+                <h2>Silver</h2>
+            </div>
+        </div>
+        <div class="colorItem">
+            <div class="icgcheck">
+                <div class="image">
+                    <img src="~/assets_Audi/images/Audiimg/exterior-color.white.png" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="s">
+                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                    </label>
+                </div>
+            </div>
+            <div class="titilecolor">
+                <h2>White</h2>
+            </div>
+        </div>
+        <div class="colorItem">
+            <div class="icgcheck">
+                <div class="image">
+                    <img src="~/assets_Audi/images/Audiimg/exterior-color.yellow.png" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="s">
+                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                    </label>
+                </div>
+            </div>
+            <div class="titilecolor">
+                <h2>Yellow</h2>
+            </div>
+        </div>*@
 
                         </div>
                     </div>

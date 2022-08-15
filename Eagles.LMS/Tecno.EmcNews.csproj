@@ -369,6 +369,7 @@
     <Compile Include="BLL\CarManager.cs" />
     <Compile Include="BLL\CategoryManager.cs" />
     <Compile Include="BLL\ColorManager.cs" />
+    <Compile Include="BLL\ComparisonManager.cs" />
     <Compile Include="BLL\EnquiryRequistManager.cs" />
     <Compile Include="BLL\EquipmentManager.cs" />
     <Compile Include="BLL\GroupPriviageManager.cs" />
@@ -444,6 +445,10 @@
     <Compile Include="Migrations\202208021224014_AddSubItem.designer.cs">
       <DependentUpon>202208021224014_AddSubItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208140942374_ComparisonAdd.cs" />
+    <Compile Include="Migrations\202208140942374_ComparisonAdd.designer.cs">
+      <DependentUpon>202208140942374_ComparisonAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountState.cs" />
     <Compile Include="Models\Assistance systems.cs" />
@@ -452,6 +457,7 @@
     <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Color.cs" />
+    <Compile Include="Models\Comparison.cs" />
     <Compile Include="Models\DriveTrain.cs" />
     <Compile Include="Models\DynamicFeatures.cs" />
     <Compile Include="Models\EnquiryRequist.cs" />
@@ -765,6 +771,9 @@
     <Content Include="assets_Audi\images\Audiimg\CarImgs\10.png" />
     <Content Include="assets_Audi\images\Audiimg\CarImgs\11.png" />
     <Content Include="assets_Audi\images\Audiimg\CarImgs\2.png" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\27931336038.jpg" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\28056006338.jpg" />
+    <Content Include="assets_Audi\images\Audiimg\CarImgs\28068510147.jpg" />
     <Content Include="assets_Audi\images\Audiimg\CarImgs\3.png" />
     <Content Include="assets_Audi\images\Audiimg\CarImgs\4.png" />
     <Content Include="assets_Audi\images\Audiimg\CarImgs\5.png" />
@@ -2028,6 +2037,7 @@
     <Content Include="Views\Home\CarDetails.cshtml" />
     <Content Include="Views\Home\EnquiryForm.cshtml" />
     <Content Include="Views\Home\ThanksPage.cshtml" />
+    <Content Include="Views\Home\Comparison.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2150,6 +2160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208021224014_AddSubItem.resx">
       <DependentUpon>202208021224014_AddSubItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208140942374_ComparisonAdd.resx">
+      <DependentUpon>202208140942374_ComparisonAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

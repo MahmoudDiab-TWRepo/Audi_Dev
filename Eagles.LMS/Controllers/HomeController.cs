@@ -262,6 +262,74 @@ namespace Eagles.LMS.Controllers
         }
 
 
+
+
+        public int GetUserId()
+        {
+            var userFromSesstion = HttpContext.Session["User_Key"];
+            return Convert.ToInt32(userFromSesstion);
+        }
+
+
+        public ActionResult Comparison()
+        {
+
+            return View();
+        }
+
+        public ActionResult AddComparison()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddComparison(Comparison addsnews, int carID)
+        {
+
+            ActionResult result = View(addsnews);
+
+            if (ModelState.IsValid)
+            {
+
+                RequestStatus requestStatus;
+                int userId = GetUserId();
+                addsnews.UserId = userId;
+                addsnews.CarID = carID;
+
+                var ctx = new UnitOfWork();
+                addsnews = ctx.ComparisonManager.Add(addsnews);
+
+                var user = ctx.UserManager.GetById(GetUserId());
+
+
+                requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+                result = RedirectToAction(nameof(Index));
+
+                TempData["RequestStatus"] = requestStatus;
+
+
+
+            }
+            return result;
+
+        }
+
+        [HttpPost]
+        public ActionResult DeleteComparison(int id)
+        {
+            UnitOfWork ctx = new UnitOfWork();
+            var entity = ctx.ComparisonManager.GetBy(id);
+
+            var user = ctx.UserManager.GetById(GetUserId());
+
+
+
+            ctx.ComparisonManager.Delete(entity);
+            return Json(JsonRequestBehavior.AllowGet);
+        }
+
+
+
         public ActionResult ChangeLanguage(string SelectedLanguage, string redirect)
         {
 

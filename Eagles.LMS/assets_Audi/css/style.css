@@ -11987,6 +11987,9 @@ input[type=range] {
                             .ResultSearch .RaeltCont .underResultSec .ResultItem .FavCompair ul li .FavCOmItem {
                                 display: flex;
                                 align-items: center;
+                                background:#fff0;
+                                outline:0;
+                                box-shadow:none;
                             }
 
                                 .ResultSearch .RaeltCont .underResultSec .ResultItem .FavCompair ul li .FavCOmItem .icon {
@@ -13087,6 +13090,172 @@ input[type=range] {
             padding: 0 35px;
             margin: 10px auto;
         }
+
+
+
+
+
+.ComparisonPage{
+
+}
+
+    .ComparisonPage .PageTitle {
+    }
+        .ComparisonPage .PageTitle h2 {
+            font-size: 26px;
+            line-height: 36px;
+            color: #000;
+            font-family: AudiFontBold;
+        }
+
+
+    .ComparisonPage .CarItems {
+    }
+        .ComparisonPage .CarItems .Carr {
+            margin-bottom:30px;
+        }
+            .ComparisonPage .CarItems .Carr .images {
+                padding: 10px 0;
+                background: #f2f2f2;
+                display: block;
+                width: 100%;
+                height: 200px;
+                position:relative;
+            }
+        .ComparisonPage .CarItems .AddFav {
+            position: absolute;
+            top: 15px;
+            right: 10px;
+            display: block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 17px;
+            text-align: center;
+            line-height: 30px;
+            padding: 0;
+            background: #fff0;
+            border: 1px solid #000;
+        }
+        .ComparisonPage .CarItems .active {
+            background: #000;
+            border: 1px solid #000;
+            color: #fff;
+        }
+        .ComparisonPage .CarItems .AddFav i {
+
+        }
+.ComparisonPage .CarItems .Carr .images img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+            .ComparisonPage .CarItems .Carr .carDetails {
+            }
+                .ComparisonPage .CarItems .Carr .carDetails a {
+                    color: #000;
+                    font-family: 'AudiFont';
+                    font-size: 22px;
+                    font-weight: 700;
+                    padding: 6px 0;
+                }
+                    .ComparisonPage .CarItems .Carr .carDetails a h2 {
+                        color: #000;
+                        font-family: 'AudiFont';
+                        font-size: 22px;
+                        font-weight: 700;
+                        padding: 6px 0;
+                    }
+                .ComparisonPage .CarItems .Carr .carDetails p {
+                    font-size: 17px;
+                    color: #000;
+                    font-weight: 200;
+                    font-family: 'AudiFont';
+                }
+                    .ComparisonPage .CarItems .Carr .carDetails p span {
+                        font-weight: 700;
+                    
+                    }
+
+
+
+
+.faq-section{
+
+}
+    .faq-section .accordion {
+        margin:0;
+    }
+
+        .faq-section .accordion .acc-btn {
+            background: #fff;
+            color: #000;
+            border-top: 1px solid #eee;
+            border-radius: 0;
+        }
+.accordion-box .block .acc-btn.active {
+    box-shadow: 0 0 30px rgb(255 255 255 / 70%);
+    color: #000000;
+}
+    .accordion-box .block .acc-btn.active .icon-outer {
+        -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg);
+        color: #000;
+    }
+.faq-section .accordion .acc-btn .icon-outer {
+}
+
+            .faq-section .accordion .acc-btn .icon-outer span {
+            }
+
+            .faq-section .accordion .acc-btn .icon-outer {
+            }
+
+        .faq-section .accordion .acc-content {
+        }
+.faq-section .accordion-box .block .content {
+    padding: 0;
+}
+.faq-section .accordion .acc-content .TapBody {
+    padding: 60px 42px 36px;
+    background: #f2f2f2;
+}
+                .faq-section .accordion .acc-content .TapBody .MainItem {
+                }
+                    .faq-section .accordion .acc-content .TapBody .MainItem h2 {
+                        font-size: 16px;
+                        color: #000;
+                        border-top: 1px solid #000;
+                        padding-top: 10px;
+                        font-weight: 600;
+                        padding-bottom:25px;
+                    }
+
+                        .exception {
+                            border-top: 3px solid #000 !important;
+                        }
+.faq-section .accordion .acc-content .TapBody .ScondItem {
+}
+    .faq-section .accordion .acc-content .TapBody .ScondItem h2 {
+        border-top: 1px solid #b3b3b3;
+        font-size: 17px;
+        padding-top: 10px;
+        font-weight: 200;
+        font-family: 'AudiFont';
+        color: #3c3b3b;
+        padding-bottom: 25px;
+    }
+.faq-section .accordion .acc-content .TapBody .ScondItem h2 i {
+    font-size: 25px;
+}
+
+
+
+
+
 
 
 
