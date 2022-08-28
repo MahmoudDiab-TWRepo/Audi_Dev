@@ -28,7 +28,18 @@ namespace Eagles.LMS.Controllers
             ViewBag.Allcars = data;
             //return Redirect("/Admission");
             return View();
+            //return this.PartialView("_SearchKeys", data);
         }
+        public ActionResult _Results()
+        {
+            return PartialView();
+        }
+        public ActionResult _SearchKeys()
+        {
+            return PartialView();
+        }
+
+
         [HttpPost]
         public JsonResult Carfilter(CarModel carmodel)
         {
@@ -159,6 +170,10 @@ namespace Eagles.LMS.Controllers
 
             return View();
         }
+
+       
+
+
         public ActionResult CarDetails(int? id)
         {
             var _car = new Car();

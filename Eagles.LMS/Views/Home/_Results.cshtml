@@ -1,4 +1,26 @@
-﻿<div class="ResultSearch">
+﻿
+@using Eagles.LMS.BLL
+@using Eagles.LMS.App_GlobalResources
+
+@{
+    UnitOfWork ctx = new UnitOfWork();
+
+    List<Car> _cars = new List<Car>();
+    _cars = /*ctx.carManager.GetCarwithEquipments()*/ViewBag.Allcars;
+    if (_cars == null/*&&_cars.Count()<1*/)
+    {
+        _cars = ctx.carManager.GetCarwithEquipments();
+    }
+
+    var _categoreis = ctx.categoryManager.GetAllBind();
+
+    var _SubItem = ctx.SubItemManager.GetAllBind();
+    var _categoreisBodyType = ctx.categoryManager.GetAllBind().Where(s => s.ShowInBodyType == true).ToList();
+    var _types = ctx.typeManager.GetAllBind();
+
+}
+
+<div class="ResultSearch">
     <div class="container">
         <div class="RaeltCont">
             <div class="UperReaselt">
@@ -25,352 +47,112 @@
             </div>
 
             <div class="underResultSec">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="ResultItem">
-                            <div class="ResutContItem">
-                                <div class="Imagess">
-                                    <div class="services-carousel owl-carousel owl-theme">
-                                        <div class="slide-item">
-                                            <div class="images">
-                                                <img src="~/assets_Audi/images/Audiimg/1.png" />
-                                            </div>
-                                        </div>
+                <div id="NewCAr" class="row">
 
-                                        <div class="slide-item">
-                                            <div class="images">
-                                                <img src="~/assets_Audi/images/Audiimg/11.png" />
-                                            </div>
-                                        </div>
+                    @foreach (var item in _cars)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete">
+                            <div class="ResultItem">
+                                <div class="ResutContItem">
+                                    <div class="Imagess">
+                                        <div class="services-carousel owl-carousel owl-theme">
 
-                                    </div>
-                                </div>
-                                <div class="ItemDetails">
-                                    <h1>Audi A1 Sportback</h1>
-                                    <p>35 TFSI S tronic</p>
-                                    <h2>$46,990.00</h2>
-                                    <div class="LocationDistination">
-                                        <div class="DistnItem">
-                                            <div class="icon">
-                                                <span><i class="bx bx-map"></i></span>
-                                            </div>
-                                            <div class="DitinaDetails">
-                                                <p>3 km - Dealer <br /> Audi Centre Cairns</p>
+                                            <div class="slide-item">
+                                                <div class="images">
+                                                    <img src="@item.MainImage" />
+                                                </div>
                                             </div>
 
-                                        </div>
-                                        <div class="DistnItem">
-                                            <div class="icon">
-
-                                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
-                                                @*<img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />*@
-                                            </div>
-                                            <div class="DitinaDetails">
-                                                <p>
-                                                    2,803 km
-                                                </p>
-                                            </div>
+                                            @foreach (var image in item.CarImages)
+                                            {
+                                                <div class="slide-item">
+                                                    <div class="images">
+                                                        <img src="@image.Path" />
+                                                    </div>
+                                                </div>
+                                            }
 
                                         </div>
                                     </div>
-                                    <div class="LinaktElItem">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Explore vehicle</a>
-                                            </li>
-                                            <li>
-                                                <a class="DarkBG" href="#">
-                                                    Order now
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="FavCompair">
-                                        <ul>
-                                            <li>
-                                                <a href="#" class="FavCOmItem">
-                                                    <div class="icon">
-                                                        <span><i class="bx bx-star"></i></span>
-                                                    </div>
-                                                    <div class="favdisc">
-                                                        <p>Add to favourites</p>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="FavCOmItem">
-                                                    <div class="icon">
-                                                        <span><i class="bx bx-git-compare"></i></span>
-                                                    </div>
-                                                    <div class="favdisc">
-                                                        <p>Add to comparison</p>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    <div class="ItemDetails">
+                                        <h1> @item.CarName </h1>
+                                        <p>@item.ShortDiscription</p>
+                                        <h2>@item.Price$</h2>
+                                        <div class="LocationDistination">
+                                            <div class="DistnItem">
+                                                <div class="icon">
+                                                    <span><i class="bx bx-map"></i></span>
+                                                </div>
+                                                <div class="DitinaDetails">
+                                                    <p>@item.NearestLocation Audi Approved plus<br />in Obour city</p>
+                                                </div>
 
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="ResultItem">
-                            <div class="ResutContItem">
-                                <div class="Imagess">
-                                    <div class="services-carousel owl-carousel owl-theme">
-                                        <div class="slide-item">
-                                            <div class="images">
-                                                <img src="~/assets_Audi/images/Audiimg/1.png" />
+                                            </div>
+                                            <div class="DistnItem">
+                                                <div class="icon">
+                                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                                </div>
+                                                <div class="DitinaDetails">
+                                                    <p>
+                                                        @item.Distance km
+                                                    </p>
+                                                </div>
+
                                             </div>
                                         </div>
-
-                                        <div class="slide-item">
-                                            <div class="images">
-                                                <img src="~/assets_Audi/images/Audiimg/11.png" />
-                                            </div>
+                                        <div class="LinaktElItem">
+                                            <ul>
+                                                <li>
+                                                    <a href="/Home/CarDetails/@item.ID">Explore vehicle</a>
+                                                </li>
+                                                <li>
+                                                    <a class="DarkBG" href="#">
+                                                        Enquire Now
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
+                                        <div class="FavCompair">
+                                            <ul>
+                                                <li>
+                                                    <a href="#" class="FavCOmItem">
+                                                        <div class="icon">
+                                                            <span><i class="bx bx-star"></i></span>
+                                                        </div>
+                                                        <div class="favdisc">
+                                                            <p>Add to favourites</p>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <form action="/Home/AddComparison" method="post">
 
-                                    </div>
-                                </div>
-                                <div class="ItemDetails">
-                                    <h1>Audi A1 Sportback</h1>
-                                    <p>35 TFSI S tronic</p>
-                                    <h2>$46,990.00</h2>
-                                    <div class="LocationDistination">
-                                        <div class="DistnItem">
-                                            <div class="icon">
-                                                <span><i class="bx bx-map"></i></span>
-                                            </div>
-                                            <div class="DitinaDetails">
-                                                <p>3 km - Dealer <br /> Audi Centre Cairns</p>
-                                            </div>
 
+
+
+                                                        <input type="hidden" name="carID" value="@item.ID" />
+
+                                                        <button type="submit" class="FavCOmItem">
+                                                            <div class="icon">
+                                                                <span><i class="bx bx-git-compare"></i></span>
+                                                            </div>
+                                                            <div class="favdisc">
+                                                                <p>Add to comparison</p>
+                                                            </div>
+                                                        </button>
+
+                                                    </form>
+
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <div class="DistnItem">
-                                            <div class="icon">
-                                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
-                                            </div>
-                                            <div class="DitinaDetails">
-                                                <p>
-                                                    2,803 km
-                                                </p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="LinaktElItem">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Explore vehicle</a>
-                                            </li>
-                                            <li>
-                                                <a class="DarkBG" href="#">
-                                                    Order now
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="FavCompair">
-                                        <ul>
-                                            <li>
-                                                <a href="#" class="FavCOmItem">
-                                                    <div class="icon">
-                                                        <span><i class="bx bx-star"></i></span>
-                                                    </div>
-                                                    <div class="favdisc">
-                                                        <p>Add to favourites</p>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="FavCOmItem">
-                                                    <div class="icon">
-                                                        <span><i class="bx bx-git-compare"></i></span>
-                                                    </div>
-                                                    <div class="favdisc">
-                                                        <p>Add to comparison</p>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    }
 
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="ResultItem">
-                            <div class="ResutContItem">
-                                <div class="Imagess">
-                                    <div class="services-carousel owl-carousel owl-theme">
-                                        <div class="slide-item">
-                                            <div class="images">
-                                                <img src="~/assets_Audi/images/Audiimg/1.png" />
-                                            </div>
-                                        </div>
 
-                                        <div class="slide-item">
-                                            <div class="images">
-                                                <img src="~/assets_Audi/images/Audiimg/11.png" />
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="ItemDetails">
-                                    <h1>Audi A1 Sportback</h1>
-                                    <p>35 TFSI S tronic</p>
-                                    <h2>$46,990.00</h2>
-                                    <div class="LocationDistination">
-                                        <div class="DistnItem">
-                                            <div class="icon">
-                                                <span><i class="bx bx-map"></i></span>
-                                            </div>
-                                            <div class="DitinaDetails">
-                                                <p>3 km - Dealer <br /> Audi Centre Cairns</p>
-                                            </div>
-
-                                        </div>
-                                        <div class="DistnItem">
-                                            <div class="icon">
-                                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
-                                            </div>
-                                            <div class="DitinaDetails">
-                                                <p>
-                                                    2,803 km
-                                                </p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="LinaktElItem">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Explore vehicle</a>
-                                            </li>
-                                            <li>
-                                                <a class="DarkBG" href="#">
-                                                    Order now
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="FavCompair">
-                                        <ul>
-                                            <li>
-                                                <a href="#" class="FavCOmItem">
-                                                    <div class="icon">
-                                                        <span><i class="bx bx-star"></i></span>
-                                                    </div>
-                                                    <div class="favdisc">
-                                                        <p>Add to favourites</p>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="FavCOmItem">
-                                                    <div class="icon">
-                                                        <span><i class="bx bx-git-compare"></i></span>
-                                                    </div>
-                                                    <div class="favdisc">
-                                                        <p>Add to comparison</p>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="ResultItem">
-                            <div class="ResutContItem">
-                                <div class="Imagess">
-                                    <div class="services-carousel owl-carousel owl-theme">
-                                        <div class="slide-item">
-                                            <div class="images">
-                                                <img src="~/assets_Audi/images/Audiimg/1.png" />
-                                            </div>
-                                        </div>
-
-                                        <div class="slide-item">
-                                            <div class="images">
-                                                <img src="~/assets_Audi/images/Audiimg/11.png" />
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="ItemDetails">
-                                    <h1>Audi A1 Sportback</h1>
-                                    <p>35 TFSI S tronic</p>
-                                    <h2>$46,990.00</h2>
-                                    <div class="LocationDistination">
-                                        <div class="DistnItem">
-                                            <div class="icon">
-                                                <span><i class="bx bx-map"></i></span>
-                                            </div>
-                                            <div class="DitinaDetails">
-                                                <p>3 km - Dealer <br /> Audi Centre Cairns</p>
-                                            </div>
-
-                                        </div>
-                                        <div class="DistnItem">
-                                            <div class="icon">
-                                                <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
-                                            </div>
-                                            <div class="DitinaDetails">
-                                                <p>
-                                                    2,803 km
-                                                </p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="LinaktElItem">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Explore vehicle</a>
-                                            </li>
-                                            <li>
-                                                <a class="DarkBG" href="#">
-                                                    Order now
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="FavCompair">
-                                        <ul>
-                                            <li>
-                                                <a href="#" class="FavCOmItem">
-                                                    <div class="icon">
-                                                        <span><i class="bx bx-star"></i></span>
-                                                    </div>
-                                                    <div class="favdisc">
-                                                        <p>Add to favourites</p>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="FavCOmItem">
-                                                    <div class="icon">
-                                                        <span><i class="bx bx-git-compare"></i></span>
-                                                    </div>
-                                                    <div class="favdisc">
-                                                        <p>Add to comparison</p>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
