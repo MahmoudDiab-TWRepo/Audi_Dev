@@ -56,7 +56,7 @@ namespace Eagles.LMS.Models
         public string MainImageOne { get; set; }
         public string MainImageTwo { get; set; }
 
-
+        public string CarCode { get; set; }
 
 
         public decimal? NearestLocation { get; set; }

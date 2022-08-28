@@ -28,43 +28,43 @@
 <div class="TapsCars" style="">
     <div class="container">
         <div class="TapsCarCont">
+            @Html.Partial("_SearchKeys")
+            @*<div class="SeearchListItem">
+                    <ul>
+                        <li>
+                            <div class="ItemSearch">
+                                <span>FWD</span>
+                                <button class="Remove"><i class="bx bx-x"></i></button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ItemSearch">
+                                <span>Power (kW) To 410 kW (557 BHP)</span>
+                                <button class="Remove"><i class="bx bx-x"></i></button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ItemSearch">
+                                <span>Comfort</span>
+                                <button class="Remove"><i class="bx bx-x"></i></button>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ItemSearch">
+                                <span>Price $ From 10000</span>
+                                <button class="Remove"><i class="bx bx-x"></i></button>
+                            </div>
+                        </li>
 
-            <div class="SeearchListItem">
-                <ul>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>FWD</span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>Power (kW) To 410 kW (557 BHP)</span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>Comfort</span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="ItemSearch">
-                            <span>Price $ From 10000</span>
-                            <button class="Remove"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
 
+                        <li>
+                            <div class="SearchClear">
 
-                    <li>
-                        <div class="SearchClear">
-
-                            <button class="ClearBTN"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                                <button class="ClearBTN"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>*@
 
 
             <div class="AudiSearchCar">
@@ -1347,29 +1347,29 @@
                     </div>
                     <div class="row">
                         @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="drivenationItem">
+                                <div class="drivenationItem">
 
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="s">
-                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        Diesel <span class="CountCar">(1)</span>
-                                    </label>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="s">
+                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                            Diesel <span class="CountCar">(1)</span>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>*@
+                            </div>*@
                         @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="drivenationItem">
+                                <div class="drivenationItem">
 
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="s">
-                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                        EV <span class="CountCar">(1)</span>
-                                    </label>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="s">
+                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                            EV <span class="CountCar">(1)</span>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>*@
+                            </div>*@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="drivenationItem">
 
@@ -1404,8 +1404,8 @@
 </div>
 
 
-
-<div class="ResultSearch">
+@Html.Partial("_Results")
+<!--<div class="ResultSearch">
     <div class="container">
         <div class="RaeltCont">
             <div class="UperReaselt">
@@ -1413,16 +1413,18 @@
 
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="Resultcount">
-                            <h2><span>@*4*@</span>Results</h2>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="SortResBy">
-                            <label>Sort By</label>
-                            <select>
-                                @*<option>Price ascending</option>
-                        <option>Price descending </option>*@
-                                <option>Model ascending </option>
+                            <h2><span>-->
+@*4*@
+<!--</span>Results</h2>
+    </div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="SortResBy">
+        <label>Sort By</label>
+        <select>-->
+@*<option>Price ascending</option>
+    <option>Price descending </option>*@
+<!--<option>Model ascending </option>
                                 <option>Model descending </option>
                                 <option>Distance ascending </option>
                             </select>
@@ -1780,7 +1782,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 
 
@@ -1875,7 +1877,7 @@
                 thumbRight.classList.remove("active");
             });
         });
-            //parseInt($("#amount-right").text());
+                //parseInt($("#amount-right").text());
 
 
     </script>

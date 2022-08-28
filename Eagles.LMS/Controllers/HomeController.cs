@@ -228,6 +228,7 @@ namespace Eagles.LMS.Controllers
                             Message = "<h1 style='font-size:25px; line-height:1.5'>New Car Enquiry Request</h1>"
                             + "<p style='font-size:15px; color: #000'>Thank You for Enquiry This Car</p>" + "<br />"
                             + "<b style='font-size:12px; line-height:1.5'>Car Name :</b>" + enquiryRequist.CarID + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Car Code :</b>" + enquiryRequist.CarCode + "<br />"
                             + "<b style='font-size:12px; line-height:1.5'>First Name :</b>" + enquiryRequist.FirstName + "<br />"
                             + "<b style='font-size:12px; line-height:1.5'>Last Name :</b>" + enquiryRequist.LastName + "<br />"
                             + "<b style='font-size:12px; line-height:1.5'>Email :</b>" + enquiryRequist.Email + "<br />"

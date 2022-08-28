@@ -307,7 +307,17 @@
                 </div>
             </div>
 
+            <div class="checkboxss">
 
+                <div class="container">
+                    <div id="customerServices">
+                        <input id="s9" class="parent" type="checkbox" /> Parent element<br />
+                        <input id="s15" class="parent-s9" type="checkbox" /> Child element<br />
+                        <input id="s16" class="parent-s9" type="checkbox" /> Child element<br />
+                        <br /><br /><br />
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -417,7 +427,7 @@
                                                                 <span><i class="bx bx-map"></i></span>
                                                             </div>
                                                             <div class="DitinaDetails">
-                                                                <p>@item.NearestLocation km - Dealer <br /> Audi Centre Cairns</p>
+                                                                <p>@item.NearestLocation Audi Approved plus<br />in Obour city</p>
                                                             </div>
 
                                                         </div>
@@ -427,7 +437,7 @@
                                                             </div>
                                                             <div class="DitinaDetails">
                                                                 <p>
-                                                                    @item.Power km
+                                                                    @item.Distance km
                                                                 </p>
                                                             </div>
 
@@ -715,7 +725,7 @@
                             //console.log(jsonresponse[i].Price);
                             //console.log(jsonresponse[i].Categories);
                             debugger;
-                            $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>' + jsonresponse[i].NearestLocation + ' km - Dealer <br> Audi Centre Cairns</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Power + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                            $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
                             $("#dasdsad").append('<li id="' + jsonresponse[i].Categories.ID + '" class="DeleteLI"><div class="ItemSearch"><span> ' + jsonresponse[i].Categories.Name + '</span><button class="Remove"><i class="bx bx-x"></i></button></div></li>')
                         }
 
@@ -750,6 +760,74 @@
         });
 
 
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            //var checkboxHandlerObj = {
+            //    init: function () {
+            //        $('#customerServices input:checkbox[class="parent"]').click(checkboxHandlerObj.parentClicked);
+            //        $('#customerServices input:checkbox[class^="parent-"]').click(checkboxHandlerObj.childClicked);
+            //    },
+
+            //    parentClicked: function () {
+            //        if ($(this).attr('checked')) {
+            //            $('#customerServices input:checkbox[class="parent-' + $(this).attr('id') + '"]').attr('checked', 'checked');
+            //        } else {
+            //            $('#customerServices input:checkbox[class="parent-' + $(this).attr('id') + '"]').removeAttr('checked');
+            //        }
+            //    },
+
+            //    childClicked: function () {
+            //        var temp = $(this).attr('class').split('-');
+            //        var parentId = temp[1];
+
+            //        if ($(this).attr('checked')) {
+            //            $('#' + parentId).attr('checked', 'checked');
+            //        } else {
+            //            var atLeastOneEnabled = false;
+            //            $('#customerServices input:checkbox[class="' + $(this).attr('class') + '"]').each(function () {
+            //                if ($(this).attr('checked')) {
+            //                    atLeastOneEnabled = true;
+            //                }
+            //            });
+            //            if (!atLeastOneEnabled) {
+            //                $('#' + parentId).removeAttr('checked');
+            //            }
+            //        }
+            //    }
+
+            //};
+
+            //checkboxHandlerObj.init();
+
+
+
+            $("#s9").change(function () {
+                if ($(this).is(':checked')) {
+                    var cls = '.parent-' + $(this).attr('id');
+                    $(cls).attr('checked', true);
+                }
+            });
+
+            $('input[class*="parent"]').change(function () {
+                var cls = '.' + $(this).attr('class') + ':checked';
+                var len = $(cls).length;
+                var parent_id = '#' + $(this).attr('class').split('-')[1];
+
+                // 3. Check parent if at least one child is checked
+                if (len) {
+                    $(parent_id).attr('checked', true);
+                } else {
+                    // 2. Uncheck parent if all childs are unchecked.
+                    $(parent_id).attr('checked', false);
+                }
+            });
+
+
+
+
+        });
     </script>
 }
 

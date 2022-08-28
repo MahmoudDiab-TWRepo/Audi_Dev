@@ -1,14 +1,13 @@
 ﻿
-@model Comparison
+@model EnquiryRequist
 @{
 
     ViewBag.Title = "EnquiryForm";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
     UnitOfWork ctx = new UnitOfWork();
-
     var id = ViewBag.Id;
-    var carComp = new Eagles.LMS.BLL.UnitOfWork().carManager.GetAllBind().Where(s => s.ID == ).FirstOrDefault();
+    var car = new Eagles.LMS.BLL.UnitOfWork().carManager.GetAllBind().Where(s => s.ID == id).FirstOrDefault();
 
 }
 
@@ -37,8 +36,8 @@
 
                                 <div class="row">
                                     @*<div class="col-md-6">
-            <input type="text" id="Text_FirstName" placeholder='@Resources.Global.FirstName' />
-        </div>*@
+                                            <input type="text" id="Text_FirstName" placeholder='@Resources.Global.FirstName' />
+                                        </div>*@
 
                                     <div class="col-lg-12 col-md-12 col-sm-2 co-xs-12">
                                         <div class="form-group">
@@ -101,14 +100,30 @@
                                         </div>
                                     </div>
 
-                                    @*<div class="col-md-6">
+                                    <div class="col-lg-12 col-md-12 col-sm-2 co-xs-12" style="display:none">
                                         <div class="form-group">
+                                            <label>CarID <span>*</span></label>
+                                            @Html.TextBoxFor(s => s.CarCode, null, new
+                                       {
+                                           @class = "",
+                                           @id = "CarCode",
+                                           @readonly = "readonly"
+                                       })
 
-                                            @Html.DropDownList("F00", new SelectList(jobs.Select(x => new { Value = x.Id, Text = x.CarName }), "Value", "Text"))
+
+
+
                                         </div>
+                                    </div>
+
+                                    @*<div class="col-md-6">
+                                            <div class="form-group">
+
+                                                @Html.DropDownList("F00", new SelectList(jobs.Select(x => new { Value = x.Id, Text = x.CarName }), "Value", "Text"))
+                                            </div>
 
 
-                                    </div>*@
+                                        </div>*@
 
 
 
@@ -146,42 +161,42 @@
 
 
                                     @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="form-check form-check-primary mb-3">
-                @Html.CheckBoxFor(s => s.BookMe, new
-           {
-               @class = "form-check-input",
-               @id = "ckekshow",
-               placeholder = "Show In Home Page"
-           })
-                <label for="ckekshow" class="form-label" style="cursor:pointer;">Show In Home Page</label>
+                                            <div class="form-check form-check-primary mb-3">
+                                                @Html.CheckBoxFor(s => s.BookMe, new
+                                           {
+                                               @class = "form-check-input",
+                                               @id = "ckekshow",
+                                               placeholder = "Show In Home Page"
+                                           })
+                                                <label for="ckekshow" class="form-label" style="cursor:pointer;">Show In Home Page</label>
 
-            </div>
+                                            </div>
 
 
-        </div>*@
+                                        </div>*@
 
 
 
                                     @*<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <div class="checkbox">
-                                                <label style=" font-size: 14px; color:#333;">-->
-                                                    <input class="car_category" type="checkbox" style="display:none">
-                                                    @Html.CheckBoxFor(s => s.BookMe, new
-                                                   {
-                                                       @class = "car_category",
-                                                       style = "display:none"
-                                                   })
-                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                    Book me in for a test drive to ensure the car is a good fit
-                                                </label>
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label style=" font-size: 14px; color:#333;">-->
+                                                        <input class="car_category" type="checkbox" style="display:none">
+                                                        @Html.CheckBoxFor(s => s.BookMe, new
+                                                       {
+                                                           @class = "car_category",
+                                                           style = "display:none"
+                                                       })
+                                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                        Book me in for a test drive to ensure the car is a good fit
+                                                    </label>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>*@
+                                        </div>*@
 
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <button type="submit"  class="SubmitForm">Submit</button>
+                                            <button type="submit" class="SubmitForm">Submit</button>
                                         </div>
                                     </div>
                                 </div>
@@ -234,7 +249,14 @@
 
     </script>
 
+    <script>
 
+        $(document).ready(function () {
+
+            document.getElementById('CarCode').setAttribute("value", `@car.CarCode`);
+        });
+
+    </script>
 
 
 }

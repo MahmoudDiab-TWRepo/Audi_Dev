@@ -72,6 +72,18 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
+                                            <label class="form-label">CarCode</label>
+                                            @Html.TextBoxFor(s => s.CarCode, null, new
+                                       {
+                                           @class = "form-control",
+
+                                           placeholder = "CarCode"
+                                       })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="mb-3">
                                             <label class="form-label">Distance</label>
                                             @Html.TextBoxFor(s => s.Distance, null, new
                                        {
@@ -90,7 +102,7 @@
                                        })
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
                                             <label class="form-label">Engin Size</label>

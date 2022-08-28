@@ -22,6 +22,8 @@ namespace Eagles.LMS.Models
         public string Mobile { get; set; }
 
         public string caerrnamw { get; set; }
+
+        public string CarCode { get; set; }
         public string Message { get; set; }
         public Boolean BookMe { get; set; }
         public string CarID { get; set; }

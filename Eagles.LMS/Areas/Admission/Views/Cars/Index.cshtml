@@ -39,13 +39,15 @@
                                 <tr>
 
                                     @*<th>#Order</th>*@
+                                    <th> <p>Car Code</p> </th>
                                     <th> <p>Action</p> </th>
+
                                     <th> <p>Main Image</p> </th>
                                     <th> <p>Car Name</p> </th>
                                     <th> <p>Price</p> </th>
                                     @*<th> <p>Description AR </p></th>
 
-                                        <th> <p>Description EN</p> </th>*@
+        <th> <p>Description EN</p> </th>*@
 
                                     <th> <p>User Created</p> </th>
                                     <th> <p>Created Time</p> </th>
@@ -63,37 +65,38 @@
                                 {
 
 
-                                    <tr>
-                                        @*<td><p>@item.Order</p></td>*@
-                                        <td>
-                                            <div class="dropdown">
-                                                <button class="btn nav-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="bx bx-dots-horizontal-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item align-middle " href="/Admission/Cars/Edit/@item.ID"><i class="bx bx-edit font-size-16 me-1"></i>@Resources.Global.Edit</a>
-                                                    <a class="dropdown-item text-danger align-middle btn_delete" data-id="@item.ID" href="#"><i class="bx bx-trash font-size-16 me-1"></i>@Resources.Global.Delete</a>
+                                <tr>
+                                    @*<td><p>@item.Order</p></td>*@
+                                    <td><p>@item.CarCode</p></td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn nav-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-horizontal-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item align-middle " href="/Admission/Cars/Edit/@item.ID"><i class="bx bx-edit font-size-16 me-1"></i>@Resources.Global.Edit</a>
+                                                <a class="dropdown-item text-danger align-middle btn_delete" data-id="@item.ID" href="#"><i class="bx bx-trash font-size-16 me-1"></i>@Resources.Global.Delete</a>
 
 
-                                                </div>
                                             </div>
+                                        </div>
 
-                                        </td>
-                                        <td>
-                                            <a href="@item.MainImage" class="btnIconImages" target="_blank">
-                                                <i class="bx bx-image"></i>
-                                            </a>
-                                        </td>
-                                        <td><p class="FontArabic ">@item.CarName</p></td>
-                                        <td><p>@item.Price</p></td>
-                                        @*<td><p class="FontArabic DescriptionP ">@Html.Raw(@item.DescriptionArabic)</p></td>
-                                            <td><p class="DescriptionP">@Html.Raw(@item.DescriptionEnglish)</p></td>*@
-                                        <td><p>@ctx.UserManager.GetBy(item.UserCreateId).FullName</p></td>
-                                        <td><p>@item.CreateTime</p></td>
-                                        <td><p>@ctx.UserManager.GetBy(item.UserEditId).FullName</p></td>
-                                        <td><p>@item.EditeTime</p></td>
+                                    </td>
+                                    <td>
+                                        <a href="@item.MainImage" class="btnIconImages" target="_blank">
+                                            <i class="bx bx-image"></i>
+                                        </a>
+                                    </td>
+                                    <td><p class="FontArabic ">@item.CarName</p></td>
+                                    <td><p>@item.Price</p></td>
+                                    @*<td><p class="FontArabic DescriptionP ">@Html.Raw(@item.DescriptionArabic)</p></td>
+        <td><p class="DescriptionP">@Html.Raw(@item.DescriptionEnglish)</p></td>*@
+                                    <td><p>@ctx.UserManager.GetBy(item.UserCreateId).FullName</p></td>
+                                    <td><p>@item.CreateTime</p></td>
+                                    <td><p>@ctx.UserManager.GetBy(item.UserEditId).FullName</p></td>
+                                    <td><p>@item.EditeTime</p></td>
 
-                                    </tr>
+                                </tr>
 
                                     {
                                         index += 1;

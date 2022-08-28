@@ -449,6 +449,10 @@
     <Compile Include="Migrations\202208140942374_ComparisonAdd.designer.cs">
       <DependentUpon>202208140942374_ComparisonAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208181139475_AddCareCode.cs" />
+    <Compile Include="Migrations\202208181139475_AddCareCode.designer.cs">
+      <DependentUpon>202208181139475_AddCareCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountState.cs" />
     <Compile Include="Models\Assistance systems.cs" />
@@ -2038,6 +2042,8 @@
     <Content Include="Views\Home\EnquiryForm.cshtml" />
     <Content Include="Views\Home\ThanksPage.cshtml" />
     <Content Include="Views\Home\Comparison.cshtml" />
+    <Content Include="Views\Home\_Results.cshtml" />
+    <Content Include="Views\Home\_SearchKeys.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2163,6 +2169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208140942374_ComparisonAdd.resx">
       <DependentUpon>202208140942374_ComparisonAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208181139475_AddCareCode.resx">
+      <DependentUpon>202208181139475_AddCareCode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
