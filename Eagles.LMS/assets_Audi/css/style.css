@@ -11352,6 +11352,7 @@ img {
                     height: 35px;
                     line-height: 35px;
                     display: inline-block;
+                    cursor:pointer;
                 }
 
                     .SeearchListItem ul li .ItemSearch .Remove i {
@@ -12268,6 +12269,7 @@ input[type=range] {
         color: #222;
         transition: all .4s ease-in-out;
         margin-bottom: 0;
+        background: #f2f2f2;
     }
 
     .login-links .enquiry-link {
@@ -13253,6 +13255,108 @@ input[type=range] {
 }
 
 
+
+.checkall {
+    position: absolute;
+    top: 140px;
+    display: block;
+    width: 100%;
+    height: 30px;
+    opacity: 0;
+    z-index: 99999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.login-form input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: block;
+    width: 0 23px;
+}
+
+.login-form .form-check-label {
+    margin-bottom: 0;
+    margin-left: 10px;
+    font-weight: 700;
+    font-family: 'AudiFont';
+    color: #000;
+    font-size: 16px;
+}
+
+
+.OrderAudiForm{
+
+}
+
+    .OrderAudiForm .form-group {
+       
+    }
+        .OrderAudiForm .form-group h2 {
+            color: #000 !important;
+            font-family: 'AudiFontBold';
+            font-size: 18px;
+        }
+            .OrderAudiForm .form-group h2::after {
+                content: '';
+                display: block;
+                width: 80px;
+                height: 2px;
+                background: #dc3545;
+                margin-top: 6px;
+            }
+            .OrderAudiForm .form-group label {
+                color: #000 !important;
+                font-family: 'AudiFontBold';
+                margin: 0;
+            }
+        .OrderAudiForm .form-group .form-control {
+            background-color: #f3f3f3 !important;
+            border: none !important;
+            color: #000 !important;
+            font-family: 'AudiFontBold';
+            height: 45px !important;
+            box-shadow: 0 0 0px #eee !important;
+        }
+        .OrderAudiForm .form-group .form-control::placeholder {
+        }
+
+        .OrderAudiForm .form-group textarea {
+            background-color: #f3f3f3 !important;
+            border: none !important;
+            color: #000 !important;
+            font-family: 'AudiFontBold';
+            min-height: 145px !important;
+            height: auto !important;
+            box-shadow: 0 0 5px #eee !important;
+        }
+
+
+    .OrderAudiForm .BTNSUB {
+    }
+        .OrderAudiForm .BTNSUB button {
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            display: block;
+            width: 100%;
+            height: 45px;
+            border-radius: 5px;
+            text-transform: capitalize;
+            box-shadow: 0 0 20px #c5c5c5;
+        }
 
 
 

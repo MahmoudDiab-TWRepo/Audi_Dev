@@ -68,29 +68,29 @@
         <div class="TapsCarCont">
 
             <!--<div class="SeearchListItem">
-    <ul id="dasdsad">-->
+            <ul id="dasdsad">-->
             @*@foreach (var item in _cars)
-        {
-            <li class="DeleteLI">
-                <div class="ItemSearch">
-                    <span> </span>
-                    <button id="me" class="Remove"  onclick="DeleteItemFiltr()"><i class="bx bx-x"></i></button>
-                </div>
-            </li>
+                {
+                    <li class="DeleteLI">
+                        <div class="ItemSearch">
+                            <span> </span>
+                            <button id="me" class="Remove"  onclick="DeleteItemFiltr()"><i class="bx bx-x"></i></button>
+                        </div>
+                    </li>
 
-        }*@
+                }*@
 
             <!--</ul>
-        <ul id="dasdsad">
+                <ul id="dasdsad">
 
-            <li>
-                <div class="SearchClear">
+                    <li>
+                        <div class="SearchClear">
 
-                    <button class="ClearBTN"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
-                </div>
-            </li>
-        </ul>
-    </div>-->
+                            <button class="ClearBTN"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>-->
 
 
             @Html.Partial("_SearchKeys")
@@ -103,8 +103,8 @@
                 </p>
 
                 @*<div class="linksBenifits">
-                <a href="#">Benefits of Audi Approved :plus</a>
-            </div>*@
+                        <a href="#">Benefits of Audi Approved :plus</a>
+                    </div>*@
                 <div class="linksBenifits">
                     <a href="#">Contact US</a>
                 </div>
@@ -131,6 +131,10 @@
                                         {
                                             <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
 
+
+                                                @* <input type="checkbox" id="@item.ID" class="checkall">*@
+
+
                                                 <div class="MainCarItem">
 
 
@@ -141,7 +145,7 @@
                                                     <div class="CarTitle">
                                                         <div class="checkbox">
                                                             <label>
-                                                                <input class="car_category" type="checkbox" id="@item.ID">
+                                                                <input class="car_category checkallParent " type="checkbox" id="@item.ID">
                                                                 <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                                                 @item.Name <span class="CountCar">(1)</span>
                                                             </label>
@@ -157,12 +161,12 @@
                                                         <div class="ChildCarItem">
                                                             <div class="Images">
                                                                 <img class="MainImgOne" src="@itemtype.MainImageOne" />
-                                                                @*<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />*@
+                                                                @* @<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
                                                             </div>
                                                             <div class="CarTitle">
                                                                 <div class="checkbox">
-                                                                    <label>
-                                                                        <input class="car_type" type="checkbox" id="@itemtype.Id">
+                                                                    <label class="checklable">
+                                                                        <input class="car_type " type="checkbox" id="@itemtype.Id">
                                                                         <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                                                         @itemtype.Name <span class="CountCar">(1)</span>
                                                                     </label>
@@ -187,69 +191,12 @@
 
 
                                 <div class="tab " id="prod-reviews">
-
-                                    <div class="AllCars" style="display:none">
-                                        @foreach (var item in _categoreisBodyType)
-                                        {
-                                            <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
-
-                                                <div class="MainCarItem">
-
-
-                                                    <div class="Images">
-                                                        <img class="MainImgOne" src="@item.MainImageOne" />
-                                                        <img class="MainImgTwo" src="@item.MainImageTwo" />
-                                                    </div>
-                                                    <div class="CarTitle">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input class="car_category" type="checkbox" id="@item.ID">
-                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                @item.Name <span class="CountCar">(1)</span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="GroupChildCars">
-
-                                                    @foreach (var itemtype in _SubItem.Where(s => s.CategoryID == item.ID).ToList())
-                                                    {
-
-                                                        <div class="ChildCarItem">
-                                                            <div class="Images">
-                                                                <img class="MainImgOne" src="@itemtype.MainImageOne" />
-                                                                @*<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />*@
-                                                            </div>
-                                                            <div class="CarTitle">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input class="car_type" type="checkbox" id="@itemtype.Id">
-                                                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                        @item.Name @itemtype.Name <span class="CountCar">(1)</span>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                    }
-                                                </div>
-                                            </div>
-
-
-                                        }
-                                    </div>
-
-
-
-
-
                                     <div class="AllCars">
                                         @foreach (var item in _types)
                                         {
                                             <div class="ItemOfCars" id="select_@item.ID" data-getname="select_@item.ID" onclick="getitem(`${this.id}`)">
+                                                <input type="checkbox" id="@item.ID" class="car_category checkall">
+
 
                                                 <div class="MainCarItem">
 
@@ -261,7 +208,7 @@
                                                     <div class="CarTitle">
                                                         <div class="checkbox">
                                                             <label>
-                                                                <input class="car_type" type="checkbox" id="@item.ID">
+                                                                <input class="car_type checkallParent" type="checkbox" id="@item.ID">
                                                                 <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                                                 @item.Name <span class="CountCar">(1)</span>
                                                             </label>
@@ -277,7 +224,7 @@
                                                         <div class="ChildCarItem">
                                                             <div class="Images">
                                                                 <img class="MainImgOne" src="@itemcategory.MainImageOne" />
-                                                                @*<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />*@
+                                                                @*@<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
                                                             </div>
                                                             <div class="CarTitle">
                                                                 <div class="checkbox">
@@ -312,26 +259,26 @@
 
             @*<div class="checkboxss">
 
-                <div class="container">
-                    <div id="customerServices0">
-                        <input id="s90" onchange="checkAll(this)" class="parent" type="checkbox" /> Parent element<br />
-                        <input id="s150" class="parent-s9" type="checkbox" /> Child element<br />
-                        <input id="s160" class="parent-s9" type="checkbox" /> Child element<br />
-                        <br /><br /><br />
+                    <div class="container">
+                        <div id="customerServices0">
+                            <input id="s90" onchange="checkAll(this)" class="parent" type="checkbox" /> Parent element<br />
+                            <input id="s150" class="parent-s9" type="checkbox" /> Child element<br />
+                            <input id="s160" class="parent-s9" type="checkbox" /> Child element<br />
+                            <br /><br /><br />
+                        </div>
                     </div>
-                </div>
-            </div>*@
+                </div>*@
 
 
 
 
             @*<div id="customerServices">
-                <input id="s9" class="parent" type="checkbox" /> Parent element<br />
-                <input id="s15" class="parent-s9" type="checkbox" /> Child element<br />
-                <input id="s16" class="parent-s9" type="checkbox" /> Child element<br />
+                    <input id="s9" class="parent" type="checkbox" /> Parent element<br />
+                    <input id="s15" class="parent-s9" type="checkbox" /> Child element<br />
+                    <input id="s16" class="parent-s9" type="checkbox" /> Child element<br />
 
 
-            </div>*@
+                </div>*@
 
 
 
@@ -478,7 +425,7 @@
 
         // Start Ajax Filter
         $(".ItemOfCars").click(function () {
-            debugger;
+            //debugger;
             $(".ItemOfCars").map(function () {
                 $(".ItemOfCars").removeClass("open")
             });
@@ -521,6 +468,8 @@
 
         //console.log(array);
         function getcarscategories(obj) {
+            //debugger;
+
             var arrofcarscategory = $(".car_category:checked").map(function () {
 
                 return $(this).attr("id");
@@ -583,6 +532,7 @@
             $(".CandDelete").remove();
 
             let obj = {};
+            var x = [];
             if (getcarscategories(obj)) {
                 //if ((obj.Data.CarCategory.length > 0 && obj.Data.CarCategory != null) || (obj.Data.CarType.length > 0 && obj.Data.CarType != null)) {
                 debugger;
@@ -594,17 +544,38 @@
                     success: (response) => {
                         $(".CandDelete").remove();
 
-                        /* debugger;*/
+                        debugger;
                         var jsonresponse = JSON.parse(response);
-                        console.log(jsonresponse);
+                        //console.log(jsonresponse);
                         for (let i = 0; i < jsonresponse.length; i++) {
                             //var desc= $("#descrip").text(jsonresponse[i].MainImageOne);
                             //console.log(jsonresponse[i].Price);
-                            //console.log(jsonresponse[i].Categories);
+                            //console.log('jsonresponse[i].Categories.Name --> ',jsonresponse[i].Categories.Name);
                             debugger;
+                            //result
                             $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
-                            $("#dasdsad").append('<li id="' + jsonresponse[i].Categories.ID + '" class="DeleteLI"><div class="ItemSearch"><span> ' + jsonresponse[i].Categories.Name + '</span><button class="Remove"><i class="bx bx-x"></i></button></div></li>')
+                            //fillter Data
+                            if (x.length != 0) {
+                                for (var z = 0; z < x.length; z++) {
+                                    if (jsonresponse[i].Categories.ID != x[z]) {
+                                        $("#dasdsad").append('<li id="' + jsonresponse[i].Categories.ID + '" class="DeleteLI"><div class="ItemSearch"><span> ' + jsonresponse[i].Categories.Name + '</span><button class="Remove"><i class="bx bx-x"></i></button></div></li>')
+                                    }
+                                }
+                            }
+                            else {
+
+                                $("#dasdsad").append('<li id="' + jsonresponse[i].Categories.ID + '" class="DeleteLI"><div class="ItemSearch"><span> ' + jsonresponse[i].Categories.Name + '</span><button class="Remove"><i class="bx bx-x"></i></button></div></li>');
+                                x.push(jsonresponse[i].Categories.ID);
+                            }
+
                         }
+
+                        $(".ClearBTN").click(function () {
+                            $("li").remove(".DeleteLI");
+                        });
+                        $(".DeleteLI").click(function () {
+                            $(this).remove(".DeleteLI");
+                        });
 
                     }, error: (error) => {
                         $("#descrip").text("NewCar");
@@ -625,16 +596,11 @@
             //});
         });
 
-
-
-
-
-
-        $(document).ready(function () {
-            $(".ClearBTN").click(function () {
-                $("li").remove(".DeleteLI");
-            });
-        });
+        //$(document).ready(function () {
+        //    $(".ClearBTN").click(function () {
+        //        $("li").remove(".DeleteLI");
+        //    });
+        //});
 
 
     </script>
@@ -702,16 +668,16 @@
             //});
 
 
-            var checkboxs = document.querySelectorAll("input[type = 'checkbox']")
-           
-            function checkAll(myCheckBox) {
-                if (myCheckBox.checked == true) {
-                    checkboxs.forEach(function (checkbox) {
-                        alert('ssssssssss');
-                        checkbox.checked = true;
-                    })
-                }
-            }
+            //var checkboxs = document.querySelectorAll("input[type = 'checkbox']")
+
+            //function checkAll(myCheckBox) {
+            //    if (myCheckBox.checked == true) {
+            //        checkboxs.forEach(function (checkbox) {
+            //            alert('ssssssssss');
+            //            checkbox.checked = true;
+            //        })
+            //    }
+            //}
 
         });
     </script>
@@ -767,6 +733,17 @@
         //    checkboxHandlerObj.init();
 
         //});
+    </script>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('.ItemOfCars .checkall').on('change', function () {
+                $(this).nextUntil('.ItemOfCars .checkChild lable').find('input[type=checkbox]').prop('checked', this.checked);
+            });
+
+        });
     </script>
 }
 

@@ -45,37 +45,55 @@ namespace Eagles.LMS.Controllers
         {
             UnitOfWork ctx = new UnitOfWork();
             List<Car> cars = new List<Car>();
+
             //Car journalMaster = Serializer.Deserialize<Ac_JournalMaster>(master);
             //List<Ac_JournalDetails> journalDetails = serilizer.Deserialize<List<Ac_JournalDetails>>(details);
+
             if (carmodel.CarType != null && carmodel.CarType.Length > 0)
             {
                 foreach (var item in carmodel.CarType)
                 {
-                    var itemcar = ctx.carManager.GetAllBind().FirstOrDefault(s => s.TypeID == item);
-                    if (itemcar != null)
+                    var itemcars = ctx.carManager.GetAllBind().Where(s => s.TypeID == item);
+                    if (itemcars != null)
                     {
-                        cars.Add(itemcar);
+                        foreach (var itemcar in itemcars)
+                        {
+                            if (itemcar != null)
+                            {
+                                cars.Add(itemcar);
+                            }
+                        }
                     }
+
                 }
-            }
-           if (carmodel.CarCategory != null && carmodel.CarCategory.Length > 0)
-                {
-                foreach (var itemcat in carmodel.CarCategory)
-                {
-                    var itemcar = ctx.carManager.GetAllBind().FirstOrDefault(s => s.CategoryId == itemcat);
-                    if (itemcar != null)
-                    {
-                        cars.Add(itemcar);
-                    }
-                }
-            
-            }
-            var DIstinctcars = cars.ToList().Distinct();
-            if(carmodel.CarCategory==null&&carmodel.CarType==null)
-            {
-                DIstinctcars  = ctx.carManager.GetCarwithEquipments().ToList();
 
             }
+            else if (carmodel.CarCategory != null && carmodel.CarCategory.Length > 0)
+            {
+                foreach (var itemcat in carmodel.CarCategory)
+                {
+                    var itemcars = ctx.carManager.GetAllBind().Where(s => s.CategoryId == itemcat);
+                    if (itemcars != null)
+                    {
+                        foreach (var itemcar in itemcars)
+                        {
+                            if (itemcar != null)
+                            {
+                                cars.Add(itemcar);
+                            }
+                        }
+                    }
+
+                }
+
+            }
+            else
+            {
+                return null;
+            }
+
+            var DIstinctcars = cars.ToList().Distinct();
+
             JavaScriptSerializer jss = new JavaScriptSerializer();
             string CarsList = JsonConvert.SerializeObject(DIstinctcars, Formatting.None, new JsonSerializerSettings()
             {
@@ -85,7 +103,6 @@ namespace Eagles.LMS.Controllers
 
             TempData["mydata"] = DIstinctcars;
             return Json(CarsList, JsonRequestBehavior.AllowGet);
-
         }
 
 
@@ -165,19 +182,29 @@ namespace Eagles.LMS.Controllers
 
             return View();
         }
+        public ActionResult makeEnquiry()
+        {
+
+            return View();
+        }
+
+        public ActionResult OrderAudi()
+        {
+            return View();
+        }
         public ActionResult Results()
         {
 
             return View();
         }
 
-       
+
 
 
         public ActionResult CarDetails(int? id)
         {
             var _car = new Car();
-            
+
             bool en = true;
 
             if (Request.Cookies["Language"] != null)
@@ -187,7 +214,7 @@ namespace Eagles.LMS.Controllers
             if (en == true)
             {
                 _car = new UnitOfWork().carManager.GetAll().Where(s => s.CarName != null).FirstOrDefault(s => s.ID == id);
-              
+
             }
 
             // Expression<Func<T, object>> criteria
@@ -197,7 +224,7 @@ namespace Eagles.LMS.Controllers
             }
             if (_car == null)
                 return View("NotFound");
-                _car.CarImages = new UnitOfWork().CarImagesManager.GetAllBind().Where(s => s.CarId == _car.ID).ToList();
+            _car.CarImages = new UnitOfWork().CarImagesManager.GetAllBind().Where(s => s.CarId == _car.ID).ToList();
 
             //return Redirect("/Admission");
             TempData["ID"] = _car.ID;
@@ -216,7 +243,7 @@ namespace Eagles.LMS.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult EnquiryForm( EnquiryRequist enquiryRequist, HttpPostedFileBase uploadattachments)
+        public ActionResult EnquiryForm(EnquiryRequist enquiryRequist, HttpPostedFileBase uploadattachments)
         {
             ActionResult result = View(enquiryRequist);
 
@@ -248,7 +275,7 @@ namespace Eagles.LMS.Controllers
                             + "<b style='font-size:12px; line-height:1.5'>Last Name :</b>" + enquiryRequist.LastName + "<br />"
                             + "<b style='font-size:12px; line-height:1.5'>Email :</b>" + enquiryRequist.Email + "<br />"
                             + "<b style='font-size:12px; line-height:1.5'>Phone :</b>" + enquiryRequist.Mobile + "<br />"
-                            
+
                             + "<b style='font-size:12px; line-height:1.5'>Message:</b>" + enquiryRequist.Message + "<br />" +
                             "<br />",
                             From = "web@empcnews.com",

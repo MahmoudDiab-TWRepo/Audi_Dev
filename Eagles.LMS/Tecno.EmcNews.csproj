@@ -2037,13 +2037,14 @@
     <Content Include="Views\Home\Equipment.cshtml" />
     <Content Include="Views\Home\Colour.cshtml" />
     <Content Include="Views\Home\Results.cshtml" />
-    <Content Include="Views\Home\Form1.cshtml" />
+    <Content Include="Views\Home\makeEnquiry.cshtml" />
     <Content Include="Views\Home\CarDetails.cshtml" />
     <Content Include="Views\Home\EnquiryForm.cshtml" />
     <Content Include="Views\Home\ThanksPage.cshtml" />
     <Content Include="Views\Home\Comparison.cshtml" />
     <Content Include="Views\Home\_Results.cshtml" />
     <Content Include="Views\Home\_SearchKeys.cshtml" />
+    <Content Include="Views\Home\OrderAudi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
