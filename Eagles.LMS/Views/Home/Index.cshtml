@@ -164,9 +164,9 @@
                                                                 @* @<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
                                                             </div>
                                                             <div class="CarTitle">
-                                                                <div class="checkbox">
+                                                                <div class="checkbox ">
                                                                     <label class="checklable">
-                                                                        <input class="car_type " type="checkbox" id="@itemtype.Id">
+                                                                        <input name="child" class="car_type checkChild " type="checkbox" id="@itemtype.Id">
                                                                         <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                                                         @itemtype.Name <span class="CountCar">(1)</span>
                                                                     </label>
@@ -229,7 +229,7 @@
                                                             <div class="CarTitle">
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <input class="car_category" type="checkbox" id="@itemcategory.Id">
+                                                                        <input class="car_category checkChild" type="checkbox" id="@itemcategory.Id">
                                                                         <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                                                         @itemcategory.Name <span class="CountCar">(1)</span>
                                                                     </label>
@@ -392,6 +392,9 @@
             }
             setRightValue();
 
+			let inputRightValuel;
+            let inputLeftValuel;
+
             inputLeft.addEventListener("input", setLeftValue);
             inputRight.addEventListener("input", setRightValue);
 
@@ -408,6 +411,15 @@
                 thumbLeft.classList.remove("active");
             });
 
+            inputLeft.addEventListener("change", function (e) {
+                //debugger;
+                inputLeftValuel = e.target.value;
+                if (inputLeftValuel != null && inputLeftValuel != 0) {
+
+                    ajaxRangeLeft(parseInt(inputLeftValuel));
+                }
+            });
+
             inputRight.addEventListener("mouseover", function () {
                 thumbRight.classList.add("hover");
             });
@@ -420,9 +432,17 @@
             inputRight.addEventListener("mouseup", function () {
                 thumbRight.classList.remove("active");
             });
+
+            inputRight.addEventListener("change", function (e) {
+               // debugger;
+                inputRightValuel = e.target.value;
+                if (inputRightValuel != null && inputRightValuel != 0) {
+
+                    ajaxRangeRight(parseInt(inputRightValuel));
+                }
+            });
+
         });
-
-
         // Start Ajax Filter
         $(".ItemOfCars").click(function () {
             //debugger;
@@ -467,6 +487,68 @@
 
 
         //console.log(array);
+
+
+        function ajaxRangeLeft(left) {
+            //debugger;
+            if (left != null && left != 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/SetLeftRange",
+                    data: JSON.stringify({ left: left }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: (response) => {
+                        $(".CandDelete").remove();
+                        $('#realItem').addClass('RelatedItemClass');
+                        
+                        if (response != null && response != "") {
+                            $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
+                            var jsonresponse = JSON.parse(response);
+                            for (let i = 0; i < jsonresponse.length; i++) {
+
+                                //result
+                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                            }
+                        }
+                        else {
+                            $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
+                        }
+                    }, error: (error) => {
+                        $("#descrip").text("NewCar");
+                    }
+                });
+            }
+        }
+
+        function ajaxRangeRight(right) {
+                //debugger;
+            $(".CandDelete").remove();
+            if (right != null && right != 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/SetRightRange",
+                    data: JSON.stringify({ right: right }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: (response) => {
+                        $(".CandDelete").remove();
+                        $('#realItem').addClass('RelatedItemClass');
+                        if (response != null && response != "") {
+                            $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
+                            var jsonresponse = JSON.parse(response);
+                            for (let i = 0; i < jsonresponse.length; i++) {
+                                //result
+                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                            }
+                        }
+                        else {
+                            $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
+                        }
+                    }, error: (error) => {
+                        $("#descrip").text("NewCar");
+                    }
+                });
+            }
+        }
         function getcarscategories(obj) {
             //debugger;
 
@@ -479,7 +561,7 @@
 
                 return $(this).attr("id");
             });
-            debugger
+            //debugger
             $(".CandDelete").map(function () {
 
                 return $(this).remove();
@@ -500,6 +582,7 @@
             }
             return true;
         }
+
         if ($('.services-carousel').length) {
             $('.services-carousel').owlCarousel({
                 loop: false,
@@ -528,14 +611,13 @@
         }
 
         $(".checkbox").click(function () {
-            debugger;
             $(".CandDelete").remove();
 
             let obj = {};
             var x = [];
             if (getcarscategories(obj)) {
                 //if ((obj.Data.CarCategory.length > 0 && obj.Data.CarCategory != null) || (obj.Data.CarType.length > 0 && obj.Data.CarType != null)) {
-                debugger;
+                //debugger;
                 $.ajax({
                     type: "POST",
                     url: "/Home/Carfilter",
@@ -543,57 +625,47 @@
                     contentType: 'application/json; charset=utf-8',
                     success: (response) => {
                         $(".CandDelete").remove();
-
-                        debugger;
-                        var jsonresponse = JSON.parse(response);
-                        //console.log(jsonresponse);
-                        for (let i = 0; i < jsonresponse.length; i++) {
-                            //var desc= $("#descrip").text(jsonresponse[i].MainImageOne);
-                            //console.log(jsonresponse[i].Price);
-                            //console.log('jsonresponse[i].Categories.Name --> ',jsonresponse[i].Categories.Name);
-                            debugger;
-                            //result
-                            $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
-                            //fillter Data
-                            if (x.length != 0) {
-                                for (var z = 0; z < x.length; z++) {
-                                    if (jsonresponse[i].Categories.ID != x[z]) {
-                                        $("#dasdsad").append('<li id="' + jsonresponse[i].Categories.ID + '" class="DeleteLI"><div class="ItemSearch"><span> ' + jsonresponse[i].Categories.Name + '</span><button class="Remove"><i class="bx bx-x"></i></button></div></li>')
-                                    }
+                        $('#realItem').addClass('RelatedItemClass');
+                        if (response != null && response != "") {
+                            var jsonresponse = JSON.parse(response);
+                            //console.log("data -->", obj.Data);
+                            $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
+                            if (jsonresponse.length != 0) {
+                                for (let i = 0; i < jsonresponse.length; i++) {
+                                    $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
                                 }
                             }
-                            else {
 
-                                $("#dasdsad").append('<li id="' + jsonresponse[i].Categories.ID + '" class="DeleteLI"><div class="ItemSearch"><span> ' + jsonresponse[i].Categories.Name + '</span><button class="Remove"><i class="bx bx-x"></i></button></div></li>');
-                                x.push(jsonresponse[i].Categories.ID);
-                            }
-
+                        } else {
+                            $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
                         }
 
+
+                        $("#DeleteAllSearch").click(function () {
+                            alert('delete BTN')
+                        });
                         $(".ClearBTN").click(function () {
+                            alert('fff')
                             $("li").remove(".DeleteLI");
                         });
                         $(".DeleteLI").click(function () {
                             $(this).remove(".DeleteLI");
                         });
 
+                      
+
+                        
+
                     }, error: (error) => {
+                        //debugger;
                         $("#descrip").text("NewCar");
                         // unauthorize
                         //let errorMessage = manageAjaxError(error);
                         //    pushNotification("danger", errorMessage);
                     }
                 });
-                /* }*/
             }
-            //array = $(".CarCheck:checked").map(function () {
-            //    debugger;
-            //    var checkelement = $(".CarCheck").attr("id");
-            //    console.log(checkelement)
-            //    array.push(checkelement);
-            //    console.log(array);
-            //    return $(this).attr("id");
-            //});
+
         });
 
         //$(document).ready(function () {
@@ -604,6 +676,8 @@
 
 
     </script>
+
+
     <script>
 
         $(document).ready(function () {
@@ -745,9 +819,11 @@
 
         });
     </script>
+
+
+
+
 }
-
-
 
 
 

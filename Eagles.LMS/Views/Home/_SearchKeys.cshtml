@@ -1,50 +1,134 @@
-﻿
+﻿@using Eagles.LMS.BLL
+@using Eagles.LMS.App_GlobalResources
+
+@{
+    UnitOfWork ctx = new UnitOfWork();
+
+    CarModel _carModel = new CarModel();
+    _carModel = ViewBag.dataModelFillter;
+
+    var _categoreis = ctx.categoryManager.GetAllBind();
+
+    var _SubItem = ctx.SubItemManager.GetAllBind();
+    var _categoreisBodyType = ctx.categoryManager.GetAllBind().Where(s => s.ShowInBodyType == true).ToList();
+    var _types = ctx.typeManager.GetAllBind();
+
+    var _leftRange = ViewBag.leftRange;
+    var _rightRange = ViewBag.rightRange;
+    //var _types = ctx.typeManager.GetAllBind();
+
+}
+
 
 
 <div class="SeearchListItem">
     <ul id="dasdsad">
+        @if (_carModel != null)
+        {
+            if (_carModel.CarCategory != null && _carModel.CarCategory.Length != 0)
+            {
 
-        @*<li>
-                <div class="ItemSearch">
-                    <span>sds</span>
-                    <button class="Remove"><i class="bx bx-x"></i></button>
+                foreach (var item in _carModel.CarCategory)
+                {
+                    <li id="@item" class="DeleteLI">
+                        <div class="ItemSearch">
+                            <span> @_categoreis.Where(a => a.ID == item).FirstOrDefault().Name</span>
+                            <button class="Remove">
+                                <i class="bx bx-x"></i>
+                            </button>
+                        </div>
+                    </li>
+                }
+
+            }
+
+            if (_carModel.CarType != null && _carModel.CarType.Length != 0)
+            {
+
+                foreach (var item in _carModel.CarType)
+                {
+                    <li id="@item" class="DeleteLI">
+                        <div class="ItemSearch">
+                            <span> @_SubItem.Where(a => a.Id == item).FirstOrDefault().Name</span>
+                            <button class="Remove">
+                                <i class="bx bx-x"></i>
+                            </button>
+                        </div>
+                    </li>
+                    
+                }
+            }
+        }
+        @if (_leftRange != null && _rightRange != null)
+        {
+            if (_leftRange != 2005 && _rightRange != 2022)
+            {
+                <li  class="DeleteLI">
+                    <div class="ItemSearch">
+                        <span> From year @_leftRange to @_rightRange </span>
+                        <button id="ModelYearRnge" class="Remove">
+                            <i class="bx bx-x"></i>
+                        </button>
+                    </div>
+                </li>
+            }
+
+        }
+
+
+        @if (_carModel != null && _leftRange != null && _rightRange != null)
+        {
+            <li>
+                <div class="SearchClear">
+
+                    <button class="ClearBTN" id="DeleteAllSearch"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
                 </div>
             </li>
-            <li>
-                <div class="ItemSearch">
-                    <span>Power (kW) To 410 kW (557 BHP)</span>
-                    <button class="Remove"><i class="bx bx-x"></i></button>
-                </div>
-            </li>
-            <li>
-                <div class="ItemSearch">
-                    <span>Comfort</span>
-                    <button class="Remove"><i class="bx bx-x"></i></button>
-                </div>
-            </li>
-            <li>
-                <div class="ItemSearch">
-                    <span>Price $ From 10000</span>
-                    <button class="Remove"><i class="bx bx-x"></i></button>
-                </div>
-            </li>*@
+        }
 
-
-        @*<li>
-            <div class="SearchClear">
-
-                <button class="ClearBTN"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
-            </div>
-        </li>*@
-    </ul>
-
-    <ul id="dasdsad">
-
-        <li>
-            <div class="SearchClear">
-
-                <button class="ClearBTN"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
-            </div>
-        </li>
     </ul>
 </div>
+
+
+
+<script>
+    $(document).ready(function () {
+
+
+        $(".ClearBTN").click(function () {
+            alert('sss');
+            $(".checkallParent").removeAttr('checked');
+
+            $(".ChildCarItem").find('input[type=checkbox]').removeAttr('checked');
+
+            $(".car_category").removeAttr('checked');
+            $("li").remove(".DeleteLI");
+            $("#NewCAr").find(".CandDelete").remove();
+            $('#realItem').removeClass('RelatedItemClass');
+
+            /*location.reload();*/
+        });
+        $(".DeleteLI").click(function () {
+            $(this).remove(".DeleteLI");
+            var isss = $(this).attr('id');
+           
+            $(".MainCarItem").find('#' + isss).removeAttr('checked');
+            $(".ChildCarItem").find('#' + isss).removeAttr('checked');
+
+        });
+
+
+    });
+
+    @*function ddddd() {
+
+            @foreach (var item in _carModel.CarCategory)
+            {
+                let xsss = $document.getElementById(item);
+            }
+    }*@
+
+
+</script>
+
+

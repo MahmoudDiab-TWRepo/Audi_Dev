@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.ComponentModel.DataAnnotations.Schema;
 using Eagles.LMS.Helper;
+using System.Web.DynamicData;
 
 namespace Eagles.LMS.Controllers
 {
@@ -26,9 +27,11 @@ namespace Eagles.LMS.Controllers
         {
             Car data = TempData["mydata"] as Car;
             ViewBag.Allcars = data;
-            //return Redirect("/Admission");
+
+            Session["leftRange"] = 2005;
+            Session["rightRange"] = 2022;
+
             return View();
-            //return this.PartialView("_SearchKeys", data);
         }
         public ActionResult _Results()
         {
@@ -36,7 +39,162 @@ namespace Eagles.LMS.Controllers
         }
         public ActionResult _SearchKeys()
         {
+            //CarModel dataModel = TempData["carModel"] as CarModel;
+            //ViewBag.dataModelFillter = dataModel;
+
+            CarModel carmodel = (CarModel)Session["carModel"];
+            ViewData["dataModelFillter"] = carmodel;
+
+            ViewData["leftRange"] = Session["leftRange"];
+            ViewData["rightRange"] = Session["rightRange"];
+
             return PartialView();
+        }
+
+        [HttpPost]
+        public JsonResult SetLeftRange(int? left)
+        {
+            if (left != null)
+            {
+                Session["leftRange"] = left;
+
+                UnitOfWork ctx = new UnitOfWork();
+                CarModel carmodel = (CarModel)Session["carModel"];
+                List<Car> cars = new List<Car>();
+
+                if (carmodel.CarType != null && carmodel.CarType.Length > 0)
+                {
+                    foreach (var item in carmodel.CarType)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.TypeID == item);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else if (carmodel.CarCategory != null && carmodel.CarCategory.Length > 0)
+                {
+                    foreach (var itemcat in carmodel.CarCategory)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.CategoryId == itemcat);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    cars = ctx.carManager.GetCarwithEquipments();
+                }
+                int _rightRange = (int)Session["rightRange"];
+                var DIstinctcars = cars.Where(a => left <= a.ModelYear && a.ModelYear <= _rightRange).ToList().Distinct();
+
+
+                string CarsList = JsonConvert.SerializeObject(DIstinctcars, Formatting.None, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                TempData["mydata"] = DIstinctcars;
+
+
+                return Json(CarsList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        [HttpPost]
+        public JsonResult SetRightRange(int? right)
+        {
+            if (right != null)
+            {
+                Session["rightRange"] = right;
+
+                UnitOfWork ctx = new UnitOfWork();
+                CarModel carmodel = (CarModel)Session["carModel"];
+                List<Car> cars = new List<Car>();
+
+                if (carmodel.CarType != null && carmodel.CarType.Length > 0)
+                {
+                    foreach (var item in carmodel.CarType)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.TypeID == item);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else if (carmodel.CarCategory != null && carmodel.CarCategory.Length > 0)
+                {
+                    foreach (var itemcat in carmodel.CarCategory)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.CategoryId == itemcat);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    cars = ctx.carManager.GetCarwithEquipments();
+                }
+
+                int _leftRange = (int)Session["leftRange"];
+                var DIstinctcars = cars.Where(a => _leftRange <= a.ModelYear && a.ModelYear <= right).ToList().Distinct();
+
+                string CarsList = JsonConvert.SerializeObject(DIstinctcars, Formatting.None, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                TempData["mydata"] = DIstinctcars;
+                Session["SessionCars"] = DIstinctcars;
+
+                return Json(CarsList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
 
@@ -45,9 +203,7 @@ namespace Eagles.LMS.Controllers
         {
             UnitOfWork ctx = new UnitOfWork();
             List<Car> cars = new List<Car>();
-
-            //Car journalMaster = Serializer.Deserialize<Ac_JournalMaster>(master);
-            //List<Ac_JournalDetails> journalDetails = serilizer.Deserialize<List<Ac_JournalDetails>>(details);
+            Session["carModel"] = carmodel;
 
             if (carmodel.CarType != null && carmodel.CarType.Length > 0)
             {
@@ -94,7 +250,7 @@ namespace Eagles.LMS.Controllers
 
             var DIstinctcars = cars.ToList().Distinct();
 
-            JavaScriptSerializer jss = new JavaScriptSerializer();
+
             string CarsList = JsonConvert.SerializeObject(DIstinctcars, Formatting.None, new JsonSerializerSettings()
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -102,10 +258,12 @@ namespace Eagles.LMS.Controllers
 
 
             TempData["mydata"] = DIstinctcars;
+            Session["SessionCars"] = DIstinctcars;
+            TempData["carModel"] = carmodel;
+
+
             return Json(CarsList, JsonRequestBehavior.AllowGet);
         }
-
-
         [HttpPost]
         public JsonResult CarfilterType(CarModel carmodel)
         {
@@ -142,7 +300,7 @@ namespace Eagles.LMS.Controllers
                 DIstinctcars = ctx.carManager.GetCarwithEquipments().ToList();
 
             }
-            JavaScriptSerializer jss = new JavaScriptSerializer();
+
             string CarsList = JsonConvert.SerializeObject(DIstinctcars, Formatting.None, new JsonSerializerSettings()
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore

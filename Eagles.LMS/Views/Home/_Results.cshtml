@@ -47,11 +47,11 @@
             </div>
 
             <div class="underResultSec">
-                <div id="NewCAr" class="row">
+                <div id="realItem" class="row">
 
                     @foreach (var item in _cars)
                     {
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 AddClassDisplay">
                             <div class="ResultItem">
                                 <div class="ResutContItem">
                                     <div class="Imagess">
@@ -106,7 +106,7 @@
                                                     <a href="/Home/CarDetails/@item.ID">Explore vehicle</a>
                                                 </li>
                                                 <li>
-                                                    <a class="DarkBG" href="#">
+                                                    <a class="DarkBG" href="Home/EnquiryForm/@item.ID">
                                                         Enquire Now
                                                     </a>
                                                 </li>
@@ -154,8 +154,12 @@
 
 
                 </div>
+
+                <div id="NewCAr" class="row">
+
+                </div>
+                </div>
             </div>
-        </div>
     </div>
 </div>
 
