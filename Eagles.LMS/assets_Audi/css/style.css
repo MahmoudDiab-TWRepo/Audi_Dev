@@ -661,7 +661,7 @@ img {
 
         .main-header .logo-box .logo {
             display: block;
-            width: 100px;
+            width: 70px;
             margin-top: 10px;
         }
 
@@ -681,6 +681,8 @@ img {
         float: right;
         margin-left: 20px;
         padding: 8px 0;
+        display: flex;
+        color: #000;
     }
 
 .nav-toggler {
@@ -702,7 +704,7 @@ img {
     .nav-toggler span {
         position: absolute;
         left: 50%;
-        top: 50%;
+        top: 40%;
         bottom: auto;
         right: auto;
         -webkit-transform: translateX(-50%) translateY(-50%);
@@ -710,8 +712,8 @@ img {
         -ms-transform: translateX(-50%) translateY(-50%);
         -o-transform: translateX(-50%) translateY(-50%);
         transform: translateX(-50%) translateY(-50%);
-        width: 32px;
-        height: 3px;
+        width: 25px;
+        height: 2px;
         background-color: #000;
     }
 
@@ -745,7 +747,7 @@ img {
             -moz-transform: translateY(-10px);
             -ms-transform: translateY(-10px);
             -o-transform: translateY(-10px);
-            transform: translateY(-10px);
+            transform: translateY(-7px);
         }
 
         .nav-toggler span::after {
@@ -758,7 +760,7 @@ img {
             -moz-transform: translateY(10px);
             -ms-transform: translateY(10px);
             -o-transform: translateY(10px);
-            transform: translateY(10px);
+            transform: translateY(7px);
         }
 
 .no-touch .nav-toggler:hover {
@@ -1434,7 +1436,8 @@ img {
     display: block;
     line-height: 20px;
     padding: 12px 20px;
-    font-size: 16px;
+    font-size: 15px;
+    letter-spacing:0 !important;
     color: #afafaf;
     letter-spacing: 0.02em;
     margin-bottom: 0px;
@@ -13183,7 +13186,7 @@ input[type=range] {
 
 
 .faq-section{
-
+    padding-top:0;
 }
     .faq-section .accordion {
         margin:0;
@@ -13364,6 +13367,556 @@ input[type=range] {
 .RelatedItemClass{
     display:none;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************/
+
+.sidenav-bar {
+    position: fixed;
+    left: 0px;
+    top: 0;
+    max-width: 100%;
+    height: 100%;
+    width: 20%;
+    background-color: #fff;
+    margin: 0 auto;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999999;
+    -webkit-transform-origin: top;
+    -moz-transform-origin: top;
+    -ms-transform-origin: top;
+    -o-transform-origin: top;
+    transform-origin: top;
+}
+
+    .sidenav-bar .nav-logo {
+        position: relative;
+        padding: 30px 20px;
+        text-align: left;
+    }
+
+        .sidenav-bar .nav-logo img {
+            max-width: 200px;
+        }
+
+.sidenav-bar-visible {
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+    .sidenav-bar-visible .sidenav-bar {
+        opacity: 1;
+        right: 0;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+        visibility: visible;
+        box-shadow: 0 0 30px rgba(0,0,0,0.40);
+        -webkit-transition: all 300ms ease;
+        -moz-transition: all 300ms ease;
+        -ms-transition: all 300ms ease;
+        -o-transition: all 300ms ease;
+        transition: all 300ms ease;
+    }
+
+    .sidenav-bar-visible header {
+        width: 80%;
+    }
+
+    .sidenav-bar-visible main {
+        width: 80%;
+        box-shadow: 0 0 30px rgba(0,0,0,0.30);
+    }
+
+.sidenav-bar .menu-box {
+    position: relative;
+    left: 0px;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background: #ffffff;
+    padding: 0px 0px;
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    -webkit-transform-origin: top;
+    -moz-transform-origin: left;
+    -ms-transform-origin: left;
+    -o-transform-origin: left;
+    transform-origin: top;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+}
+
+.sidenav-bar-visible .sidenav-bar .menu-box {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+}
+
+.sidenav-bar .close-btn {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    line-height: 40px;
+    width: 40px;
+    text-align: center;
+    font-size: 24px;
+    color: #000;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 10;
+    -webkit-transform: translateY(-50px);
+    -moz-transform: translateY(-50px);
+    -ms-transform: translateY(-50px);
+    -o-transform: translateY(-50px);
+    transform: translateY(-50px);
+}
+
+.sidenav-bar-visible .sidenav-bar .close-btn {
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.sidenav-bar .close-btn:hover {
+    opacity: 0.50;
+}
+
+
+
+
+
+.sidenav-bar .navigation > li {
+    position: relative;
+    display: block;
+    right: 100%;
+    margin-bottom: 0px;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.sidenav-bar-visible .sidenav-bar .navigation > li {
+    right: 0;
+    -webkit-transition-delay: 200ms;
+    -moz-transition-delay: 200ms;
+    -ms-transition-delay: 200ms;
+    -o-transition-delay: 200ms;
+    transition-delay: 0ms;
+}
+
+    .sidenav-bar-visible .sidenav-bar .navigation > li:nth-child(2) {
+        -webkit-transition-delay: 300ms;
+        -moz-transition-delay: 300ms;
+        -ms-transition-delay: 300ms;
+        -o-transition-delay: 300ms;
+        transition-delay: 0ms;
+    }
+
+    .sidenav-bar-visible .sidenav-bar .navigation > li:nth-child(3) {
+        -webkit-transition-delay: 400ms;
+        -moz-transition-delay: 400ms;
+        -ms-transition-delay: 400ms;
+        -o-transition-delay: 400ms;
+        transition-delay: 0ms;
+    }
+
+    .sidenav-bar-visible .sidenav-bar .navigation > li:nth-child(4) {
+        -webkit-transition-delay: 500ms;
+        -moz-transition-delay: 500ms;
+        -ms-transition-delay: 500ms;
+        -o-transition-delay: 500ms;
+        transition-delay: 0ms;
+    }
+
+    .sidenav-bar-visible .sidenav-bar .navigation > li:nth-child(5) {
+        -webkit-transition-delay: 600ms;
+        -moz-transition-delay: 600ms;
+        -ms-transition-delay: 600ms;
+        -o-transition-delay: 600ms;
+        transition-delay: 0ms;
+    }
+
+    .sidenav-bar-visible .sidenav-bar .navigation > li:nth-child(6) {
+        -webkit-transition-delay: 700ms;
+        -moz-transition-delay: 700ms;
+        -ms-transition-delay: 700ms;
+        -o-transition-delay: 700ms;
+        transition-delay: 0ms;
+    }
+
+    .sidenav-bar-visible .sidenav-bar .navigation > li:nth-child(7) {
+        -webkit-transition-delay: 800ms;
+        -moz-transition-delay: 800ms;
+        -ms-transition-delay: 800ms;
+        -o-transition-delay: 800ms;
+        transition-delay: 0ms;
+    }
+
+    .sidenav-bar-visible .sidenav-bar .navigation > li:nth-child(8) {
+        -webkit-transition-delay: 900ms;
+        -moz-transition-delay: 900ms;
+        -ms-transition-delay: 900ms;
+        -o-transition-delay: 900ms;
+        transition-delay: 0ms;
+    }
+
+    .sidenav-bar-visible .sidenav-bar .navigation > li:nth-child(9) {
+        -webkit-transition-delay: 1000ms;
+        -moz-transition-delay: 1000ms;
+        -ms-transition-delay: 1000ms;
+        -o-transition-delay: 1000ms;
+        transition-delay: 0ms;
+    }
+
+.sidenav-bar .navigation li > a {
+    position: relative;
+    display: block;
+    line-height: 20px;
+    padding: 12px 20px;
+    font-size: 15px;
+    letter-spacing: 0 !important;
+    color: #666666;
+    letter-spacing: 0.02em;
+    margin-bottom: 0px;
+    background-color: #fff;
+    text-transform: uppercase;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.sidenav-bar .navigation > li > a {
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    box-shadow: 0 0 6px rgba(0,0,0,0.05);
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+}
+
+.sidenav-bar .navigation li:hover > a,
+.sidenav-bar .navigation li.current > a {
+    color: #000;;
+}
+
+.sidenav-bar .navigation li.dropdown .dropdown-btn {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 50px;
+    color: #000;
+    cursor: pointer;
+    z-index: 5;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+    .sidenav-bar .navigation li.dropdown .dropdown-btn.active .fa:before {
+        display: inline-block;
+        position: relative;
+        content: "\f068";
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+        -webkit-transition: all 300ms ease;
+        -moz-transition: all 300ms ease;
+        -ms-transition: all 300ms ease;
+        -o-transition: all 300ms ease;
+        transition: all 300ms ease;
+    }
+
+.sidenav-bar .navigation li > ul,
+.sidenav-bar .navigation li > ul > li > ul {
+    display: none;
+    background-color: rgba(0,0,0,0.30);
+}
+
+.sidenav-bar .contact-info-box {
+    position: relative;
+    padding: 0 30px;
+    margin-top: 40px;
+}
+
+    .sidenav-bar .contact-info-box .info-box {
+        position: relative;
+        padding-left: 50px;
+        margin-bottom: 20px;
+    }
+
+        .sidenav-bar .contact-info-box .info-box .icon-box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 24px;
+            color: #ffffff;
+            line-height: 40px;
+        }
+
+        .sidenav-bar .contact-info-box .info-box strong {
+            font-size: 16px;
+            line-height: 24px;
+            font-family: "Oswald", sans-serif;
+            color: #ffffff;
+        }
+
+        .sidenav-bar .contact-info-box .info-box p {
+            font-size: 14px;
+            line-height: 24px;
+            color: #ffffff;
+        }
+
+            .sidenav-bar .contact-info-box .info-box p a {
+                color: #ffffff;
+                display: inline-block;
+                -webkit-transition: all 300ms ease;
+                -moz-transition: all 300ms ease;
+                -ms-transition: all 300ms ease;
+                -o-transition: all 300ms ease;
+                transition: all 300ms ease;
+            }
+
+                .sidenav-bar .contact-info-box .info-box p a:hover {
+                    color: #b7912e;
+                }
+
+
+.sidenav-bar .side-nav {
+    margin-top: 90px;
+    padding:0 50px;
+}
+
+.sidenav-bar-visible .sidenav-bar {
+    right: 0;
+}
+
+.sidenav-bar .close-btn {
+    left: 70px;
+    top: 35px;
+}
+
+.sidenav-bar .navigation > li > a {
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    box-shadow: none;
+    text-transform: capitalize;
+    border-bottom: none;
+}
+
+.main-header .logo-box {
+    float: right;
+}
+
+.main-header .outer-box {
+    position: relative;
+    float: left;
+}
+
+.sidenav-bar {
+    width: 100% !important;
+    overflow: hidden;
+}
+
+    .sidenav-bar .navigation > li {
+        position: relative;
+        display: block;
+        left: 0;
+        transition: all 100ms ease;
+    }
+
+.boxMenu {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all .4s ease-in-out;
+    height: calc(100% - 65px);
+    overflow-y: hidden;
+    position: absolute;
+}
+
+.boxMenu_active {
+    backface-visibility: hidden;
+    background: #ffffff;
+    opacity: 1;
+    height: calc(100% - 65px);
+    overflow-y: hidden;
+    padding: 0 50px;
+    position: absolute;
+    transform: translateX(0px);
+    position: fixed;
+    top: 155px;
+    z-index: 9;
+    width: 100%;
+    left: 0;
+}
+
+.CloseBTNMenuItems {
+    opacity: 0;
+    transform: translateX(100%);
+    overflow-y: hidden;
+    height: 65px;
+    position: absolute;
+    transition: all .4s ease-in-out;
+    width: 100%;
+    padding: 0 50px;
+    text-align: start;
+}
+
+    .CloseBTNMenuItems svg {
+        transform: rotateZ(180deg);
+        float: left;
+    }
+
+    .CloseBTNMenuItems span {
+        margin: 0 15px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+
+.boxMenu_activeClose {
+    position: fixed;
+    top: 95px;
+    opacity: 1;
+    height: 60px;
+    transform: translateX(0px);
+    display: block;
+    background: #ffffff;
+    z-index: 9;
+    left: 0;
+}
+
+.CloseBTNMenuItems::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: rgb(204, 204, 204);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.navigation li .MainLink span {
+}
+
+.navigation li .MainLink svg {
+    float: right;
+    margin-top: 0px;
+    color: #000;
+}
+
+    .navigation li .MainLink svg path {
+    }
+
+
+
+
+
+.navigation li .boxMenu {
+}
+
+    .navigation li .boxMenu .BoxContent {
+    }
+
+    .navigation li .boxMenu .LinksForBox {
+    }
+
+        .navigation li .boxMenu .LinksForBox .SecondUL {
+        }
+
+            .navigation li .boxMenu .LinksForBox .SecondUL li {
+            }
+
+                .navigation li .boxMenu .LinksForBox .SecondUL li a {
+                    font-size: 15px;
+                    text-transform:capitalize;
+                }
+
+    .navigation li .boxMenu .BoxContent .imagess {
+        position:relative;
+    }
+        .navigation li .boxMenu .BoxContent .imagess .Imgg {
+        }
+        .navigation li .boxMenu .BoxContent .imagess .Imgg img {
+        }
+
+    .navigation li .boxMenu .BoxContent .linModelss {
+        position: absolute;
+        bottom: 0;
+        display: block;
+        width: 100%;
+    }
+
+        .navigation li .boxMenu .BoxContent .linModelss a {
+            display: block;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 15px;
+            color: #fff;
+            font-size: 18px;
+        }
+
+            .navigation li .boxMenu .BoxContent .linModelss a span {
+                float: left;
+            }
+
+            .navigation li .boxMenu .BoxContent .linModelss a svg {
+                float: right;
+            }
+
+
+
+
+
 
 
 

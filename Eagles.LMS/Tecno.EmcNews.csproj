@@ -362,6 +362,7 @@
     <Compile Include="Areas\Admission\Controllers\EnquiryRequestController.cs" />
     <Compile Include="Areas\Admission\Controllers\GroupsController.cs" />
     <Compile Include="Areas\Admission\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admission\Controllers\OrderEnquiryController.cs" />
     <Compile Include="Areas\Admission\Controllers\SubItemController.cs" />
     <Compile Include="Areas\Admission\Controllers\TypesController.cs" />
     <Compile Include="Areas\Admission\Controllers\UsersController.cs" />
@@ -376,6 +377,7 @@
     <Compile Include="BLL\GroupsManager.cs" />
     <Compile Include="BLL\GroupsTreePrivilageDTO.cs" />
     <Compile Include="BLL\IReposatory.cs" />
+    <Compile Include="BLL\OrderEnquiryManager.cs" />
     <Compile Include="BLL\PrivilageManager.cs" />
     <Compile Include="BLL\PrivilageRouteManager.cs" />
     <Compile Include="BLL\Reposatory.cs" />
@@ -453,6 +455,10 @@
     <Compile Include="Migrations\202208181139475_AddCareCode.designer.cs">
       <DependentUpon>202208181139475_AddCareCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209011630549_OrderEnquiry.cs" />
+    <Compile Include="Migrations\202209011630549_OrderEnquiry.designer.cs">
+      <DependentUpon>202209011630549_OrderEnquiry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountState.cs" />
     <Compile Include="Models\Assistance systems.cs" />
@@ -471,6 +477,7 @@
     <Compile Include="Models\GroupPriviage.cs" />
     <Compile Include="Models\Headlights.cs" />
     <Compile Include="Models\Infotainment.cs" />
+    <Compile Include="Models\OrderEnquiry.cs" />
     <Compile Include="Models\Privilage.cs" />
     <Compile Include="Models\PrivilageRoute.cs" />
     <Compile Include="Models\Seats.cs" />
@@ -769,6 +776,7 @@
     <Content Include="assets_Audi\images\Audiimg\7.png" />
     <Content Include="assets_Audi\images\Audiimg\8.png" />
     <Content Include="assets_Audi\images\Audiimg\Audi50\Audi50.png" />
+    <Content Include="assets_Audi\images\Audiimg\Audi50\Banner.png" />
     <Content Include="assets_Audi\images\Audiimg\axle.png" />
     <Content Include="assets_Audi\images\Audiimg\bg1.png" />
     <Content Include="assets_Audi\images\Audiimg\CarImgs\1.png" />
@@ -1755,6 +1763,8 @@
     <Content Include="Areas\Admission\Views\SubItem\Index.cshtml" />
     <Content Include="Areas\Admission\Views\SubItem\Create.cshtml" />
     <Content Include="Areas\Admission\Views\SubItem\Edit.cshtml" />
+    <Content Include="Areas\Admission\Views\OrderEnquiry\Index.cshtml" />
+    <Content Include="Areas\Admission\Views\OrderEnquiry\indexNewClient.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2173,6 +2183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202208181139475_AddCareCode.resx">
       <DependentUpon>202208181139475_AddCareCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209011630549_OrderEnquiry.resx">
+      <DependentUpon>202209011630549_OrderEnquiry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

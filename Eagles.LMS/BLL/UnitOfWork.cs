@@ -30,7 +30,9 @@ namespace Eagles.LMS.BLL
         public EquipmentManager equipmentManager { get { return new EquipmentManager(ctx); } }
         public EnquiryRequistManager EnquiryRequistManager { get { return new EnquiryRequistManager(ctx); } }
         public ColorManager ColorManager { get { return new ColorManager(ctx); } }
+        
 
+        public OrderEnquiryManager OrderEnquiryManager { get { return new OrderEnquiryManager(ctx); } }
         public SubItemManager SubItemManager { get { return new SubItemManager(ctx); } }
 
         public ComparisonManager ComparisonManager { get { return new ComparisonManager(ctx); } }

@@ -38,7 +38,7 @@ namespace Eagles.LMS.Data
 
 
 
-
+        public DbSet<OrderEnquiry> OrderEnquiry { get; set; }
 
 
 

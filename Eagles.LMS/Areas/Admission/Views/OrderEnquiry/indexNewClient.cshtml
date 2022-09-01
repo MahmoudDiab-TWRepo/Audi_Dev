@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "indexNewClient";
+    Layout = "~/Areas/Admission/Views/Shared/_Layout.cshtml";
+    int index = 1;
+    var ctx = new Eagles.LMS.BLL.UnitOfWork();
+    var Orders = new List<OrderEnquiry>();
+    Orders = ctx.OrderEnquiryManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.IWantToBeAnOudiowner == true).ToList();
+
+}
+
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0 font-size-18">
+                    Enquiry requistt
+                </h4>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive" style="padding-bottom:30px;">
+
+                        <table id="table_Slider" class=" table table-bordered tableOtherdite">
+                            <thead class="DarkThead">
+                                <tr>
+                                    <th> <p>Car Code </p></th>
+                                    <th> <p>I Want To Be An Audi Owner </p></th>
+                                    <th> <p> Full Name</p> </th>
+                                    <th> <p>Mobile Number</p> </th>
+                                    <th> <p>Email Address </p></th>
+
+                                    <th> <p>Car Model</p> </th>
+                                    <th> <p>Engin Capacity</p> </th>
+                                    <th> <p>Model Year </p></th>
+                                    <th> <p>Mileage </p></th>
+                                    <th> <p>Comment </p></th>
+
+
+                                    <th> <p>Send Time </p></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Orders)
+                                {
+                                    <tr>
+                                        <td> <p>@item.CarCode </p></td>
+                                        <td> <p>@item.IWantToBeAnOudiowner </p></td>
+                                        <td> <p>@item.FullName</p> </td>
+                                        <td> <p>@item.MobileNumber</p> </td>
+                                        <td> <p>@item.EmailAddress </p></td>
+
+                                        <td> <p>@item.CarModel</p> </td>
+                                        <td> <p>@item.EnginCapacity</p> </td>
+                                        <td> <p>@item.ModelYear </p></td>
+                                        <td> <p>@item.Mileage </p></td>
+                                        <td> <p>@item.Comment </p></td>
+
+                                        <td> <p>@item.Sendtime </p></td>
+                                    </tr>
+                                    {
+                                        index += 1;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end col -->
+
+    </div>
+
+</div>
+
+
+
+
+@section EndBody{
+
+}
