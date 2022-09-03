@@ -5,7 +5,7 @@
     int index = 1;
     var ctx = new Eagles.LMS.BLL.UnitOfWork();
     var Orders = new List<OrderEnquiry>();
-    Orders = ctx.OrderEnquiryManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.IWantToBeAnOudiowner == true).ToList();
+    Orders = ctx.OrderEnquiryManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.ImAnOudiowner == false).ToList();
 
 }
 

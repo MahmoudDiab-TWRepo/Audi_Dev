@@ -1,7 +1,25 @@
-﻿
+﻿@model OrderEnquiry
 @{
     ViewBag.Title = "OrderAudi";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var requestStatus = TempData.Peek("RequestStatus") as RequestStatus;
+    UnitOfWork ctx = new UnitOfWork();
+    var id = ViewBag.Id;
+    var car = new Eagles.LMS.BLL.UnitOfWork().carManager.GetAllBind().Where(s => s.ID == id).FirstOrDefault();
+    var EnginCapacityData = ViewBag.EnginCapacityData;
+    if (EnginCapacityData == null)
+    {
+        EnginCapacityData = ctx.EnginCapacityManager.GetAll().ToList();
+    }
+    var EnginCapacityDataNew = ViewBag.EnginCapacityDataNew;
+    if (EnginCapacityDataNew == null)
+    {
+        EnginCapacityDataNew = ctx.EnginCapacityManager.GetAll().ToList();
+    }
+
+
+    var carmodel = new Eagles.LMS.BLL.UnitOfWork().categoryManager.GetAllBind();
+    var EngCapacity = new Eagles.LMS.BLL.UnitOfWork().EnginCapacityManager.GetAllBind();
 }
 
 @section EndHeader{
@@ -21,8 +39,8 @@
 <div class="login-head">
     <div class="container">
         <div class="login-links">
-            <a href="/Home/makeEnquiry" class="enquiry-link ">make an Enquiry</a>
-            <a href="/Home/OrderAudi" class="enquiry-link active">order your audi</a>
+            @*<a href="/Home/makeEnquiry" class="enquiry-link ">make an Enquiry</a>*@
+            @*<a href="/Home/OrderAudi" class="enquiry-link active">order your audi</a>*@
         </div>
     </div>
 </div>
@@ -30,283 +48,286 @@
 <!--start login form-->
 <div class="login-form OrderAudiForm">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-12">
-                <form class="log-in" method="post">
-                    <div class="row">
-                        <div class="col-lg-12">
 
-                            <div class="mt-4 mb-4">
 
-                                <div class="form-check form-radio-danger mb-3">
-                                    <input class="form-check-input" onclick="yesnoCheck();" type="radio" name="Audiowner" id="Audiowner">
-                                    <label class="form-check-label" for="Audiowner">
-                                        I’m an Audi owner
-                                    </label>
-                                </div>
-                                <div class="form-check form-radio-danger">
-                                    <input class="form-check-input" onclick="yesnoCheck();" type="radio" name="Audiowner" id="wanttobe">
-                                    <label class="form-check-label" for="wanttobe">
-                                        I want to be an Audi owner
-                                    </label>
-                                </div>
-                            </div>
+        @using (Html.BeginForm("OrderAudi", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
 
+            @Html.HiddenFor(s => s.ChassisNumber)
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="col-lg-12 col-md-12 col-sm-2 co-xs-12" style="display:none">
+                        <div class="form-group">
+                            <label>CarName <span>*</span></label>
+                            @Html.TextBoxFor(s => s.CarID, null, new
+                       {
+                           @class = "",
+                           @id = "CarName",
+                           @readonly = "readonly"
+                       })
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display:none" id="ExistingAudi">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <h2>Existing Audi Customer:</h2>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Full name</label>
-                                        <input type="text" class="form-control" name="full_name" placeholder="Enter your name">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Mobile number</label>
-                                        <input type="text" class="form-control" name="full_Mobile" placeholder="Enter your mobile">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Email Address</label>
-                                        <input type="email" class="form-control" name="full_Email" placeholder="Enter your Email">
-                                    </div>
-                                </div>
+                    </div>
 
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Car model</label>
-                                        <select class="form-control" name="req_model">
-                                            <option value="">choose model</option>
-                                            <option value="A3">A3</option>
-                                            <option value="A4">A4</option>
-                                            <option value="A5s">A5 Sportback</option>
-                                            <option value="A6">A6</option>
-                                            <option value="Q2">Q2</option>
-                                            <option value="Q3">Q3</option>
-                                            <option value="Q3s">Q3 Sportback</option>
-                                            <option value="Q7">Q7</option>
-                                            <option value="Q8">Q8</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Engine capacity</label>
-                                        <select class="form-control " name="req_capacity">
-                                            <option value="1.4 cc">1.4 cc</option>
-                                            <option value="2.0 cc">2.0 cc</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Model year</label>
-                                        <select class="form-control" name="req_year">
-                                            <option value="">choose year</option>
-                                            <option value="2022">2022</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Mileage</label>
-                                        <input type="text" class="form-control" name="full_name" placeholder="Enter your Mileage">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Chassis number</label>
-                                        <input type="file" class="form-control" name="full_name" placeholder="Enter your Mileage">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Comment</label>
-                                        <textarea class="form-control"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <h2>Requested Audi Model:</h2>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Car model</label>
-                                        <select class="form-control" name="req_model">
-                                            <option value="">choose model</option>
-                                            <option value="A3">A3</option>
-                                            <option value="A4">A4</option>
-                                            <option value="A5s">A5 Sportback</option>
-                                            <option value="A6">A6</option>
-                                            <option value="Q2">Q2</option>
-                                            <option value="Q3">Q3</option>
-                                            <option value="Q3s">Q3 Sportback</option>
-                                            <option value="Q7">Q7</option>
-                                            <option value="Q8">Q8</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Engine capacity</label>
-                                        <select class="form-control " name="req_capacity">
-                                            <option value="1.4 cc">1.4 cc</option>
-                                            <option value="2.0 cc">2.0 cc</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Mileage</label>
-                                        <input type="text" class="form-control" name="full_name" placeholder="Enter your Mileage">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Model year</label>
-                                        <select class="form-control" name="req_year">
-                                            <option value="">choose year</option>
-                                            <option value="2022">2022</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Comment</label>
-                                        <textarea class="form-control"></textarea>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                    <div class="col-lg-12 col-md-12 col-sm-2 co-xs-12" style="display:none">
+                        <div class="form-group">
+                            <label>Car Code <span>*</span></label>
+                            @Html.TextBoxFor(s => s.CarCode, null, new
+                       {
+                           @class = "",
+                           @id = "CarCode",
+                           @readonly = "readonly"
+                       })
 
 
 
 
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="RequestedAudi" style="display:none">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <h2>Requested Audi Model:</h2>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Full name</label>
-                                        <input type="text" class="form-control" name="full_name" placeholder="Enter your name">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Mobile number</label>
-                                        <input type="text" class="form-control" name="full_Mobile" placeholder="Enter your mobile">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Email Address</label>
-                                        <input type="email" class="form-control" name="full_Email" placeholder="Enter your Email">
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Car model</label>
-                                        <select class="form-control" name="req_model">
-                                            <option value="">choose model</option>
-                                            <option value="A3">A3</option>
-                                            <option value="A4">A4</option>
-                                            <option value="A5s">A5 Sportback</option>
-                                            <option value="A6">A6</option>
-                                            <option value="Q2">Q2</option>
-                                            <option value="Q3">Q3</option>
-                                            <option value="Q3s">Q3 Sportback</option>
-                                            <option value="Q7">Q7</option>
-                                            <option value="Q8">Q8</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Engine capacity</label>
-                                        <select class="form-control " name="req_capacity">
-                                            <option value="1.4 cc">1.4 cc</option>
-                                            <option value="2.0 cc">2.0 cc</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Model year</label>
-                                        <select class="form-control" name="req_year">
-                                            <option value="">choose year</option>
-                                            <option value="2022">2022</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2018">2018</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Mileage</label>
-                                        <input type="text" class="form-control" name="full_name" placeholder="Enter your Mileage">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Comment</label>
-                                        <textarea class="form-control"></textarea>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-
-
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="BTNSUB">
-                                <button type="submit">Submit</button>
-                            </div>
                         </div>
                     </div>
 
 
 
-                </form>
+                    <form class="log-in" method="post">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+
+                                <div class="mt-4 mb-4">
+
+                                    <div class="form-check form-radio-primary mb-3">
+                                        @Html.CheckBoxFor(s => s.ImAnOudiowner, new
+                                   {
+                                       @class = "form-check-input",
+                                       @id = "Audiowner",
+                                       type = "radio",
+                                       name = "Audiowner",
+                                       onclick = "yesnoCheck();",
+                                       placeholder = "Show In Home Page"
+                                   })
+                                        <label for="Audiowner" class="form-check-label" style="cursor:pointer;">I’m an Audi owner</label>
+
+                                    </div>
+
+
+
+                                    <div class="form-check form-radio-primary mb-3">
+                                        @Html.CheckBoxFor(s => s.ImAnOudiowner, new
+                                   {
+                                       @class = "form-check-input",
+                                       @id = "wanttobe",
+                                       type = "radio",
+                                       name = "Audiowner",
+                                       onclick = "yesnoCheck();",
+                                       placeholder = "Show In Home Page"
+                                   })
+                                        <label for="wanttobe" class="form-check-label" style="cursor:pointer;">I want to be an Audi owner</label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12" style="display:none" id="ExistingAudi">
+                                <div class="form-group">
+                                    <h2>Existing Audi Customer:</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12" id="RequestedAudi" style="display:none">
+                                <div class="form-group">
+                                    <h2>Requested Audi Model:</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ConstInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Full name</label>
+                                    @Html.TextBoxFor(s => s.FullName, null, new
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "Enter your name"
+                                    })
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ConstInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Mobile number</label>
+                                    @Html.TextBoxFor(s => s.MobileNumber, null, new
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "Enter your mobile"
+                                    })
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ConstInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Email Address</label>
+                                    @Html.TextBoxFor(s => s.EmailAddress, null, new
+                                   {
+                                       @class = "form-control",
+                                       type = "email",
+                                       placeholder = "Enter Your Email"
+                                   })
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 RemoveInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Car model</label>
+                                    @Html.DropDownListFor(x => Model.OldCarModel, new SelectList(carmodel,
+                                  "ID", "Name"), htmlAttributes: new { @class = "form-control", onchange = "GetValue()", id = "OldCarModel" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 RemoveInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Engine capacity</label>
+                                    @*<select class="form-control " name="req_capacity">
+                                        <option value="1.4 cc">1.4 cc</option>
+                                        <option value="2.0 cc">2.0 cc</option>
+                                    </select>*@
+
+                                    @Html.DropDownListFor(x => Model.OldEnginCapacity, new SelectList(EnginCapacityData,
+                              "Id", "Name"), htmlAttributes: new { @class = "form-control", @id = "OldEnginCapacity" })
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 RemoveInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Model year</label>
+
+                                    @Html.DropDownListFor(model => model.OldModelYear,
+                                              new List<SelectListItem> {
+                                                   new SelectListItem { Value = "" , Text = "Choose year " },
+                                                   new SelectListItem { Value = "2022" , Text = " 2022" },
+                                                   new SelectListItem { Value = "2021" , Text = " 2021 " },
+                                                   new SelectListItem { Value = "2020" , Text = " 2020 " },
+                                                   new SelectListItem { Value = "2019" , Text = " 2019 " },
+                                                   new SelectListItem { Value = "2018" , Text = " 2018 " },
+                                                   new SelectListItem { Value = "2017" , Text = " 2017 " },
+                                                   new SelectListItem { Value = "2016" , Text = " 2016 " },
+                                                   new SelectListItem { Value = "2015" , Text = " 2015 " },
+                                                   new SelectListItem { Value = "2014" , Text = " 2014 " },
+
+                                                },
+                                              new { @class = "form-control", @id = "ExperianceLevelID" })
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  RemoveInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Mileage</label>
+                                    @Html.TextBoxFor(s => s.OldMileage, null, new
+                                    {
+                                        @class = "form-control",
+
+                                        placeholder = "Enter your Mileage"
+                                    })
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  RemoveInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Chassis number</label>
+                                    <input type="file" class="form-control" name="uploadattachments" id="uploadattachments" placeholder="Enter your Mileage">
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 RemoveInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Comment</label>
+                                    @Html.TextAreaFor(s => s.OldComment, new
+                                    {
+                                        @class = "form-control",
+                                    })
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 RemoveInput " style="display:none">
+                                <div class="form-group">
+                                    <h2>Requested Audi Model:</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ConstInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Car model</label>
+                                    @Html.DropDownListFor(x => Model.CarModel, new SelectList(carmodel,
+                              "ID", "Name"), htmlAttributes: new { @class = "form-control", onchange = "GetValueNew()", id = "CarModel" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ConstInput " style="display:none">
+                                <div class="form-group">
+
+                                    <label for="">Engine capacity</label>
+
+
+                                    @Html.DropDownListFor(x => Model.EnginCapacity, new SelectList(EnginCapacityDataNew,
+                              "Id", "Name"), htmlAttributes: new { @class = "form-control", @id = "EnginCapacity" })
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ConstInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Mileage</label>
+                                    @Html.TextBoxFor(s => s.Mileage, null, new
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "Enter your Mileage"
+                                    })
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ConstInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Model year</label>
+                                    @Html.DropDownListFor(model => model.ModelYear,
+                                              new List<SelectListItem> {
+                                                   new SelectListItem { Value = "" , Text = "Choose year " },
+                                                   new SelectListItem { Value = "2022" , Text = " 2022" },
+                                                   new SelectListItem { Value = "2021" , Text = " 2021 " },
+                                                   new SelectListItem { Value = "2020" , Text = " 2020 " },
+                                                   new SelectListItem { Value = "2019" , Text = " 2019 " },
+                                                   new SelectListItem { Value = "2018" , Text = " 2018 " },
+                                                   new SelectListItem { Value = "2017" , Text = " 2017 " },
+                                                   new SelectListItem { Value = "2016" , Text = " 2016 " },
+                                                   new SelectListItem { Value = "2015" , Text = " 2015 " },
+                                                   new SelectListItem { Value = "2014" , Text = " 2014 " },
+
+                                                },
+                                              new { @class = "form-control", @id = "ExperianceLevelID" })
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ConstInput " style="display:none">
+                                <div class="form-group">
+                                    <label for="">Comment</label>
+                                    @Html.TextAreaFor(s => s.Comment, new
+                                    {
+                                        @class = "form-control",
+                                    })
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="BTNSUB">
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </form>
+                </div>
+
             </div>
-        </div>
+        }
+
+
+
+
+
     </div>
 
     <div class="audi-submit">
@@ -320,199 +341,124 @@
 
 @section EndBody{
 
+
     <script>
-    $(document).ready(function () {
-        $('#user-name').focus(function () {
-            $('.username-filed label').css({
-                top: '-10px',
-                color: '#bb0a30',
-                fontSize: '11px',
-            })
+        function GetValue() {
+            var select = document.getElementById('OldCarModel')
+            var value = select.options[select.selectedIndex].value;
+
+            GetEngin(value);
+        }
+        GetValue();
+        function GetEngin(Id) {
+                 $.ajax({
+                    type: "POST",
+                     url: "/Home/GetEnginCapacity",
+                     data: JSON.stringify({ Id: Id }),
+                    contentType: 'application/json; charset=utf-8',
+                     success: (response) => {
+                         var jsonresponse = JSON.parse(response);
+                         if (jsonresponse.length != 0) {
+                             var select = $("#OldEnginCapacity");
+                             select.empty();
+                             for (let i = 0; i < jsonresponse.length; i++) {
+                                 select.append($('<option/>', {
+                                     value: jsonresponse[i].Id,
+                                     text: jsonresponse[i].Name
+                                 }));
+                                }
+                            }
+
+                    }, error: (error) => {
+                     }
+
+                });
+        }
+
+
+
+        function GetValueNew() {
+            var select = document.getElementById('CarModel')
+            var value = select.options[select.selectedIndex].value;
+            GetEnginNew(value);
+        }
+        GetValueNew();
+        function GetEnginNew(Id) {
+            $.ajax({
+                type: "POST",
+                url: "/Home/GetEnginCapacityNew",
+                data: JSON.stringify({ Id: Id }),
+                contentType: 'application/json; charset=utf-8',
+                success: (response) => {
+
+                    var jsonresponse = JSON.parse(response);
+                    if (jsonresponse.length != 0) {
+                        var select = $("#EnginCapacity");
+                        select.empty();
+                        for (let i = 0; i < jsonresponse.length; i++) {
+                            select.append($('<option/>', {
+                                value: jsonresponse[i].Id,
+                                text: jsonresponse[i].Name
+                            }));
+                        }
+                    }
+
+                }, error: (error) => {
+                }
+
+            });
+        }
+
+
+        $(document).ready(function () {
+
         });
-        $('#user-name').blur(function () {
-            if ($(this).val() == '') {
-                $('.username-filed label').css({
-                    top: '15px',
-                    color: '#bb0a30',
-                    fontSize: '15px',
-                })
-                $('.username-filed span').css({
-                    display: 'block',
-                    color: '#bb0a30',
-                })
-            }
-            else {
-                $('.username-filed label').css({
-                    top: '-10px',
-                    color: 'black',
-                    fontSize: '12px',
-                })
-                $('.username-filed span').css({
-                    display: 'none',
-                })
-            }
-        });
-    });
-    /*end first name*/
-    /*start last name*/
-    $(document).ready(function () {
-        $('#last-name').focus(function () {
-            $('.lastname-filed label').css({
-                top: '-10px',
-                color: '#bb0a30',
-                fontSize: '11px',
-            })
-        });
-        $('#last-name').blur(function () {
-            if ($(this).val() == '') {
-                $('.lastname-filed label').css({
-                    top: '15px',
-                    color: '#bb0a30',
-                    fontSize: '15px',
-                })
-                $('.lastname-filed span').css({
-                    display: 'block',
-                    color: '#bb0a30',
-                })
-            }
-            else {
-                $('.lastname-filed label').css({
-                    top: '-10px',
-                    color: 'black',
-                    fontSize: '12px',
-                })
-                $('.lastname-filed span').css({
-                    display: 'none',
-                })
-            }
-        });
-    });
-    /*end last name*/
-    /*start email name*/
-    $(document).ready(function () {
-        $('#mail').focus(function () {
-            $('.email-filed label').css({
-                top: '-10px',
-                color: '#bb0a30',
-                fontSize: '11px',
-            })
-        });
-        $('#mail').blur(function () {
-            if ($(this).val() == '') {
-                $('.email-filed label').css({
-                    top: '15px',
-                    color: '#bb0a30',
-                    fontSize: '15px',
-                })
-                $('.email-filed span').css({
-                    display: 'block',
-                    color: '#bb0a30',
-                })
-            }
-            else {
-                $('.email-filed label').css({
-                    top: '-10px',
-                    color: 'black',
-                    fontSize: '12px',
-                })
-                $('.email-filed span').css({
-                    display: 'none',
-                })
-            }
-        });
-    });
-    /*end email*/
-    /*start mobile number*/
-    $(document).ready(function () {
-        $('#phone').focus(function () {
-            $('.mobile-filed label').css({
-                top: '-10px',
-                color: '#bb0a30',
-                fontSize: '11px',
-            })
-        });
-        $('#phone').blur(function () {
-            if ($(this).val() == '') {
-                $('.mobile-filed label').css({
-                    top: '15px',
-                    color: '#bb0a30',
-                    fontSize: '15px',
-                })
-                $('.mobile-filed span').css({
-                    display: 'block',
-                    color: '#bb0a30',
-                })
-            }
-            else {
-                $('.mobile-filed label').css({
-                    top: '-10px',
-                    color: 'black',
-                    fontSize: '12px',
-                })
-                $('.mobile-filed span').css({
-                    display: 'none',
-                })
-            }
-        });
-    });
-    /*end mobile*/
-    /*start mobile number*/
-    $(document).ready(function () {
-        $('#post').focus(function () {
-            $('.postcode-filed label').css({
-                top: '-10px',
-                color: '#bb0a30',
-                fontSize: '11px',
-            })
-        });
-        $('#post').blur(function () {
-            if ($(this).val() == '') {
-                $('.postcode-filed label').css({
-                    top: '15px',
-                    color: '#bb0a30',
-                    fontSize: '15px',
-                })
-                $('.postcode-filed span').css({
-                    display: 'block',
-                    color: '#bb0a30',
-                })
-            }
-            else {
-                $('.postcode-filed label').css({
-                    top: '-10px',
-                    color: 'black',
-                    fontSize: '12px',
-                })
-                $('.postcode-filed span').css({
-                    display: 'none',
-                })
-            }
-        });
-    });
     </script>
-
-
 
     <script>
         $(document).ready(function () {
         });
         function yesnoCheck() {
-     
+
             ExistingAudi = document.getElementById('ExistingAudi')
             RequestedAudi = document.getElementById('RequestedAudi')
 
 
+
             if (document.getElementById('Audiowner').checked) {
-           
+
                 ExistingAudi.style.display = 'block';
                 RequestedAudi.style.display = 'none';
+                $('.ConstInput').addClass('d-block');
+                $('.RemoveInput').addClass('d-block');
             }
             if (document.getElementById('wanttobe').checked) {
-           
+
                 ExistingAudi.style.display = 'none';
                 RequestedAudi.style.display = 'block';
+                $('.ConstInput').addClass('d-block');
+                $('.RemoveInput').removeClass('d-block');
             }
-            
+
         }
+    </script>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            document.getElementById('CarName').setAttribute("value", `@car.CarName`);
+        });
+
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            document.getElementById('CarCode').setAttribute("value", `@car.CarCode`);
+        });
+
     </script>
 }

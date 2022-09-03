@@ -40,7 +40,7 @@ namespace Eagles.LMS.Data
 
         public DbSet<OrderEnquiry> OrderEnquiry { get; set; }
 
-
+        public DbSet<EnginCapacity> EnginCapacity { get; set; }
 
         public DbSet<Group> Groups { get; set; }
 

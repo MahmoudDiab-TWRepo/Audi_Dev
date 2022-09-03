@@ -33,6 +33,7 @@ namespace Eagles.LMS.BLL
         
 
         public OrderEnquiryManager OrderEnquiryManager { get { return new OrderEnquiryManager(ctx); } }
+        public EnginCapacityManager EnginCapacityManager { get { return new EnginCapacityManager(ctx); } }
         public SubItemManager SubItemManager { get { return new SubItemManager(ctx); } }
 
         public ComparisonManager ComparisonManager { get { return new ComparisonManager(ctx); } }

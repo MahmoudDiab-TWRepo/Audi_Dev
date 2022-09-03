@@ -371,6 +371,7 @@
     <Compile Include="BLL\CategoryManager.cs" />
     <Compile Include="BLL\ColorManager.cs" />
     <Compile Include="BLL\ComparisonManager.cs" />
+    <Compile Include="BLL\EnginCapacitymanager.cs" />
     <Compile Include="BLL\EnquiryRequistManager.cs" />
     <Compile Include="BLL\EquipmentManager.cs" />
     <Compile Include="BLL\GroupPriviageManager.cs" />
@@ -459,6 +460,10 @@
     <Compile Include="Migrations\202209011630549_OrderEnquiry.designer.cs">
       <DependentUpon>202209011630549_OrderEnquiry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209031453044_AddEnginCapacityTable.cs" />
+    <Compile Include="Migrations\202209031453044_AddEnginCapacityTable.designer.cs">
+      <DependentUpon>202209031453044_AddEnginCapacityTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountState.cs" />
     <Compile Include="Models\Assistance systems.cs" />
@@ -470,6 +475,7 @@
     <Compile Include="Models\Comparison.cs" />
     <Compile Include="Models\DriveTrain.cs" />
     <Compile Include="Models\DynamicFeatures.cs" />
+    <Compile Include="Models\EnginCapacity.cs" />
     <Compile Include="Models\EnquiryRequist.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\Fuel.cs" />
@@ -2186,6 +2192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209011630549_OrderEnquiry.resx">
       <DependentUpon>202209011630549_OrderEnquiry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209031453044_AddEnginCapacityTable.resx">
+      <DependentUpon>202209031453044_AddEnginCapacityTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

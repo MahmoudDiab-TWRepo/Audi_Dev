@@ -346,10 +346,129 @@ namespace Eagles.LMS.Controllers
             return View();
         }
 
-        public ActionResult OrderAudi()
+        public ActionResult OrderAudi(int? id)
         {
+            if (id != null)
+                ViewBag.Id = id;
             return View();
         }
+        [HttpPost]
+        public ActionResult OrderAudi(OrderEnquiry orderEnquiry, HttpPostedFileBase uploadattachments)
+        {
+            ActionResult result = View(orderEnquiry);
+
+            if (ModelState.IsValid)
+            {
+                RequestStatus requestStatus;
+                if (uploadattachments != null && !uploadattachments.ContentType.CheckImageExtention())
+                {
+                    //requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Plz Upload The Attachment");
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.GeneralError, "Attachment not supported ,Plz Upload Image Only");
+
+                }
+                else
+                {
+                    if (uploadattachments != null)
+                    {
+
+                        var fileName = Guid.NewGuid() + Path.GetFileName(uploadattachments.FileName);
+
+                        var path = Path.Combine(Server.MapPath("~/attachments/Orders"), fileName);
+                        uploadattachments.SaveAs(path);
+                        orderEnquiry.ChassisNumber = $"/attachments/Orders/{fileName}";
+
+                    }
+
+                    var ctx = new UnitOfWork();
+                    orderEnquiry.Sendtime = DateTime.Now;
+                    ctx.OrderEnquiryManager.Add(orderEnquiry);
+                    requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
+
+                    try
+                    {
+                        SendEmail sendEmail = new SendEmail();
+                        sendEmail.SendMail(new EmailDTO
+                        {
+                            To = "To Email",
+                            Message = "<h1 style='font-size:25px; line-height:1.5'>New Car Enquiry Request</h1>"
+                            + "<p style='font-size:15px; color: #000'>Thank You for Enquiry This Car</p>" + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Car Name :</b>" + orderEnquiry.CarID + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Car Code :</b>" + orderEnquiry.CarCode + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>First Name :</b>" + orderEnquiry.FullName + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Last Name :</b>" + orderEnquiry.EmailAddress + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Email :</b>" + orderEnquiry.MobileNumber + "<br />"
+                            + "<b style='font-size:12px; line-height:1.5'>Phone :</b>" + orderEnquiry.CarModel + "<br />"
+
+                            + "<b style='font-size:12px; line-height:1.5'>Message:</b>" + orderEnquiry.Comment + "<br />" +
+                            "<br />",
+                            From = "web@empcnews.com",
+                            Subject = "New Contact Us"
+                        }, "Contact", orderEnquiry.EmailAddress);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                    return Redirect("/Home/ThanksPage");
+
+                }
+                TempData["RequestStatus"] = requestStatus;
+            }
+            return result;
+
+        }
+        [HttpPost]
+        public JsonResult GetEnginCapacity(int? Id)
+        {
+            if (Id != null)
+            {
+    
+
+                UnitOfWork ctx = new UnitOfWork();
+
+                List<EnginCapacity> enginCapacity = new List<EnginCapacity>();
+                enginCapacity = ctx.EnginCapacityManager.GetAllBind().Where(s => s.CategoryID == Id).ToList();
+                ViewData["EnginCapacityData"] = enginCapacity;
+
+                string EnginCapacityList = JsonConvert.SerializeObject(enginCapacity, Formatting.None, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                return Json(EnginCapacityList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        [HttpPost]
+        public JsonResult GetEnginCapacityNew(int? Id)
+        {
+            if (Id != null)
+            {
+
+
+                UnitOfWork ctx = new UnitOfWork();
+
+                List<EnginCapacity> enginCapacityNew = new List<EnginCapacity>();
+                enginCapacityNew = ctx.EnginCapacityManager.GetAllBind().Where(s => s.CategoryID == Id).ToList();
+                ViewData["EnginCapacityDataNew"] = enginCapacityNew;
+
+                string EnginCapacityListNew = JsonConvert.SerializeObject(enginCapacityNew, Formatting.None, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                return Json(EnginCapacityListNew, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
         public ActionResult Results()
         {
 
