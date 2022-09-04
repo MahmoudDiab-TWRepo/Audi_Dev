@@ -12047,20 +12047,22 @@ input[type=range] {
                 .footerAudi .FooterContnt .upperFootr .FooteruperItem h2 {
                     color: #fff;
                     margin-bottom: 15px;
-                    font-family: AudiFontBold;
-                    font-size: 20px;
+                    font-family: AudiFont;
+                    font-size: 18px;
                 }
 
                 .footerAudi .FooterContnt .upperFootr .FooteruperItem ul {
                 }
 
                     .footerAudi .FooterContnt .upperFootr .FooteruperItem ul li {
-                        padding-bottom: 10px;
+                        padding-bottom: 5px;
                     }
 
                         .footerAudi .FooterContnt .upperFootr .FooteruperItem ul li a {
-                            color: #aaa;
+                            color: #eee;
+                            font-family: AudiFont;
                             transition: all .4s ease-in-out;
+                            font-size:13px;
                         }
 
                             .footerAudi .FooterContnt .upperFootr .FooteruperItem ul li a:hover {
@@ -12100,17 +12102,19 @@ input[type=range] {
 
                 .footerAudi .FooterContnt .copyRight ul li {
                     float: left;
-                    margin: 0 10px;
+                    margin: 0 5px;
                 }
 
                     .footerAudi .FooterContnt .copyRight ul li a {
-                        font-size: 14px;
+                        font-size: 12px;
                         color: rgb(242, 242, 242);
+                        font-family: 'AudiFont';
                     }
 
                     .footerAudi .FooterContnt .copyRight ul li p {
-                        font-size: 14px;
+                        font-size: 12px;
                         color: rgb(242, 242, 242);
+                        font-family: 'AUDIFONT';
                     }
 
         .footerAudi .FooterContnt .DiscriptionFooter {
