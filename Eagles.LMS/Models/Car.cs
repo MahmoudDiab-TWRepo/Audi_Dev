@@ -68,6 +68,11 @@ namespace Eagles.LMS.Models
         public virtual Category Categories { get; set; }
         [ForeignKey(nameof(TypeID))]
         public virtual Types Types { get; set; }
+
+
+       
+
+
         public List<Equipment> Equipment { get; set; }
         //public List<ShownImages> ShownImage { get; set; }
 
@@ -96,5 +101,9 @@ namespace Eagles.LMS.Models
 
         //public Comparison Comparison { get; set; }
 
+
+
+        public SubItem subItems { get; set; }
+        public int? SubItem_Id { get; set; }
     }
 }

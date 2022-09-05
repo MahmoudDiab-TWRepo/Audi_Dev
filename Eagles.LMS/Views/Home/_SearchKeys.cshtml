@@ -15,6 +15,9 @@
 
     var _leftRange = ViewBag.leftRange;
     var _rightRange = ViewBag.rightRange;
+
+    var _EnginleftRange = ViewBag.EnginleftRange;
+    var _EnginrightRange = ViewBag.EnginrightRange;
     //var _types = ctx.typeManager.GetAllBind();
 
 }
@@ -55,7 +58,7 @@
                             </button>
                         </div>
                     </li>
-                    
+
                 }
             }
         }
@@ -63,7 +66,7 @@
         {
             if (_leftRange != 2005 && _rightRange != 2022)
             {
-                <li  class="DeleteLI">
+                <li class="DeleteLI">
                     <div class="ItemSearch">
                         <span> From year @_leftRange to @_rightRange </span>
                         <button id="ModelYearRnge" class="Remove">
@@ -86,6 +89,33 @@
             </li>
         }
 
+        @if (_EnginleftRange != null && _EnginrightRange != null)
+        {
+            if (_EnginleftRange != 110 && _EnginrightRange != 600)
+            {
+                <li class="DeleteLI">
+                    <div class="ItemSearch">
+                        <span> From HP @_EnginleftRange to @_EnginrightRange </span>
+                        <button id="ModelYearRnge" class="Remove">
+                            <i class="bx bx-x"></i>
+                        </button>
+                    </div>
+                </li>
+            }
+        }
+
+
+
+        @*@if (_carModel != null && _EnginleftRange != null && _EnginrightRange != null)
+        {
+            <li>
+                <div class="SearchClear">
+                    <button class="ClearBTN" id="DeleteAllSearch"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
+                </div>
+            </li>
+        }*@
+
+
     </ul>
 </div>
 
@@ -96,7 +126,7 @@
 
 
         $(".ClearBTN").click(function () {
-            alert('sss');
+           
             $(".checkallParent").removeAttr('checked');
 
             $(".ChildCarItem").find('input[type=checkbox]').removeAttr('checked');

@@ -30,6 +30,7 @@ namespace Eagles.LMS.Controllers
 
             Session["leftRange"] = 2005;
             Session["rightRange"] = 2022;
+           
 
             return View();
         }
@@ -47,6 +48,9 @@ namespace Eagles.LMS.Controllers
 
             ViewData["leftRange"] = Session["leftRange"];
             ViewData["rightRange"] = Session["rightRange"];
+
+            ViewData["EnginleftRange"] = Session["EnginleftRange"];
+            ViewData["EnginrightRange"] = Session["EnginrightRange"];
 
             return PartialView();
         }
@@ -198,6 +202,157 @@ namespace Eagles.LMS.Controllers
         }
 
 
+
+
+        [HttpPost]
+        public JsonResult EnginSetLeftRange(int? left)
+        {
+            if (left != null)
+            {
+                Session["EnginleftRange"] = left;
+
+                UnitOfWork ctx = new UnitOfWork();
+                CarModel carmodel = (CarModel)Session["carModel"];
+                List<Car> cars = new List<Car>();
+
+                if (carmodel.CarType != null && carmodel.CarType.Length > 0)
+                {
+                    foreach (var item in carmodel.CarType)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.TypeID == item);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else if (carmodel.CarCategory != null && carmodel.CarCategory.Length > 0)
+                {
+                    foreach (var itemcat in carmodel.CarCategory)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.CategoryId == itemcat);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    cars = ctx.carManager.GetCarwithEquipments();
+                }
+                int _rightRange = (int)Session["EnginrightRange"];
+                var DIstinctcars = cars.Where(a => left <= Convert.ToInt64(a.Power) && Convert.ToInt64(a.Power) <= _rightRange).ToList().Distinct();
+
+
+                string CarsList = JsonConvert.SerializeObject(DIstinctcars, Formatting.None, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                TempData["mydata"] = DIstinctcars;
+
+
+                return Json(CarsList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        [HttpPost]
+        public JsonResult EnginSetRightRange(int? right)
+        {
+            if (right != null)
+            {
+                Session["EnginrightRange"] = right;
+
+                UnitOfWork ctx = new UnitOfWork();
+                CarModel carmodel = (CarModel)Session["carModel"];
+                List<Car> cars = new List<Car>();
+
+                if (carmodel.CarType != null && carmodel.CarType.Length > 0)
+                {
+                    foreach (var item in carmodel.CarType)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.TypeID == item);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else if (carmodel.CarCategory != null && carmodel.CarCategory.Length > 0)
+                {
+                    foreach (var itemcat in carmodel.CarCategory)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.CategoryId == itemcat);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    cars = ctx.carManager.GetCarwithEquipments();
+                }
+
+                int _leftRange = (int)Session["EnginleftRange"];
+                var DIstinctcars = cars.Where(a => _leftRange <= Convert.ToInt64(a.Power) && Convert.ToInt64(a.Power) <= right).ToList().Distinct();
+
+                string CarsList = JsonConvert.SerializeObject(DIstinctcars, Formatting.None, new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+                TempData["mydata"] = DIstinctcars;
+                Session["SessionCars"] = DIstinctcars;
+
+                return Json(CarsList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+
+
+
         [HttpPost]
         public JsonResult Carfilter(CarModel carmodel)
         {
@@ -319,7 +474,8 @@ namespace Eagles.LMS.Controllers
         }
         public ActionResult Engine()
         {
-
+            Session["EnginleftRange"] = 110;
+            Session["EnginrightRange"] = 600;
             //return Redirect("/Admission");
             return View();
         }

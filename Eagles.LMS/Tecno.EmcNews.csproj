@@ -464,6 +464,14 @@
     <Compile Include="Migrations\202209031453044_AddEnginCapacityTable.designer.cs">
       <DependentUpon>202209031453044_AddEnginCapacityTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209051128099_AddSubItemIDINCare.cs" />
+    <Compile Include="Migrations\202209051128099_AddSubItemIDINCare.designer.cs">
+      <DependentUpon>202209051128099_AddSubItemIDINCare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209051246369_AddSubItemIDINCareTwo.cs" />
+    <Compile Include="Migrations\202209051246369_AddSubItemIDINCareTwo.designer.cs">
+      <DependentUpon>202209051246369_AddSubItemIDINCareTwo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountState.cs" />
     <Compile Include="Models\Assistance systems.cs" />
@@ -2195,6 +2203,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209031453044_AddEnginCapacityTable.resx">
       <DependentUpon>202209031453044_AddEnginCapacityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209051128099_AddSubItemIDINCare.resx">
+      <DependentUpon>202209051128099_AddSubItemIDINCare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209051246369_AddSubItemIDINCareTwo.resx">
+      <DependentUpon>202209051246369_AddSubItemIDINCareTwo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
