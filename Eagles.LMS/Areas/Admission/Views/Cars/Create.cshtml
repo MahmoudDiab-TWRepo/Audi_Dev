@@ -126,14 +126,14 @@
                                     </div>
 
                                     @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="mb-3">
-                <label class="form-label">Fule</label>
-                @Html.DropDownListFor(x => Model.AlbumId, new SelectList(alboums,
-               "Id", "TitleEnglish"), htmlAttributes: new { @class = "form-control select2" })
+                                        <div class="mb-3">
+                                            <label class="form-label">Fule</label>
+                                            @Html.DropDownListFor(x => Model.AlbumId, new SelectList(alboums,
+                                           "Id", "TitleEnglish"), htmlAttributes: new { @class = "form-control select2" })
 
 
-            </div>
-        </div>*@
+                                        </div>
+                                    </div>*@
 
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="mb-3">
@@ -176,7 +176,7 @@
                                        })
                                         </div>
                                     </div>
-                                    <div class="col-lg-12"></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"></div>
 
 
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -257,8 +257,7 @@
                                         </div>
                                     </div>
 
-
-
+                                 
 
 
 
@@ -271,6 +270,211 @@
                     </div>
                 </div>
             </div> <!-- end col -->
+
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.FWD, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "FWD",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="FWD" class="form-label" style="cursor:pointer;">FWD</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Quattro, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Quattro",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Quattro" class="form-label" style="cursor:pointer;">Quattro</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Cruise_Control, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Cruise_Control",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Cruise_Control" class="form-label" style="cursor:pointer;">Cruise Control</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Hill_descent_control, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Hill_descent_control",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Hill_descent_control" class="form-label" style="cursor:pointer;">Hill descent control</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Hold_assist, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Hold_assist",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Hold_assist" class="form-label" style="cursor:pointer;">Hold assist</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Rear_view_camera, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Rear_view_camera",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Rear_view_camera" class="form-label" style="cursor:pointer;">Rear view camera</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Head_up_display, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Head_up_display",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Head_up_display" class="form-label" style="cursor:pointer;">Head up display</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Rear_Eid_Pluss, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Rear_Eid_Pluss",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Rear_Eid_Pluss" class="form-label" style="cursor:pointer;">Rear Eid Pluss</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Rear_parking_Eid, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Rear_parking_Eid",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Rear_parking_Eid" class="form-label" style="cursor:pointer;">Rear parking Eid</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Park_assist, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Park_assist",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Park_assist" class="form-label" style="cursor:pointer;">Park assist</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Pre_sense, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Pre_sense",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Pre_sense" class="form-label" style="cursor:pointer;">Pre sense</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.LED, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "LED",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="LED" class="form-label" style="cursor:pointer;">LED</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Matrix_LED, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Matrix_LED",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Matrix_LED" class="form-label" style="cursor:pointer;">Matrix LED</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Audi_smartphone_interface, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Audi_smartphone_interface",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Audi_smartphone_interface" class="form-label" style="cursor:pointer;">Audi smartphone interface</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Standard, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Standard",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Standard" class="form-label" style="cursor:pointer;">Standard</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-check form-check-primary mb-3">
+                                            @Html.CheckBoxFor(s => s.Sport_seats, new
+                                            {
+                                                @class = "form-check-input",
+                                                @id = "Sport_seats",
+                                                placeholder = "FWD"
+                                            })
+                                            <label for="Sport_seats" class="form-label" style="cursor:pointer;">Sport seats</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 
 
             <div class="col-lg-12 col-md-12">

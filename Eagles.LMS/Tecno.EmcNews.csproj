@@ -472,6 +472,10 @@
     <Compile Include="Migrations\202209051246369_AddSubItemIDINCareTwo.designer.cs">
       <DependentUpon>202209051246369_AddSubItemIDINCareTwo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209061941152_UpdateCareTable.cs" />
+    <Compile Include="Migrations\202209061941152_UpdateCareTable.designer.cs">
+      <DependentUpon>202209061941152_UpdateCareTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountState.cs" />
     <Compile Include="Models\Assistance systems.cs" />
@@ -2209,6 +2213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209051246369_AddSubItemIDINCareTwo.resx">
       <DependentUpon>202209051246369_AddSubItemIDINCareTwo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209061941152_UpdateCareTable.resx">
+      <DependentUpon>202209061941152_UpdateCareTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

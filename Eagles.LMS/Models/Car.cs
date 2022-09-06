@@ -105,5 +105,24 @@ namespace Eagles.LMS.Models
 
         public SubItem subItems { get; set; }
         public int? SubItem_Id { get; set; }
+
+
+
+        public bool FWD { get; set; }
+        public bool Quattro { get; set; }
+        public bool Cruise_Control { get; set; }
+        public bool Hill_descent_control { get; set; }
+        public bool Hold_assist { get; set; }
+        public bool Rear_view_camera { get; set; }     
+        public bool Head_up_display { get; set; }
+        public bool Rear_Eid_Pluss { get; set; }
+        public bool Rear_parking_Eid { get; set; }
+        public bool Park_assist { get; set; }
+        public bool Pre_sense { get; set; }
+        public bool LED { get; set; }
+        public bool Matrix_LED { get; set; }
+        public bool Audi_smartphone_interface { get; set; }
+        public bool Standard { get; set; }
+        public bool Sport_seats { get; set; }
     }
 }
