@@ -166,7 +166,7 @@
                                                             <div class="CarTitle">
                                                                 <div class="checkbox ">
                                                                     <label class="checklable">
-                                                                        <input name="child" class="car_type checkChild " type="checkbox" id="@itemtype.Id">
+                                                                        <input name="child" class="car_category_items checkChild " type="checkbox" id="@itemtype.Id">
                                                                         <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                                                         @itemtype.Name <span class="CountCar">(1)</span>
                                                                     </label>
@@ -194,8 +194,7 @@
                                     <div class="AllCars">
                                         @foreach (var item in _types)
                                         {
-                                            <div class="ItemOfCars" id="select_@item.ID" data-getname="select_@item.ID" onclick="getitem(`${this.id}`)">
-                                                <input type="checkbox" id="@item.ID" class="car_category checkall">
+                                            <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
 
 
                                                 <div class="MainCarItem">
@@ -229,7 +228,7 @@
                                                             <div class="CarTitle">
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <input class="car_category checkChild" type="checkbox" id="@itemcategory.Id">
+                                                                        <input class="car_type_items checkChild" type="checkbox" id="@itemcategory.Id">
                                                                         <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                                                         @itemcategory.Name <span class="CountCar">(1)</span>
                                                                     </label>
@@ -444,6 +443,14 @@
 
         });
         // Start Ajax Filter
+
+        $('.ItemOfCars .checkall').on('change', function () {
+            $(this).nextUntil('.ItemOfCars .checkChild lable').find('input[type=checkbox]').prop('checked', this.checked);
+        });
+
+
+
+
         $(".ItemOfCars").click(function () {
             //debugger;
             $(".ItemOfCars").map(function () {
@@ -500,7 +507,7 @@
                     success: (response) => {
                         $(".CandDelete").remove();
                         $('#realItem').addClass('RelatedItemClass');
-                        
+
                         if (response != null && response != "") {
                             $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
                             var jsonresponse = JSON.parse(response);
@@ -559,10 +566,22 @@
                 return $(this).attr("id");
             });
 
+            var arrofcarscategoryitems = $(".car_category_items:checked").map(function () {
+
+                return $(this).attr("id");
+            });
+
             var arrofcarstype = $(".car_type:checked").map(function () {
 
                 return $(this).attr("id");
             });
+
+            var arrofcarstypeitems = $(".car_type_items:checked").map(function () {
+
+                return $(this).attr("id");
+            });
+
+
             //debugger
             $(".CandDelete").map(function () {
 
@@ -570,17 +589,27 @@
             });
             var _arrofcarscategory = new Array();
             var _arrofcarsTypes = new Array();
+            var _arrofcarsSubItems = new Array();
 
             for (var i = 0; i < arrofcarscategory.length; i++) {
                 _arrofcarscategory.push(arrofcarscategory[i]);
-            } for (var i = 0; i < arrofcarstype.length; i++) {
+            }
+            for (var i = 0; i < arrofcarscategoryitems.length; i++) {
+                _arrofcarsSubItems.push(arrofcarscategoryitems[i]);
+            }
+
+            for (var i = 0; i < arrofcarstypeitems.length; i++) {
+                _arrofcarsSubItems.push(arrofcarstypeitems[i]);
+            }
+            for (var i = 0; i < arrofcarstype.length; i++) {
                 _arrofcarsTypes.push(arrofcarstype[i]);
             }
 
             obj.Data = {
 
-                CarType: _arrofcarsTypes,
-                CarCategory: _arrofcarscategory
+                CarCategory: _arrofcarscategory,
+                CarSubItems: _arrofcarsSubItems,
+                CarType: _arrofcarsTypes
             }
             return true;
         }
@@ -644,19 +673,19 @@
 
 
                         $("#DeleteAllSearch").click(function () {
-                          
+
                         });
                         $(".ClearBTN").click(function () {
-                           
+
                             $("li").remove(".DeleteLI");
                         });
                         $(".DeleteLI").click(function () {
                             $(this).remove(".DeleteLI");
                         });
 
-                      
 
-                        
+
+
 
                     }, error: (error) => {
                         //debugger;
@@ -679,198 +708,4 @@
 
     </script>
 
-
-    <script>
-
-        $(document).ready(function () {
-            //var checkboxHandlerObj = {
-            //    init: function () {
-            //        $('#customerServices input:checkbox[class="parent"]').click(checkboxHandlerObj.parentClicked);
-            //        $('#customerServices input:checkbox[class^="parent-"]').click(checkboxHandlerObj.childClicked);
-            //    },
-
-            //    parentClicked: function () {
-            //        if ($(this).attr('checked')) {
-            //            $('#customerServices input:checkbox[class="parent-' + $(this).attr('id') + '"]').attr('checked', 'checked');
-            //        } else {
-            //            $('#customerServices input:checkbox[class="parent-' + $(this).attr('id') + '"]').removeAttr('checked');
-            //        }
-            //    },
-
-            //    childClicked: function () {
-            //        var temp = $(this).attr('class').split('-');
-            //        var parentId = temp[1];
-
-            //        if ($(this).attr('checked')) {
-            //            $('#' + parentId).attr('checked', 'checked');
-            //        } else {
-            //            var atLeastOneEnabled = false;
-            //            $('#customerServices input:checkbox[class="' + $(this).attr('class') + '"]').each(function () {
-            //                if ($(this).attr('checked')) {
-            //                    atLeastOneEnabled = true;
-            //                }
-            //            });
-            //            if (!atLeastOneEnabled) {
-            //                $('#' + parentId).removeAttr('checked');
-            //            }
-            //        }
-            //    }
-
-            //};
-
-            //checkboxHandlerObj.init();
-
-
-
-            //$("#s9").change(function () {
-            //    if ($(this).is(':checked')) {
-            //        var cls = '.parent-' + $(this).attr('id');
-            //        $(cls).attr('checked', true);
-            //    }
-            //});
-
-            //$('input[class*="parent"]').change(function () {
-            //    var cls = '.' + $(this).attr('class') + ':checked';
-            //    var len = $(cls).length;
-            //    var parent_id = '#' + $(this).attr('class').split('-')[1];
-
-            //    // 3. Check parent if at least one child is checked
-            //    if (len) {
-            //        $(parent_id).attr('checked', true);
-            //    } else {
-            //        // 2. Uncheck parent if all childs are unchecked.
-            //        $(parent_id).attr('checked', false);
-            //    }
-            //});
-
-
-            //var checkboxs = document.querySelectorAll("input[type = 'checkbox']")
-
-            //function checkAll(myCheckBox) {
-            //    if (myCheckBox.checked == true) {
-            //        checkboxs.forEach(function (checkbox) {
-            //            alert('ssssssssss');
-            //            checkbox.checked = true;
-            //        })
-            //    }
-            //}
-
-        });
-    </script>
-
-
-
-
-
-    <script type="text/javascript">
-        //$(document).ready(function () {
-
-
-
-
-        //var checkboxHandlerObj = {
-        //    init: function () {
-        //        $('#customerServices input:checkbox[class="parent"]').click(checkboxHandlerObj.parentClicked);
-        //        $('#customerServices input:checkbox[class^="parent-"]').click(checkboxHandlerObj.childClicked);
-        //    },
-
-        //    parentClicked: function () {
-        //        if ($(this).attr('checked')) {
-        //            $('#customerServices input:checkbox[class="parent-' + $(this).attr('id') + '"]').attr('checked', 'checked');
-        //        }
-        //        else {
-        //            $('#customerServices input:checkbox[class="parent-' + $(this).attr('id') + '"]').removeAttr('checked');
-        //        }
-        //    },
-
-        //    childClicked: function () {
-        //        var temp = $(this).attr('class').split('-');
-        //        var parentId = temp[1];
-
-        //        if ($(this).attr('checked')) {
-        //            $('#' + parentId).attr('checked', 'checked');
-        //        }
-        //        else {
-        //            var atLeastOneEnabled = true;
-        //            $('#customerServices input:checkbox[class="' + $(this).attr('class') + '"]').each(function () {
-        //                if ($(this).attr('checked')) {
-        //                    atLeastOneEnabled = false;
-        //                }
-        //            });
-        //            if (!atLeastOneEnabled) {
-        //                $('#' + parentId).removeAttr('checked');
-        //            }
-        //        }
-        //    }
-
-        //    }
-
-
-        //    checkboxHandlerObj.init();
-
-        //});
-    </script>
-
-
-    <script>
-
-        $(document).ready(function () {
-            $('.ItemOfCars .checkall').on('change', function () {
-                $(this).nextUntil('.ItemOfCars .checkChild lable').find('input[type=checkbox]').prop('checked', this.checked);
-            });
-
-        });
-    </script>
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

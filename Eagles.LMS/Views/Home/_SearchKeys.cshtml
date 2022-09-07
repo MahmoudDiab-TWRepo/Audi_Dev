@@ -7,6 +7,9 @@
     CarModel _carModel = new CarModel();
     _carModel = ViewBag.dataModelFillter;
 
+    CarEngine _carEngine = new CarEngine();
+    _carEngine = ViewBag.carEngineFillte;
+
     var _categoreis = ctx.categoryManager.GetAllBind();
 
     var _SubItem = ctx.SubItemManager.GetAllBind();
@@ -52,6 +55,23 @@
                 {
                     <li id="@item" class="DeleteLI">
                         <div class="ItemSearch">
+                            <span> @_types.Where(a => a.ID == item).FirstOrDefault().Name</span>
+                            <button class="Remove">
+                                <i class="bx bx-x"></i>
+                            </button>
+                        </div>
+                    </li>
+
+                }
+            }
+
+            if (_carModel.CarSubItems != null && _carModel.CarSubItems.Length != 0)
+            {
+
+                foreach (var item in _carModel.CarSubItems)
+                {
+                    <li id="@item" class="DeleteLI">
+                        <div class="ItemSearch">
                             <span> @_SubItem.Where(a => a.Id == item).FirstOrDefault().Name</span>
                             <button class="Remove">
                                 <i class="bx bx-x"></i>
@@ -62,6 +82,7 @@
                 }
             }
         }
+
         @if (_leftRange != null && _rightRange != null)
         {
             if (_leftRange != 2005 && _rightRange != 2022)
@@ -76,17 +97,6 @@
                 </li>
             }
 
-        }
-
-
-        @if (_carModel != null && _leftRange != null && _rightRange != null)
-        {
-            <li>
-                <div class="SearchClear">
-
-                    <button class="ClearBTN" id="DeleteAllSearch"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
-                </div>
-            </li>
         }
 
         @if (_EnginleftRange != null && _EnginrightRange != null)
@@ -104,17 +114,43 @@
             }
         }
 
+        @if (_carEngine != null)
+        {
+            if (_carEngine.EngineType != null && _carEngine.EngineType.Length != 0)
+            {
 
+                foreach (var item in _carEngine.EngineType)
+                {
+                    <li id="@item" class="DeleteLI">
+                        <div class="ItemSearch">
+                            @if (item == 0)
+                            {
+                                <span>FWD</span>
+                            }
+                            @if (item == 1)
+                            {
+                                <span>Quattro</span>
+                            }
+                            <button class="Remove">
+                                <i class="bx bx-x"></i>
+                            </button>
+                        </div>
+                    </li>
+                }
 
-        @*@if (_carModel != null && _EnginleftRange != null && _EnginrightRange != null)
+            }
+
+        }
+
+        @if (_carModel != null && _leftRange != null && _rightRange != null)
         {
             <li>
                 <div class="SearchClear">
+
                     <button class="ClearBTN" id="DeleteAllSearch"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
                 </div>
             </li>
-        }*@
-
+        }
 
     </ul>
 </div>
@@ -126,7 +162,7 @@
 
 
         $(".ClearBTN").click(function () {
-           
+
             $(".checkallParent").removeAttr('checked');
 
             $(".ChildCarItem").find('input[type=checkbox]').removeAttr('checked');
@@ -141,7 +177,7 @@
         $(".DeleteLI").click(function () {
             $(this).remove(".DeleteLI");
             var isss = $(this).attr('id');
-           
+
             $(".MainCarItem").find('#' + isss).removeAttr('checked');
             $(".ChildCarItem").find('#' + isss).removeAttr('checked');
 

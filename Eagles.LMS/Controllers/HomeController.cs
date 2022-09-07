@@ -28,9 +28,15 @@ namespace Eagles.LMS.Controllers
             Car data = TempData["mydata"] as Car;
             ViewBag.Allcars = data;
 
+            ViewData["leftRange"] = Session["leftRange"];
+            ViewData["rightRange"] = Session["rightRange"];
+
+            ViewData["EnginleftRange"] = Session["EnginleftRange"];
+            ViewData["EnginrightRange"] = Session["EnginrightRange"];
+
             Session["leftRange"] = 2005;
             Session["rightRange"] = 2022;
-           
+
 
             return View();
         }
@@ -40,11 +46,11 @@ namespace Eagles.LMS.Controllers
         }
         public ActionResult _SearchKeys()
         {
-            //CarModel dataModel = TempData["carModel"] as CarModel;
-            //ViewBag.dataModelFillter = dataModel;
-
             CarModel carmodel = (CarModel)Session["carModel"];
             ViewData["dataModelFillter"] = carmodel;
+
+            CarEngine carEngine = (CarEngine)Session["carEngine"];
+            ViewData["carEngineFillte"] = carEngine;
 
             ViewData["leftRange"] = Session["leftRange"];
             ViewData["rightRange"] = Session["rightRange"];
@@ -71,6 +77,25 @@ namespace Eagles.LMS.Controllers
                     foreach (var item in carmodel.CarType)
                     {
                         var itemcars = ctx.carManager.GetAllBind().Where(s => s.TypeID == item);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else if (carmodel.CarSubItems != null && carmodel.CarSubItems.Length > 0)
+                {
+                    foreach (var itemcat in carmodel.CarSubItems)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.SubItem_Id == itemcat);
                         if (itemcars != null)
                         {
                             foreach (var itemcar in itemcars)
@@ -144,6 +169,25 @@ namespace Eagles.LMS.Controllers
                     foreach (var item in carmodel.CarType)
                     {
                         var itemcars = ctx.carManager.GetAllBind().Where(s => s.TypeID == item);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else if (carmodel.CarSubItems != null && carmodel.CarSubItems.Length > 0)
+                {
+                    foreach (var itemcat in carmodel.CarSubItems)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.SubItem_Id == itemcat);
                         if (itemcars != null)
                         {
                             foreach (var itemcar in itemcars)
@@ -234,6 +278,25 @@ namespace Eagles.LMS.Controllers
                     }
 
                 }
+                else if (carmodel.CarSubItems != null && carmodel.CarSubItems.Length > 0)
+                {
+                    foreach (var itemcat in carmodel.CarSubItems)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.SubItem_Id == itemcat);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
                 else if (carmodel.CarCategory != null && carmodel.CarCategory.Length > 0)
                 {
                     foreach (var itemcat in carmodel.CarCategory)
@@ -293,6 +356,25 @@ namespace Eagles.LMS.Controllers
                     foreach (var item in carmodel.CarType)
                     {
                         var itemcars = ctx.carManager.GetAllBind().Where(s => s.TypeID == item);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                else if (carmodel.CarSubItems != null && carmodel.CarSubItems.Length > 0)
+                {
+                    foreach (var itemcat in carmodel.CarSubItems)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.SubItem_Id == itemcat);
                         if (itemcars != null)
                         {
                             foreach (var itemcar in itemcars)
@@ -379,6 +461,25 @@ namespace Eagles.LMS.Controllers
                 }
 
             }
+            else if (carmodel.CarSubItems != null && carmodel.CarSubItems.Length > 0)
+            {
+                foreach (var itemcat in carmodel.CarSubItems)
+                {
+                    var itemcars = ctx.carManager.GetAllBind().Where(s => s.SubItem_Id == itemcat);
+                    if (itemcars != null)
+                    {
+                        foreach (var itemcar in itemcars)
+                        {
+                            if (itemcar != null)
+                            {
+                                cars.Add(itemcar);
+                            }
+                        }
+                    }
+
+                }
+
+            }
             else if (carmodel.CarCategory != null && carmodel.CarCategory.Length > 0)
             {
                 foreach (var itemcat in carmodel.CarCategory)
@@ -419,6 +520,79 @@ namespace Eagles.LMS.Controllers
 
             return Json(CarsList, JsonRequestBehavior.AllowGet);
         }
+
+
+
+        [HttpPost]
+        public JsonResult CarfilterEngine(CarEngine carEngine)
+        {
+            UnitOfWork ctx = new UnitOfWork();
+            List<Car> cars = new List<Car>();
+            Session["carEngine"] = carEngine;
+
+            if (carEngine.EngineType != null && carEngine.EngineType.Length > 0)
+            {
+                foreach (var item in carEngine.EngineType)
+                {
+                    if (item == 0)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.FWD == true);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+                    }
+                    else if (item == 1)
+                    {
+                        var itemcars = ctx.carManager.GetAllBind().Where(s => s.Quattro == true);
+                        if (itemcars != null)
+                        {
+                            foreach (var itemcar in itemcars)
+                            {
+                                if (itemcar != null)
+                                {
+                                    cars.Add(itemcar);
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+
+            }
+            else
+            {
+                return null;
+            }
+
+            var DIstinctcars = cars.ToList().Distinct();
+
+
+            string CarsList = JsonConvert.SerializeObject(DIstinctcars, Formatting.None, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+
+
+            TempData["mydata"] = DIstinctcars;
+            Session["SessionCars"] = DIstinctcars;
+            TempData["carEngine"] = carEngine;
+
+
+            return Json(CarsList, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
         [HttpPost]
         public JsonResult CarfilterType(CarModel carmodel)
         {
@@ -474,6 +648,18 @@ namespace Eagles.LMS.Controllers
         }
         public ActionResult Engine()
         {
+            Car data = TempData["mydata"] as Car;
+            ViewBag.Allcars = data;
+
+            CarModel carmodel = (CarModel)Session["carModel"];
+            ViewData["dataModelFillter"] = carmodel;
+
+            CarEngine carEngine = (CarEngine)Session["carEngine"];
+            ViewData["carEngineFillte"] = carEngine;
+
+            ViewData["leftRange"] = Session["leftRange"];
+            ViewData["rightRange"] = Session["rightRange"];
+
             Session["EnginleftRange"] = 110;
             Session["EnginrightRange"] = 600;
             //return Redirect("/Admission");
@@ -579,7 +765,7 @@ namespace Eagles.LMS.Controllers
         {
             if (Id != null)
             {
-    
+
 
                 UnitOfWork ctx = new UnitOfWork();
 
