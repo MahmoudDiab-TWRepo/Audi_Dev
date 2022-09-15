@@ -33,13 +33,12 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="SortResBy">
-                            <label>Sort By</label>
-                            <select>
-                                @*<option>Price ascending</option>
-                                    <option>Price descending </option>*@
-                                <option>Model ascending </option>
-                                <option>Model descending </option>
-                                <option>Distance ascending </option>
+                            @*<label>Sort By</label>*@
+                            <select class="select2-search-disable" onchange="DropDownSortList()" id="DropDownSort">
+                                <option id="0" value="0"> Sort By </option>
+                                <option id="01" value="1"> Model Ascending </option>
+                                <option id="02" value="2"> Model Descending </option>
+                                <option id="03" value="3"> Distance Ascending </option>
                             </select>
                         </div>
                     </div>
@@ -47,7 +46,7 @@
             </div>
 
             <div class="underResultSec">
-                <div id="realItem" class="row">
+                @*<div id="realItem" class="row">
 
                     @foreach (var item in _cars)
                     {
@@ -153,13 +152,115 @@
                     }
 
 
-                </div>
+                </div>*@
 
                 <div id="NewCAr" class="row">
+                    @foreach (var item in _cars)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 AddClassDisplay CandDelete">
+                            <div class="ResultItem">
+                                <div class="ResutContItem">
+                                    <div class="Imagess">
+                                        <div class="services-carousel owl-carousel owl-theme">
+
+                                            <div class="slide-item">
+                                                <div class="images">
+                                                    <img src="@item.MainImage" />
+                                                </div>
+                                            </div>
+
+                                            @foreach (var image in item.CarImages)
+                                            {
+                                                <div class="slide-item">
+                                                    <div class="images">
+                                                        <img src="@image.Path" />
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <div class="ItemDetails">
+                                        <h1> @item.CarName </h1>
+                                        <p>@item.ShortDiscription</p>
+                                        <h2>@item.Price$</h2>
+                                        <div class="LocationDistination">
+                                            <div class="DistnItem">
+                                                <div class="icon">
+                                                    <span><i class="bx bx-map"></i></span>
+                                                </div>
+                                                <div class="DitinaDetails">
+                                                    <p>@item.NearestLocation Audi Approved plus<br />in Obour city</p>
+                                                </div>
+
+                                            </div>
+                                            <div class="DistnItem">
+                                                <div class="icon">
+                                                    <img src="~/assets_Audi/images/Audiimg/CarImgs/speedo.svg" />
+                                                </div>
+                                                <div class="DitinaDetails">
+                                                    <p>
+                                                        @item.Distance km
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="LinaktElItem">
+                                            <ul>
+                                                <li>
+                                                    <a href="/Home/CarDetails/@item.ID">Explore vehicle</a>
+                                                </li>
+                                                <li>
+                                                    <a class="DarkBG" href="/Home/OrderAudi/@item.ID">
+                                                        Enquire Now
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="FavCompair">
+                                            <ul>
+                                                <li>
+                                                    <a href="#" class="FavCOmItem">
+                                                        <div class="icon">
+                                                            <span><i class="bx bx-star"></i></span>
+                                                        </div>
+                                                        <div class="favdisc">
+                                                            <p>Add to favourites</p>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <form action="/Home/AddComparison" method="post">
+
+
+
+
+                                                        <input type="hidden" name="carID" value="@item.ID" />
+
+                                                        <button type="submit" class="FavCOmItem">
+                                                            <div class="icon">
+                                                                <span><i class="bx bx-git-compare"></i></span>
+                                                            </div>
+                                                            <div class="favdisc">
+                                                                <p>Add to comparison</p>
+                                                            </div>
+                                                        </button>
+
+                                                    </form>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
 
                 </div>
-                </div>
             </div>
+        </div>
     </div>
 </div>
 

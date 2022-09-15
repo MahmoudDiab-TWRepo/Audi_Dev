@@ -2,7 +2,6 @@
 @using Eagles.LMS.App_GlobalResources
 
 @{
-
     string host = Request.Url.Host;
 
     bool en = true;
@@ -12,6 +11,7 @@
         en = (Request.Cookies["Language"].Value.ToString() == "en") ? true : false;
 
     }
+
 }
 
 
@@ -22,17 +22,19 @@
     UnitOfWork ctx = new UnitOfWork();
 
     List<Car> _cars = new List<Car>();
+    Count count = ViewBag.AllCounts;
     _cars = /*ctx.carManager.GetCarwithEquipments()*/ViewBag.Allcars;
     if (_cars == null/*&&_cars.Count()<1*/)
     {
         _cars = ctx.carManager.GetCarwithEquipments();
     }
 
-    var _categoreis = ctx.categoryManager.GetAllBind();
+    var _categoreis = ctx.categoryManager.GetCategorieswithCount();
 
-    var _SubItem = ctx.SubItemManager.GetAllBind();
+    var _SubItem = ctx.SubItemManager.GetSubItemswithCount();
     var _categoreisBodyType = ctx.categoryManager.GetAllBind().Where(s => s.ShowInBodyType == true).ToList();
-    var _types = ctx.typeManager.GetAllBind();
+    var _types = ctx.typeManager.GetTypeswithCount();
+    var _color = ctx.ColorManager.GetColorswithCount().ToList();
 
 }
 
@@ -61,269 +63,900 @@
 
 
 
-
-
-<div class="TapsCars" style="">
+<div class="NewTaps">
     <div class="container">
-        <div class="TapsCarCont">
+        <!-- Nav tabs -->
+        <ul class="nav nav-pills nav-justified" role="tablist">
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link active" data-bs-toggle="tab" href="#Model-1" role="tab">
+                    <span class=" d-sm-block">Model</span>
+                </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" data-bs-toggle="tab" href="#Engine-1" role="tab">
 
-            <!--<div class="SeearchListItem">
-            <ul id="dasdsad">-->
-            @*@foreach (var item in _cars)
-                {
-                    <li class="DeleteLI">
-                        <div class="ItemSearch">
-                            <span> </span>
-                            <button id="me" class="Remove"  onclick="DeleteItemFiltr()"><i class="bx bx-x"></i></button>
-                        </div>
-                    </li>
+                    <span class=" d-sm-block"> Engine</span>
+                </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" data-bs-toggle="tab" href="#Equipment-1" role="tab">
+                    <span class="d-sm-block"> Equipment</span>
+                </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" data-bs-toggle="tab" href="#Color-1" role="tab">
+                    <span class=" d-sm-block"> Color</span>
+                </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+                <a class="nav-link" data-bs-toggle="tab" href="#Result-1" role="tab">
+                    <span class=" d-sm-block">Results</span>
+                </a>
+            </li>
+        </ul>
 
-                }*@
-
-            <!--</ul>
-                <ul id="dasdsad">
-
-                    <li>
-                        <div class="SearchClear">
-
-                            <button class="ClearBTN"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
-                        </div>
-                    </li>
-                </ul>
-            </div>-->
-
-
-            @Html.Partial("_SearchKeys")
-
-
-            <div class="AudiSearchCar">
-                <h2>Audi Used Car Search</h2>
-                <p>
-                    Here you can find the range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and make inquiry.
-                </p>
-
-                @*<div class="linksBenifits">
-                        <a href="#">Benefits of Audi Approved :plus</a>
-                    </div>*@
-                <div class="linksBenifits">
-                    <a href="#">Contact US</a>
+        <div class="TapsCars" style="">
+            <div class="">
+                <div class="TapsCarCont">
+                    @Html.Partial("_SearchKeys")
                 </div>
             </div>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="tab-content p-0 text-muted">
+            <div class="tab-pane active" id="Model-1" role="tabpanel">
+
+                <div class="TapNewContent">
+                    <div class="TapsCars" style="">
+                        <div class="">
+                            <div class="TapsCarCont">
+
+                                <!--<div class="SeearchListItem">
+                                <ul id="dasdsad">-->
+                                @*@foreach (var item in _cars)
+                                    {
+                                        <li class="DeleteLI">
+                                            <div class="ItemSearch">
+                                                <span> </span>
+                                                <button id="me" class="Remove"  onclick="DeleteItemFiltr()"><i class="bx bx-x"></i></button>
+                                            </div>
+                                        </li>
+
+                                    }*@
+
+                                <!--</ul>
+                                    <ul id="dasdsad">
+
+                                        <li>
+                                            <div class="SearchClear">
+
+                                                <button class="ClearBTN"><i class="bx bx-trash-alt"></i> <span>Reset all filters</span></button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>-->
+                                @*@Html.Partial("_SearchKeys")*@
 
 
-            <div class="shop-single">
-                <div class="product-details">
-                    <div class="product-info-tabs">
-                        <div class="prod-tabs tabs-box">
-                            <ul class="tab-btns tab-buttons clearfix">
-                                <li data-tab="#prod-details" class="tab-btn active-btn">Models</li>
-                                <li data-tab="#prod-reviews" class="tab-btn ">Body types</li>
-                            </ul>
+                                <div class="AudiSearchCar">
+                                    <h2>Audi Used Car Search</h2>
+                                    <p>
+                                        Here you can find the range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and make inquiry.
+                                    </p>
 
-                            <div class="tabs-content">
-
-                                <!--Tab/models-->
-                                <div class="tab active-tab" id="prod-details">
-
-
-                                    <div class="AllCars">
-                                        @foreach (var item in _categoreis)
-                                        {
-                                            <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
+                                    @*<div class="linksBenifits">
+                                            <a href="#">Benefits of Audi Approved :plus</a>
+                                        </div>*@
+                                    <div class="linksBenifits">
+                                        <a href="#">Contact US</a>
+                                    </div>
+                                </div>
 
 
-                                                @* <input type="checkbox" id="@item.ID" class="checkall">*@
+                                <div class="shop-single">
+                                    <div class="product-details">
+                                        <div class="product-info-tabs">
+                                            <div class="prod-tabs tabs-box">
+                                                <ul class="tab-btns tab-buttons clearfix">
+                                                    <li data-tab="#prod-details" class="tab-btn active-btn">Models</li>
+                                                    <li data-tab="#prod-reviews" class="tab-btn ">Body types</li>
+                                                </ul>
+
+                                                <div class="tabs-content">
+
+                                                    <!--Tab/models-->
+                                                    <div class="tab active-tab" id="prod-details">
 
 
-                                                <div class="MainCarItem">
+                                                        <div class="AllCars">
+                                                            @foreach (var item in _categoreis)
+                                                            {
+                                                                <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
 
 
-                                                    <div class="Images">
-                                                        <img class="MainImgOne" src="@item.MainImageOne" />
-                                                        <img class="MainImgTwo" src="@item.MainImageTwo" />
-                                                    </div>
-                                                    <div class="CarTitle">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input class="car_category checkallParent " type="checkbox" id="@item.ID">
-                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                @item.Name <span class="CountCar">(1)</span>
-                                                            </label>
+                                                                    @* <input type="checkbox" id="@item.ID" class="checkall">*@
+
+                                                                    @*<form class="filter-content">
+                                                                        <fildest class="filter">*@
+
+                                                                    <div class="MainCarItem">
+
+
+                                                                        <div class="Images">
+                                                                            <img class="MainImgOne" src="@item.MainImageOne" />
+                                                                            <img class="MainImgTwo" src="@item.MainImageTwo" />
+                                                                        </div>
+                                                                        <div class="CarTitle">
+                                                                            <div class="checkbox modelType">
+                                                                                <label>
+                                                                                    <input class="car_category checkallParent " type="checkbox" id="@item.ID">
+                                                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                    @item.Name <span class="CountCar">(@item.Count)</span>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="GroupChildCars">
+
+                                                                        @foreach (var itemtype in _SubItem.Where(s => s.CategoryID == item.ID).ToList())
+                                                                        {
+
+                                                                            <div class="ChildCarItem">
+                                                                                <div class="Images">
+                                                                                    <img class="MainImgOne" src="@itemtype.MainImageOne" />
+                                                                                    @* @<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
+                                                                                </div>
+                                                                                <div class="CarTitle">
+                                                                                    <div class="checkbox modelType">
+                                                                                        <label class="checklable">
+                                                                                            <input name="child" class="car_category_items checkChild " type="checkbox" id="@itemtype.Id">
+                                                                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                            @itemtype.Name <span class="CountCar">(@itemtype.Count)</span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+
+                                                                        }
+                                                                    </div>
+
+                                                                    @*</fildest>
+                                                                        </form>*@
+                                                                </div>
+
+
+                                                            }
                                                         </div>
+
+
+
+                                                        @*<div class="TestDiv">
+                                                                <div class="filter-content">
+                                                                    <div class="ItemOfCars">
+                                                                        <div class="checkbox">
+                                                                            <label class=" all-label" for="allddd">
+                                                                                <input class="car_category checkallParent " type="checkbox" id="allddd">
+                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                All Bands <span class="CountCar">(1)</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="checkbox modelType">
+                                                                            <label for="0">
+                                                                                <input class="car_category " type="checkbox" id="0">
+                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                Perfection111 <span class="CountCar">(1)</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="checkbox modelType">
+                                                                            <label for="12">
+                                                                                <input class="car_category " type="checkbox" id="12">
+                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                Perfection222 <span class="CountCar">(1)</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="checkbox modelType">
+                                                                            <label for="11">
+                                                                                <input class="car_category " type="checkbox" id="11">
+                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                Bands333 <span class="CountCar">(1)</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="checkbox modelType">
+                                                                            <label for="13">
+                                                                                <input class="car_category " type="checkbox" id="13">
+                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                Bands444 <span class="CountCar">(1)</span>
+                                                                            </label>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>*@
+
+
+
                                                     </div>
 
+
+
+
+
+                                                    <div class="tab " id="prod-reviews">
+                                                        <div class="AllCars">
+                                                            @foreach (var item in _types)
+                                                            {
+                                                                <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
+
+
+                                                                    <div class="MainCarItem">
+
+
+                                                                        <div class="Images">
+                                                                            <img class="MainImgOne" src="@item.MainImageOne" />
+                                                                            <img class="MainImgTwo" src="@item.MainImageTwo" />
+                                                                        </div>
+                                                                        <div class="CarTitle">
+                                                                            <div class="checkbox modelType">
+                                                                                <label>
+                                                                                    <input class="car_type checkallParent" type="checkbox" id="@item.ID">
+                                                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                    @item.Name <span class="CountCar">(@item.Count)</span>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="GroupChildCars">
+                                                                        @foreach (var itemcategory in _SubItem.Where(s => s.TypeID == item.ID).ToList())
+                                                                        {
+
+
+                                                                            <div class="ChildCarItem">
+                                                                                <div class="Images">
+                                                                                    <img class="MainImgOne" src="@itemcategory.MainImageOne" />
+                                                                                    @*@<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
+                                                                                </div>
+                                                                                <div class="CarTitle">
+                                                                                    <div class="checkbox modelType">
+                                                                                        <label>
+                                                                                            <input class="car_type_items checkChild" type="checkbox" id="@itemcategory.Id">
+                                                                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                            @itemcategory.Name <span class="CountCar">(@itemcategory.Count)</span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+
+                                                                        }
+                                                                    </div>
+                                                                </div>
+
+
+                                                            }
+                                                        </div>
+
+                                                    </div>
                                                 </div>
-                                                <div class="GroupChildCars">
+                                            </div>
 
-                                                    @foreach (var itemtype in _SubItem.Where(s => s.CategoryID == item.ID).ToList())
-                                                    {
 
-                                                        <div class="ChildCarItem">
-                                                            <div class="Images">
-                                                                <img class="MainImgOne" src="@itemtype.MainImageOne" />
-                                                                @* @<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
-                                                            </div>
-                                                            <div class="CarTitle">
-                                                                <div class="checkbox ">
-                                                                    <label class="checklable">
-                                                                        <input name="child" class="car_category_items checkChild " type="checkbox" id="@itemtype.Id">
-                                                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                        @itemtype.Name <span class="CountCar">(1)</span>
-                                                                    </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="ModelYears">
+                                    <div class="container">
+                                        <div class="TutelModel">
+                                            <h2>
+                                                Model Year
+                                            </h2>
+                                        </div>
+                                        <div class="">
+                                            <div class="middle">
+                                                <div class="multi-range-slider">
+                                                    <input type="range" step="1" id="input-left_Model" min="2005" max="2022" value="2005">
+                                                    <input type="range" step="1" id="input-right_Model" min="2005" max="2022" value="2022">
+                                                    <div class="slider">
+                                                        <div class="track"></div>
+                                                        <div class="range range_Model"></div>
+                                                        <div class="thumb left left_Model"></div>
+                                                        <div class="thumb right right_Model"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mt-4">
+                                                <div> <span id="amount-left_Model" class="font-weight-bold"></span> </div>
+                                                <div> <span id="amount-right_Model" class="font-weight-bold"></span> </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="NextPage">
+                                    <div class="container">
+                                        <div class="linknextPage">
+                                            <a href="/Home/Engine">Engine</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                @*@Html.Partial("_Results")*@
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="tab-pane" id="Engine-1" role="tabpanel">
+                <div class="TapNewContent">
+                    <div class="TapsCars" style="">
+                        <div class="">
+                            <div class="TapsCarCont">
+
+                                @*@Html.Partial("_SearchKeys")*@
+
+                                <div class="AudiSearchCar">
+                                    <h2>Audi Used Cars by Engine</h2>
+                                    <p>
+                                        Here you can find the range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and make inquiry.
+                                    </p>
+
+                                    <div class="linksBenifits">
+                                        <a href="#">How to order online</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="Drivetrain">
+                        <div class="">
+                            <div class="DrivetrainCobent">
+                                <div class="Title">
+                                    <h2>Drivetrain</h2>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                        <div class="drivenationItem">
+                                            <div class="images">
+                                                <img src="~/assets_Audi/images/Audiimg/drivetrain.png" />
+                                            </div>
+                                            <div class="checkbox engine">
+                                                <label>
+                                                    <input type="checkbox" class="car_engine_items" id="1000" value="">
+                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                    FWD <span class="CountCar">(@count.FWD)</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                        <div class="drivenationItem">
+                                            <div class="images">
+                                                <img src="~/assets_Audi/images/Audiimg/axle.png" />
+                                            </div>
+                                            <div class="checkbox engine">
+                                                <label>
+                                                    <input type="checkbox" class="car_engine_items" id="2000" value="">
+                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                    quattro <span class="CountCar">(@count.Quattro)</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ModelYears">
+                        <div class="">
+                            <div class="TutelModel">
+                                <h2>
+                                    Power (HP)
+                                </h2>
+                            </div>
+                            <div class="" id="price">
+                                <div class="middle">
+                                    <div class="multi-range-slider">
+                                        <input type="range" id="input-left_engin" step="10" min="110" max="600" value="110">
+                                        <input type="range" id="input-right_engin" step="10" min="110" max="600" value="600">
+                                        <div class="slider">
+                                            <div class="track"></div>
+                                            <div class="range range_engin"></div>
+                                            <div class="thumb left left_engin"></div>
+                                            <div class="thumb right right_engin"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between mt-4">
+                                    <div> <span class="font-weight-bold"> From</span><span id="amount-left_engin" class="font-weight-bold"></span> <span class="font-weight-bold"> HP</span> </div>
+                                    <div><span class="font-weight-bold"> To </span> <span id="amount-right_engin" class="font-weight-bold"></span> <span class="font-weight-bold"> HP</span> </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="NextPage">
+                        <div class="">
+                            <div class="linknextPage">
+                                <a href="/Home/Equipment">Equipment</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @*@Html.Partial("_Results")*@
+
+
+                </div>
+
+            </div>
+            <div class="tab-pane" id="Equipment-1" role="tabpanel">
+                <div class="TapNewContent">
+                    <div class="TapsCars" style="">
+                        <div class="">
+                            <div class="TapsCarCont">
+
+
+                                @*@Html.Partial("_SearchKeys")*@
+
+
+
+
+
+                                <div class="AudiSearchCar">
+                                    <h2>Audi Used Cars by Equipment</h2>
+                                    <p>
+                                        Here you can find the range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and make inquiry.
+                                    </p>
+
+                                    <div class="linksBenifits">
+                                        <a href="#">How to order online</a>
+                                    </div>
+                                </div>
+
+
+                                <div class="shop-single" style="">
+                                    <div class="product-details">
+                                        <div class="product-info-tabs">
+                                            <div class="prod-tabs tabs-box">
+                                                <ul class="tab-btns tab-buttons clearfix">
+                                                    <li data-tab="#prod-Exterior" class="tab-btn active-btn">Exterior</li>
+                                                    <li data-tab="#prod-Interior" class="tab-btn ">Interior</li>
+                                                </ul>
+
+                                                <div class="tabs-content">
+
+                                                    <!--Tab-->
+                                                    <div class="tab active-tab" id="prod-Exterior">
+                                                        <div class="Drivetrain">
+                                                            <div class="container">
+                                                                <div class="DrivetrainCobent">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                                            <div class="Title">
+                                                                                <h2>Assistance systems</h2>
+                                                                            </div>
+                                                                            <div class="row">
+
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="100" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Cruise control <span class="CountCar">(@count.Cruise_Control)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="200" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Hill descent control <span class="CountCar">(@count.Hill_descent_control)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="300" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Hold assist <span class="CountCar">(@count.Hold_assist)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="400" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Head-up display <span class="CountCar">(@count.Head_up_display)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="500" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Rear view camera <span class="CountCar">(@count.Rear_view_camera)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="600" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Parking aid plus <span class="CountCar">(@count.Rear_Eid_Pluss)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="700" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Rear parking aid <span class="CountCar">(@count.Rear_parking_Eid)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="800" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Park assist <span class="CountCar">(@count.Park_assist)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="900" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Pre-sense <span class="CountCar">(@count.Pre_sense)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                                            <div class="Title">
+                                                                                <h2>Headlights</h2>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="110" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                LED <span class="CountCar">(@count.LED)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="111" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Matrix LED <span class="CountCar">(@count.Matrix_LED)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
                                                                 </div>
                                                             </div>
                                                         </div>
 
 
-
-                                                    }
-                                                </div>
-                                            </div>
-
-
-                                        }
-                                    </div>
-
-                                </div>
-
-
-
-
-
-                                <div class="tab " id="prod-reviews">
-                                    <div class="AllCars">
-                                        @foreach (var item in _types)
-                                        {
-                                            <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
-
-
-                                                <div class="MainCarItem">
-
-
-                                                    <div class="Images">
-                                                        <img class="MainImgOne" src="@item.MainImageOne" />
-                                                        <img class="MainImgTwo" src="@item.MainImageTwo" />
                                                     </div>
-                                                    <div class="CarTitle">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input class="car_type checkallParent" type="checkbox" id="@item.ID">
-                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                @item.Name <span class="CountCar">(1)</span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
+                                                    <div class="tab " id="prod-Interior">
+                                                        <div class="Drivetrain">
+                                                            <div class="container">
+                                                                <div class="DrivetrainCobent">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                            <div class="Title">
+                                                                                <h2>Infotainment</h2>
+                                                                            </div>
+                                                                            <div class="row">
 
-                                                </div>
-                                                <div class="GroupChildCars">
-                                                    @foreach (var itemcategory in _SubItem.Where(s => s.TypeID == item.ID).ToList())
-                                                    {
+                                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="112" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Audi smartphone interface <span class="CountCar">(@count.Audi_smartphone_interface)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                            <div class="Title">
+                                                                                <h2>Seats</h2>
+                                                                            </div>
+                                                                            <div class="row">
+
+                                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="113" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Standard <span class="CountCar">(@count.Standard)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
 
 
-                                                        <div class="ChildCarItem">
-                                                            <div class="Images">
-                                                                <img class="MainImgOne" src="@itemcategory.MainImageOne" />
-                                                                @*@<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
-                                                            </div>
-                                                            <div class="CarTitle">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input class="car_type_items checkChild" type="checkbox" id="@itemcategory.Id">
-                                                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                        @itemcategory.Name <span class="CountCar">(1)</span>
-                                                                    </label>
+                                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                    <div class="equipmentItem">
+
+                                                                                        <div class="checkbox equipment">
+                                                                                            <label>
+                                                                                                <input type="checkbox" class="car_equipment_items" id="114" value="">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                Sport seats <span class="CountCar">(@count.Sport_seats)</span>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
                                                                 </div>
                                                             </div>
                                                         </div>
 
-
-
-                                                    }
+                                                    </div>
                                                 </div>
                                             </div>
+                                        </div>
 
-
-                                        }
                                     </div>
-
                                 </div>
+
+
                             </div>
                         </div>
-
-
-
                     </div>
-                </div>
-            </div>
-
-            @*<div class="checkboxss">
-
-                    <div class="container">
-                        <div id="customerServices0">
-                            <input id="s90" onchange="checkAll(this)" class="parent" type="checkbox" /> Parent element<br />
-                            <input id="s150" class="parent-s9" type="checkbox" /> Child element<br />
-                            <input id="s160" class="parent-s9" type="checkbox" /> Child element<br />
-                            <br /><br /><br />
-                        </div>
-                    </div>
-                </div>*@
 
 
 
-
-            @*<div id="customerServices">
-                    <input id="s9" class="parent" type="checkbox" /> Parent element<br />
-                    <input id="s15" class="parent-s9" type="checkbox" /> Child element<br />
-                    <input id="s16" class="parent-s9" type="checkbox" /> Child element<br />
-
-
-                </div>*@
-
-
-
-            <div class="ModelYears">
-                <div class="container">
-                    <div class="TutelModel">
-                        <h2>
-                            Model Year
-                        </h2>
-                    </div>
-                    <div class="" id="price">
-                        <div class="middle">
-                            <div class="multi-range-slider">
-                                <input type="range" step="1" id="input-left" min="2005" max="2022" value="2005">
-                                <input type="range" step="1" id="input-right" min="2005" max="2022" value="2022">
-                                <div class="slider">
-                                    <div class="track"></div>
-                                    <div class="range"></div>
-                                    <div class="thumb left"></div>
-                                    <div class="thumb right"></div>
-                                </div>
+                    <div class="NextPage">
+                        <div class="">
+                            <div class="linknextPage">
+                                <a href="/Home/Colour">Colour</a>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center justify-content-between mt-4">
-                            <div> <span id="amount-left" class="font-weight-bold"></span> </div>
-                            <div> <span id="amount-right" class="font-weight-bold"></span> </div>
+                    </div>
+
+
+
+                    @*@Html.Partial("_Results")*@
+                </div>
+            </div>
+            <div class="tab-pane" id="Color-1" role="tabpanel">
+                <div class="TapNewContent">
+                    <div class="TapsCars" style="">
+
+                        <div class="TapsCarCont">
+
+                            @*@Html.Partial("_SearchKeys")*@
+
+
+
+                            <div class="AudiSearchCar">
+                                <h2>Audi Used Cars by Color</h2>
+                                <p>
+                                    Here you can find range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and complete an online order.
+                                </p>
+
+                                <div class="linksBenifits">
+                                    <a href="#">How to order online</a>
+                                </div>
+                            </div>
+
+
+                            <div class="colour">
+                                <div class="container">
+                                    <div class="CoulorCOntent">
+                                        <div class="ColorGroup">
+                                            @foreach (var color in _color)
+                                            {
+
+                                                if (!string.IsNullOrEmpty(@color.ImageColor))
+                                                {
+
+                                                    <div class="colorItem">
+                                                        <div class="icgcheck">
+                                                            <div class="image">
+                                                                <img src="@color.ImageColor" />
+                                                            </div>
+                                                            <div class="checkbox colour">
+                                                                <label>
+                                                                    <input type="checkbox" class="car_colour_items" id="@color.Id">
+                                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="titilecolor">
+                                                            <h2>@color.Name</h2>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="NextPage">
+                        <div class="">
+                            <div class="linknextPage">
+                                <a href="/Home/Results">Results</a>
+                            </div>
                         </div>
                     </div>
 
+
+                    @*@Html.Partial("_Results")*@
                 </div>
-
-
             </div>
+            <div class="tab-pane" id="Result-1" role="tabpanel">
+                <div class="TapNewContent">
+                    <div class="TapsCars" style="">
+                        <div class="">
+                            <div class="TapsCarCont">
+
+                                @*@Html.Partial("_SearchKeys")*@
 
 
-            <div class="NextPage">
-                <div class="container">
-                    <div class="linknextPage">
-                        <a href="/Home/Engine">Engine</a>
+
+                                <div class="AudiSearchCar">
+                                    <h2>View or compare results</h2>
+                                    <p>
+                                        Here you can find range of Audi demonstrator and pre-owned stock, including certified Audi Approved <span>:plus </span>vehicles, and complete an online order.
+                                    </p>
+
+                                    <div class="linksBenifits">
+                                        <a class="Benefits of Audi Approved :plus" data-toggle="modal" data-target="#ModalReult">
+                                            Benefits of Audi Approved :plus
+                                        </a>
+                                    </div>
+                                    @*<div class="linksBenifits">
+                                            <a href="#">How to order online</a>
+                                        </div>*@
+                                </div>
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                    @*@Html.Partial("_Results")*@
+
+
+
+
                 </div>
             </div>
+        </div>
 
 
+        <div class="TapNewContent">
             @Html.Partial("_Results")
-
         </div>
     </div>
 </div>
@@ -333,7 +966,47 @@
 
 
 
+@*<iframe style="border: 0;" src="http://208.106.167.35/" width="100%" height="100%" allowfullscreen="allowfullscreen"></iframe>*@
 
+
+
+
+
+@section ModalReult{
+    <div class="modal fade ModalResultPopUp" id="ModalReult" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="COntntModal">
+                        @*<div class="images">
+                            <img src="~/assets_Audi/images/Audiimg/loginform.png" />
+                        </div>*@
+                        <div class="ContentDesc">
+                            <h2>Audi Approved <span>:plus</span></h2>
+                            <p>When you purchase an Audi Approved <span>:plus</span> pre-owned vehicle, you’re buying peace of mind. Audi Approved <span>:plus</span> guarantees your pre-owned vehicle:</p>
+                            <ul>
+                                <li>
+                                    ✔ Has passed our comprehensive 110 point safety and mechanical check
+                                </li>
+                                <li>
+                                    ✔ Includes 1 Year Warranty
+                                </li>
+                            </ul>
+
+                            <p>And you know you can enjoy trade-in and financial services to give you greater purchasing power..</p>
+                            <p>Rest assured, this is the smartest way to buy a pre-owned Audi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 
 
@@ -348,15 +1021,15 @@
 
 
             // For Range Sliders
-            var inputLeft = document.getElementById("input-left");
-            var inputRight = document.getElementById("input-right");
+            var inputLeft = document.getElementById("input-left_Model");
+            var inputRight = document.getElementById("input-right_Model");
 
-            var thumbLeft = document.querySelector(".slider > .thumb.left");
-            var thumbRight = document.querySelector(".slider > .thumb.right");
-            var range = document.querySelector(".slider > .range");
+            var thumbLeft = document.querySelector(".slider > .thumb.left_Model");
+            var thumbRight = document.querySelector(".slider > .thumb.right_Model");
+            var range = document.querySelector(".slider > .range_Model");
 
-            var amountLeft = document.getElementById('amount-left')
-            var amountRight = document.getElementById('amount-right')
+            var amountLeft = document.getElementById('amount-left_Model')
+            var amountRight = document.getElementById('amount-right_Model')
 
             function setLeftValue() {
                 var _this = inputLeft,
@@ -415,7 +1088,7 @@
                 inputLeftValuel = e.target.value;
                 if (inputLeftValuel != null && inputLeftValuel != 0) {
 
-                    ajaxRangeLeft(parseInt(inputLeftValuel));
+                    ajaxRangeLeft_Model(parseInt(inputLeftValuel));
                 }
             });
 
@@ -437,16 +1110,132 @@
                 inputRightValuel = e.target.value;
                 if (inputRightValuel != null && inputRightValuel != 0) {
 
-                    ajaxRangeRight(parseInt(inputRightValuel));
+                    ajaxRangeRight_Model(parseInt(inputRightValuel));
+                }
+            });
+
+
+            // For Range Sliders
+            var inputLeft_engin = document.getElementById("input-left_engin");
+            var inputRight_engin = document.getElementById("input-right_engin");
+
+            var thumbLeft_engin = document.querySelector(".slider > .thumb.left_engin");
+            var thumbRight_engin = document.querySelector(".slider > .thumb.right_engin");
+            var range_engin = document.querySelector(".slider > .range_engin");
+
+            var amountLeft_engin = document.getElementById('amount-left_engin')
+            var amountRight_engin = document.getElementById('amount-right_engin')
+
+            function setLeftValue_engin() {
+                var _this = inputLeft_engin,
+                    min = parseInt(_this.min),
+                    max = parseInt(_this.max);
+
+                _this.value = Math.min(parseInt(_this.value), parseInt(inputRight_engin.value) - 1);
+
+                var percent = ((_this.value - min) / (max - min)) * 100;
+
+                thumbLeft_engin.style.left = percent + "%";
+                range_engin.style.left = percent + "%";
+                amountLeft_engin.innerText = parseInt(_this.value * 1);
+            }
+            setLeftValue_engin();
+
+            function setRightValue_engin() {
+                var _this = inputRight_engin,
+                    min = parseInt(_this.min),
+                    max = parseInt(_this.max);
+
+                _this.value = Math.max(parseInt(_this.value), parseInt(inputLeft_engin.value) + 1);
+
+                var percent = ((_this.value - min) / (max - min)) * 100;
+
+
+                amountRight_engin.innerText = parseInt(_this.value * 1);
+                thumbRight_engin.style.right = (100 - percent) + "%";
+                range_engin.style.right = (100 - percent) + "%";
+            }
+            setRightValue_engin();
+
+
+            let inputRightValuel_engin;
+            let inputLeftValuel_engin;
+
+
+            inputLeft_engin.addEventListener("input", setLeftValue_engin);
+            inputRight_engin.addEventListener("input", setRightValue_engin);
+
+            inputLeft_engin.addEventListener("mouseover", function () {
+                thumbLeft_engin.classList.add("hover");
+            });
+            inputLeft_engin.addEventListener("mouseout", function () {
+                thumbLeft_engin.classList.remove("hover");
+            });
+            inputLeft_engin.addEventListener("mousedown", function () {
+                thumbLeft_engin.classList.add("active");
+            });
+            inputLeft_engin.addEventListener("mouseup", function () {
+                thumbLeft_engin.classList.remove("active");
+            });
+
+
+            inputLeft_engin.addEventListener("change", function (e) {
+                //debugger;
+                inputLeftValuel_engin = e.target.value;
+                if (inputLeftValuel_engin != null && inputLeftValuel_engin != 0) {
+
+                    ajaxRangeLeft_engin(parseInt(inputLeftValuel_engin));
+                }
+            });
+
+            inputRight_engin.addEventListener("mouseover", function () {
+                thumbRight_engin.classList.add("hover");
+            });
+            inputRight_engin.addEventListener("mouseout", function () {
+                thumbRight_engin.classList.remove("hover");
+            });
+            inputRight_engin.addEventListener("mousedown", function () {
+                thumbRight_engin.classList.add("active");
+            });
+            inputRight_engin.addEventListener("mouseup", function () {
+                thumbRight_engin.classList.remove("active");
+            });
+
+            inputRight_engin.addEventListener("change", function (e) {
+                // debugger;
+                inputRightValuel_engin = e.target.value;
+                if (inputRightValuel_engin != null && inputRightValuel_engin != 0) {
+
+                    ajaxRangeRight_engin(parseInt(inputRightValuel_engin));
                 }
             });
 
         });
-        // Start Ajax Filter
 
-        $('.ItemOfCars .checkall').on('change', function () {
-            $(this).nextUntil('.ItemOfCars .checkChild lable').find('input[type=checkbox]').prop('checked', this.checked);
+        $('.checkallParent').on('change', function () {
+            $(this).nextUntil('.checkChild').find('input[type=checkbox]').prop('checked', this.checked);
         });
+
+        //$('.checkallParent').on('change', function () {
+        //    alert(true);
+        //    debugger;
+        //    $('.checkChild').find('input[type=checkbox]').prop('checked', this.checked);
+        //    $(this).parents('tr td').prop('checked', function () {
+        //        return $(this).next().find(':checked').length;
+        //    });
+        //});
+
+        //$('.checkallParent').click(function () {
+        //    debugger;
+        //    //var checkboxes = $(this).closest('.GroupChildCars').find("input[type=checkbox]");
+        //    var $tblChkBox = $(this).parents(".GroupChildCars input:checkbox");
+        //    $('.GroupChildCars .ChildCarItem').find('.checkChild').prop('checked', this.checked);
+        //    $(this).parents('.ChildCarItem .checkbox').prop('checked', function () {
+        //        return $(this).next().find(':checked').length;
+        //    });
+        //});
+
+
 
 
 
@@ -470,33 +1259,12 @@
             //    return $(this).val();
             //});
         });
+
         function getitem(id) {
 
-            //debugger;
-            //$(".MainCarItem").map(function () {
-            //    $(this).parent().removeClass("open")
-            //});
-
-            //document.querySelector(`#${id}`).parentNode.classList.add("open")
         }
-        //$(".ItemOfCars").click(function () {
-        //    debugger;
-        //    var myEm = $(this).attr('id');
-        //    //alert(myEm);
-        //    $('section[id = ' + myEm + ']').addClass('open');
-        //});
-        //var array = [];
-        //$(".checkbox").click(function () {
-        //    debugger;
-        //    array = $(".CarCheck:checked").map(function () {
-        //        return $(this).attr("id");
-        //    });
 
-
-        //console.log(array);
-
-
-        function ajaxRangeLeft(left) {
+        function ajaxRangeLeft_Model(left) {
             //debugger;
             if (left != null && left != 0) {
                 $.ajax({
@@ -527,7 +1295,7 @@
             }
         }
 
-        function ajaxRangeRight(right) {
+        function ajaxRangeRight_Model(right) {
                 //debugger;
             $(".CandDelete").remove();
             if (right != null && right != 0) {
@@ -557,7 +1325,6 @@
             }
         }
 
-
         function getcarscategories(obj) {
             //debugger;
 
@@ -581,6 +1348,21 @@
                 return $(this).attr("id");
             });
 
+            var arrofcarsengine = $(".car_engine_items:checked").map(function () {
+
+                return $(this).attr("id");
+            });
+
+            var arrofcarsequipment = $(".car_equipment_items:checked").map(function () {
+
+                return $(this).attr("id");
+            });
+
+            var arrofcarscolour = $(".car_colour_items:checked").map(function () {
+
+                return $(this).attr("id");
+            });
+
 
             //debugger
             $(".CandDelete").map(function () {
@@ -590,6 +1372,13 @@
             var _arrofcarscategory = new Array();
             var _arrofcarsTypes = new Array();
             var _arrofcarsSubItems = new Array();
+            var _arrofcarsengine = new Array();
+            var _arrofcarsequipment = new Array();
+            var _arrofcarscolour = new Array();
+
+            for (var i = 0; i < arrofcarsengine.length; i++) {
+                _arrofcarsengine.push(arrofcarsengine[i]);
+            }
 
             for (var i = 0; i < arrofcarscategory.length; i++) {
                 _arrofcarscategory.push(arrofcarscategory[i]);
@@ -604,12 +1393,21 @@
             for (var i = 0; i < arrofcarstype.length; i++) {
                 _arrofcarsTypes.push(arrofcarstype[i]);
             }
+            for (var i = 0; i < arrofcarsequipment.length; i++) {
+                _arrofcarsequipment.push(arrofcarsequipment[i]);
+            }
+            for (var i = 0; i < arrofcarscolour.length; i++) {
+                _arrofcarscolour.push(arrofcarscolour[i]);
+            }
 
             obj.Data = {
 
                 CarCategory: _arrofcarscategory,
                 CarSubItems: _arrofcarsSubItems,
-                CarType: _arrofcarsTypes
+                CarType: _arrofcarsTypes,
+                EngineType: _arrofcarsengine,
+                CarEquipments: _arrofcarsequipment,
+                CarColours: _arrofcarscolour
             }
             return true;
         }
@@ -647,8 +1445,6 @@
             let obj = {};
             var x = [];
             if (getcarscategories(obj)) {
-                //if ((obj.Data.CarCategory.length > 0 && obj.Data.CarCategory != null) || (obj.Data.CarType.length > 0 && obj.Data.CarType != null)) {
-                //debugger;
                 $.ajax({
                     type: "POST",
                     url: "/Home/Carfilter",
@@ -671,41 +1467,173 @@
                             $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
                         }
 
+                        //$("#DeleteAllSearch").click(function () {
 
-                        $("#DeleteAllSearch").click(function () {
+                        //});
+                        //$(".ClearBTN").click(function () {
 
-                        });
-                        $(".ClearBTN").click(function () {
-
-                            $("li").remove(".DeleteLI");
-                        });
-                        $(".DeleteLI").click(function () {
-                            $(this).remove(".DeleteLI");
-                        });
-
-
-
-
+                        //    $("li").remove(".DeleteLI");
+                        //});
+                        //$(".DeleteLI").click(function () {
+                        //    $(this).remove(".DeleteLI");
+                        //});
 
                     }, error: (error) => {
                         //debugger;
                         $("#descrip").text("NewCar");
-                        // unauthorize
-                        //let errorMessage = manageAjaxError(error);
-                        //    pushNotification("danger", errorMessage);
                     }
                 });
             }
-
         });
-
-        //$(document).ready(function () {
-        //    $(".ClearBTN").click(function () {
-        //        $("li").remove(".DeleteLI");
-        //    });
-        //});
 
 
     </script>
+
+    <!-- Start Script Engin-->
+    <script>
+
+        function DropDownSortList() {
+            //debugger;
+            $(".CandDelete").remove();
+            var DropDownSelectedValue = $("[id*=DropDownSort]").val();
+
+            if (DropDownSelectedValue != null) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Sort",
+                    data: JSON.stringify({ sort: parseInt(DropDownSelectedValue)}),
+                    contentType: 'application/json; charset=utf-8',
+                    success: (response) => {
+                        $(".CandDelete").remove();
+                        if (response != null && response != "") {
+                            var jsonresponse = JSON.parse(response);
+                            if (jsonresponse.length != 0) {
+                                for (let i = 0; i < jsonresponse.length; i++) {
+                                    $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href="/Home/OrderAudi/' + jsonresponse[i].ID + '"> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                                }
+                            }
+
+                        }
+                    }, error: (error) => {
+                        $("#descrip").text("NewCar");
+                    }
+                });
+            }
+        }
+
+        function ajaxRangeLeft_engin(left) {
+            //debugger;
+            if (left != null && left != 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/EnginSetLeftRange",
+                    data: JSON.stringify({ left: left }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: (response) => {
+                        $(".CandDelete").remove();
+                        $('#realItem').addClass('RelatedItemClass');
+
+                        if (response != null && response != "") {
+                            $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
+                            var jsonresponse = JSON.parse(response);
+                            for (let i = 0; i < jsonresponse.length; i++) {
+
+                                //result
+                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                            }
+                        }
+                        else {
+                            $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
+                        }
+                    }, error: (error) => {
+                        $("#descrip").text("NewCar");
+                    }
+                });
+            }
+        }
+
+        function ajaxRangeRight_engin(right) {
+                //debugger;
+            $(".CandDelete").remove();
+            if (right != null && right != 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/EnginSetRightRange",
+                    data: JSON.stringify({ right: right }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: (response) => {
+                        $(".CandDelete").remove();
+                        $('#realItem').addClass('RelatedItemClass');
+                        if (response != null && response != "") {
+                            $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
+                            var jsonresponse = JSON.parse(response);
+                            for (let i = 0; i < jsonresponse.length; i++) {
+                                //result
+                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                            }
+                        }
+                        else {
+                            $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
+                        }
+                    }, error: (error) => {
+                        $("#descrip").text("NewCar");
+                    }
+                });
+            }
+        }
+
+    </script>
+    <!-- End Script Engin-->
+    @*<script>
+            var checkbox = {
+                init: function () {
+                    var that = this;
+
+                    $('.ItemOfCars').each(function () {
+                        $parent = $(this);
+
+                        that.activeChildsByParent($parent);
+
+                        $parent.find('input[type="checkbox"]:not(".checkallParent")').on('change', function () {
+                            var $thisParent = $(this).closest('.ItemOfCars');
+                            that.activeChildsByParent($thisParent);
+                        });
+
+                        $parent.find('input[type="checkbox"].checkallParent').on('change', function () {
+                            var $thisParent = $(this).closest('.ItemOfCars');
+                            that.toggleAllChildsByParent($thisParent);
+                        })
+
+                    });
+                },
+                toggleAllChildsByParent: function ($parent) {
+                    var $childs = $parent.find('input[type="checkbox"]:not(.checkallParent)'),
+                        stateAll = $parent.find('input[type="checkbox"].checkallParent').prop('checked');
+
+                    $childs.prop('checked', stateAll);
+                    this.activeChildsByParent($parent);
+                },
+                activeChildsByParent: function ($parent) {
+                    var $allChilds = $parent.find('input[type="checkbox"].checkallParent'),
+                        total = $parent.find('input[type="checkbox"]:not(.checkallParent)').length,
+                        actives = $parent.find('input[type="checkbox"]:not(.checkallParent):checked').length;
+
+                    if (actives < total) {
+                        $allChilds.prop('checked', false);
+                    } else if (actives == 0) {
+
+                    } else {
+                        $allChilds.prop('checked', true);
+                        $('.checkbox').trigger('click');
+                    }
+                }
+            }
+
+            $(document).ready(function () {
+                checkbox.init();
+            })
+
+        </script>*@
+
 
 }

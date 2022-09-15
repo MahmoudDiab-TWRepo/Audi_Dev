@@ -13,5 +13,19 @@ namespace Eagles.LMS.BLL
         {
 
         }
+        public int GetCount(int id)
+        {
+            return ctx.cars.Where(s => s.CategoryId == id).Count();
+        }
+
+        public List<Category> GetCategorieswithCount()
+        {
+            List<Category> categories = ctx.Categories.ToList();
+            foreach (var category in categories)
+            {
+                category.Count = GetCount(category.ID);
+            }
+            return categories;
+        }
     }
 }

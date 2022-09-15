@@ -22,5 +22,7 @@ namespace Eagles.LMS.Models
         public string MainImageTwo { get; set; }
         [ForeignKey(nameof(CategoryID))]
         public virtual Category Categories { get; set; }
+        [NotMapped]
+        public int Count { get; set; }
     }
 }

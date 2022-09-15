@@ -7,21 +7,17 @@
     CarModel _carModel = new CarModel();
     _carModel = ViewBag.dataModelFillter;
 
-    CarEngine _carEngine = new CarEngine();
-    _carEngine = ViewBag.carEngineFillte;
-
     var _categoreis = ctx.categoryManager.GetAllBind();
-
     var _SubItem = ctx.SubItemManager.GetAllBind();
     var _categoreisBodyType = ctx.categoryManager.GetAllBind().Where(s => s.ShowInBodyType == true).ToList();
     var _types = ctx.typeManager.GetAllBind();
+    var _color = ctx.ColorManager.GetAllBind().ToList();
 
     var _leftRange = ViewBag.leftRange;
     var _rightRange = ViewBag.rightRange;
 
     var _EnginleftRange = ViewBag.EnginleftRange;
     var _EnginrightRange = ViewBag.EnginrightRange;
-    //var _types = ctx.typeManager.GetAllBind();
 
 }
 
@@ -85,9 +81,9 @@
 
         @if (_leftRange != null && _rightRange != null)
         {
-            if (_leftRange != 2005 && _rightRange != 2022)
+            if (_leftRange != 2005 || _rightRange != 2022)
             {
-                <li class="DeleteLI">
+                <li id="modelRange" class="DeleteLI">
                     <div class="ItemSearch">
                         <span> From year @_leftRange to @_rightRange </span>
                         <button id="ModelYearRnge" class="Remove">
@@ -101,9 +97,9 @@
 
         @if (_EnginleftRange != null && _EnginrightRange != null)
         {
-            if (_EnginleftRange != 110 && _EnginrightRange != 600)
+            if (_EnginleftRange != 110 || _EnginrightRange != 600)
             {
-                <li class="DeleteLI">
+                <li id="engineRange" class="DeleteLI">
                     <div class="ItemSearch">
                         <span> From HP @_EnginleftRange to @_EnginrightRange </span>
                         <button id="ModelYearRnge" class="Remove">
@@ -114,23 +110,115 @@
             }
         }
 
-        @if (_carEngine != null)
+        @if (_carModel != null)
         {
-            if (_carEngine.EngineType != null && _carEngine.EngineType.Length != 0)
+            if (_carModel.EngineType != null && _carModel.EngineType.Length != 0)
             {
 
-                foreach (var item in _carEngine.EngineType)
+                foreach (var item in _carModel.EngineType)
                 {
                     <li id="@item" class="DeleteLI">
                         <div class="ItemSearch">
-                            @if (item == 0)
+                            @if (item == 1000)
                             {
                                 <span>FWD</span>
                             }
-                            @if (item == 1)
+                            @if (item == 2000)
                             {
                                 <span>Quattro</span>
                             }
+                            <button id="ModelYearRnge" class="Remove">
+                                <i class="bx bx-x"></i>
+                            </button>
+                        </div>
+                    </li>
+                }
+
+            }
+
+        }
+
+        @if (_carModel != null)
+        {
+            if (_carModel.CarEquipments != null && _carModel.CarEquipments.Length != 0)
+            {
+
+                foreach (var item in _carModel.CarEquipments)
+                {
+                    <li id="@item" class="DeleteLI">
+                        <div class="ItemSearch">
+                            @if (item == 100)
+                            {
+                                <span>Cruise control</span>
+                            }
+                            @if (item == 200)
+                            {
+                                <span>Hill descent control</span>
+                            }
+                            @if (item == 300)
+                            {
+                                <span>Hold assist</span>
+                            }
+                            @if (item == 400)
+                            {
+                                <span>Head-up display</span>
+                            }@if (item == 500)
+                            {
+                                <span>Rear view camera</span>
+                            }
+                            @if (item == 600)
+                            {
+                                <span>Rear Eid Pluss</span>
+                            }@if (item == 700)
+                            {
+                                <span>Rear parking Eid</span>
+                            }
+                            @if (item == 800)
+                            {
+                                <span>Park assist</span>
+                            }@if (item == 900)
+                            {
+                                <span>Pre-sense</span>
+                            }
+                            @if (item == 110)
+                            {
+                                <span>LED</span>
+                            }@if (item == 111)
+                            {
+                                <span>Matrix LED</span>
+                            }
+                            @if (item == 112)
+                            {
+                                <span>Audi smartphone interface</span>
+                            }@if (item == 113)
+                            {
+                                <span>Seat Standard</span>
+                            }
+                            @if (item == 114)
+                            {
+                                <span>Sport seats</span>
+                            }
+                            <button id="ModelYearRnge" class="Remove">
+                                <i class="bx bx-x"></i>
+                            </button>
+                        </div>
+                    </li>
+                }
+
+            }
+
+        }
+
+        @if (_carModel != null)
+        {
+            if (_carModel.CarColours != null && _carModel.CarColours.Length != 0)
+            {
+
+                foreach (var item in _carModel.CarColours)
+                {
+                    <li id="@item" class="DeleteLI">
+                        <div class="ItemSearch">
+                            <span> @_color.Where(a => a.Id == item).FirstOrDefault().Name</span>
                             <button class="Remove">
                                 <i class="bx bx-x"></i>
                             </button>
@@ -142,7 +230,7 @@
 
         }
 
-        @if (_carModel != null && _leftRange != null && _rightRange != null)
+        @if (_carModel != null || _leftRange != null || _rightRange != null || _EnginleftRange != null || _EnginrightRange != null)
         {
             <li>
                 <div class="SearchClear">
@@ -164,13 +252,34 @@
         $(".ClearBTN").click(function () {
 
             $(".checkallParent").removeAttr('checked');
-
             $(".ChildCarItem").find('input[type=checkbox]').removeAttr('checked');
+            $(".drivenationItem").find('input[type=checkbox]').removeAttr('checked');
+            $(".equipmentItem").find('input[type=checkbox]').removeAttr('checked');
 
             $(".car_category").removeAttr('checked');
+            $(".car_engine_items").removeAttr('checked');
+            $(".car_equipment_items").removeAttr('checked');
+            $(".car_colour_items").removeAttr('checked');
+
             $("li").remove(".DeleteLI");
-            $("#NewCAr").find(".CandDelete").remove();
-            $('#realItem').removeClass('RelatedItemClass');
+            //$("#NewCAr").find(".CandDelete").remove();
+            //$('#realItem').removeClass('RelatedItemClass');
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/ClearMethod",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == true) {
+                        //alert("You will now be redirected.");
+                        window.location = "/";
+                    }
+                }
+            });
+
+
 
             /*location.reload();*/
         });
@@ -180,20 +289,26 @@
 
             $(".MainCarItem").find('#' + isss).removeAttr('checked');
             $(".ChildCarItem").find('#' + isss).removeAttr('checked');
+            $(".Drivetrain").find('#' + isss).removeAttr('checked');
+            $(".equipmentItem").find('#' + isss).removeAttr('checked');
+            $(".colorItem").find('#' + isss).removeAttr('checked');
+
+            if (isss == "modelRange") {
+                ajaxRangeLeft_Model(2005);
+                ajaxRangeRight_Model(2022);
+            }
+            else if (isss == "engineRange") {
+                ajaxRangeLeft_engin(110);
+                ajaxRangeRight_engin(600);
+            }
+            else {
+                $('.checkbox').trigger('click');
+            }
 
         });
 
 
     });
-
-    @*function ddddd() {
-
-            @foreach (var item in _carModel.CarCategory)
-            {
-                let xsss = $document.getElementById(item);
-            }
-    }*@
-
 
 </script>
 

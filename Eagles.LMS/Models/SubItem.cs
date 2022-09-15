@@ -21,6 +21,8 @@ namespace Eagles.LMS.Models
         public int? TypeID { get; set; }
         [ForeignKey(nameof(TypeID))]
         public virtual Types Types { get; set; }
+        [NotMapped]
+        public int Count { get; set; }
 
 
     }

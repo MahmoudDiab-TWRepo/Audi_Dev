@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -21,11 +22,11 @@ namespace Eagles.LMS.Models
 
 
         public bool ShowInBodyType { get; set; }
-
+        [NotMapped]
+        public int Count { get; set; }
         //public List<ServiceImages> ServiceImages { get; set; }
 
         //public DateTime CreateTime { get; set; }
-        //public int UserCreateId { get; set; }
 
         //public DateTime EditeTime { get; set; }
         //public int UserEditId { get; set; }

@@ -89,7 +89,7 @@
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" class="car_engine_items" id="0" value="s">
+                                <input type="checkbox" class="car_engine_items" id="1" value="">
                                 <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                 FWD <span class="CountCar">(1)</span>
                             </label>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" class="car_engine_items" id="1" value="s">
+                                <input type="checkbox" class="car_engine_items" id="2" value="">
                                 <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                 quattro <span class="CountCar">(1)</span>
                             </label>
@@ -312,7 +312,7 @@
             if (right != null && right != 0) {
                 $.ajax({
                     type: "POST",
-                    url: "/Home/EnginSetLeftRange",
+                    url: "/Home/EnginSetRightRange",
                     data: JSON.stringify({ right: right }),
                     contentType: 'application/json; charset=utf-8',
                     success: (response) => {

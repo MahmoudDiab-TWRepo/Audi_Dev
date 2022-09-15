@@ -36,7 +36,8 @@
 	//Mobile Nav Hide Show
 	if($('.sidenav-bar').length){
 		
-		$('.sidenav-bar .close-btn').on('click', function() {
+		$('.sidenav-bar .close-btn').on('click', function () {
+			$('.nav-toggler').removeClass('minifySpan');
 			$('body').removeClass('sidenav-bar-visible');
 			$('.nav-toggler').parent('.btn-box').addClass('no-touch');
 		});
@@ -48,11 +49,14 @@
 		});
 
 		//Menu Toggle Btn
-		$('.nav-toggler').on('click', function() {
+		$('.nav-toggler').on('click', function () {
+			$(this).addClass('minifySpan');
 			$('body').toggleClass('sidenav-bar-visible');
 			$(this).parent('.btn-box').toggleClass('no-touch');
 		});
 	}
+
+
 
 
 	// Links For Menu

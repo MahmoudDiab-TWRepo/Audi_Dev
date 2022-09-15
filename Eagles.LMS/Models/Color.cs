@@ -15,6 +15,8 @@ namespace Eagles.LMS.Models
         public string Name { get; set; }
 
         public string ImageColor { get; set; }
+        [NotMapped]
+        public int Count { get; set; }
         //public Car Car { get; set; }
         //public int? CarId { get; set; }
 
