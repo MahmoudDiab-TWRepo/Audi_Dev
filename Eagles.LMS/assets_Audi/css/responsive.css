@@ -911,4 +911,38 @@
 		top: 115px;
 		padding: 0 20px;
 	}
+	.TapsCars .TapsCarCont .AllCars .ItemOfCars .MainCarItem .Images {
+		height: 61px;
+	}
+	.TapsCars .TapsCarCont .AllCars .ItemOfCars .GroupChildCars .ChildCarItem .Images {
+		height: 61px;
+	}
+	.TapsCars .TapsCarCont .AllCars .ItemOfCars.open:nth-of-type(4n+4) > .GroupChildCars {
+		left: -100%;
+	}
+	.NextPage .linknextPage a {
+		display: none;
+		width: 250px;
+		border: 1px solid #000;
+		color: #000;
+		padding: 0 20px;
+		height: 55px;
+		line-height: 55px;
+		margin: auto;
+		margin-top: 30px;
+		font-size: 14px;
+		text-align: center;
+		margin-right: auto;
+	}
+	.ResultSearch .RaeltCont .underResultSec .ResultItem .LinaktElItem ul {
+		display: block;
+	}
+		.ResultSearch .RaeltCont .underResultSec .ResultItem .LinaktElItem ul a {
+			display: block;
+			width: 100%;
+			margin-bottom: 5px;
+		}
+	.SeearchListItem ul li{
+		margin-right:5px;
+	}
 	}

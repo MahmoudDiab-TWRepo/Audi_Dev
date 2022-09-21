@@ -169,22 +169,38 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 RemoveInput " style="display:none">
+                                @*<div class="form-group">
+                <label for="">Car model</label>
+                @Html.DropDownListFor(x => Model.OldCarModel, new SelectList(carmodel,
+              "ID", "Name"), htmlAttributes: new { @class = "form-control", onchange = "GetValue()", id = "OldCarModel" })
+            </div>*@
+
                                 <div class="form-group">
                                     <label for="">Car model</label>
-                                    @Html.DropDownListFor(x => Model.OldCarModel, new SelectList(carmodel,
-                                  "ID", "Name"), htmlAttributes: new { @class = "form-control", onchange = "GetValue()", id = "OldCarModel" })
+                                    @Html.DropDownListFor(n => Model.OldCarModel,
+                                   new SelectList(carmodel, "ID", "Name", 0),
+                                   "Please Select Car Model",
+                                   htmlAttributes: new { @class = "form-control", onchange = "GetValue()", id = "OldCarModel" })
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 RemoveInput " style="display:none">
+                                <!--<div class="form-group">
+            <label for="">Engine capacity</label>-->
+                                @*<select class="form-control " name="req_capacity">
+                <option value="1.4 cc">1.4 cc</option>
+                <option value="2.0 cc">2.0 cc</option>
+            </select>*@
+
+                                <!--@Html.DropDownListFor(x => Model.OldEnginCapacity, new SelectList(EnginCapacityData,
+        "Id", "Name"), htmlAttributes: new { @class = "form-control", @id = "OldEnginCapacity" })
+          </div>-->
+
                                 <div class="form-group">
                                     <label for="">Engine capacity</label>
-                                    @*<select class="form-control " name="req_capacity">
-                                        <option value="1.4 cc">1.4 cc</option>
-                                        <option value="2.0 cc">2.0 cc</option>
-                                    </select>*@
-
-                                    @Html.DropDownListFor(x => Model.OldEnginCapacity, new SelectList(EnginCapacityData,
-                              "Id", "Name"), htmlAttributes: new { @class = "form-control", @id = "OldEnginCapacity" })
+                                    @Html.DropDownListFor(n => Model.OldEnginCapacity,
+                                   new SelectList(EnginCapacityData, "Id", "Name", 0),
+                                   "Please Select Engine capacity",
+                                   htmlAttributes: new { @class = "form-control", id = "OldEnginCapacity" })
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 RemoveInput " style="display:none">
@@ -194,7 +210,8 @@
                                     @Html.DropDownListFor(model => model.OldModelYear,
                                               new List<SelectListItem> {
                                                    new SelectListItem { Value = "" , Text = "Choose year " },
-                                                   new SelectListItem { Value = "2022" , Text = " 2022" },
+
+                                                    new SelectListItem { Value = "2022" , Text = " 2022" },
                                                    new SelectListItem { Value = "2021" , Text = " 2021 " },
                                                    new SelectListItem { Value = "2020" , Text = " 2020 " },
                                                    new SelectListItem { Value = "2019" , Text = " 2019 " },
@@ -203,6 +220,7 @@
                                                    new SelectListItem { Value = "2016" , Text = " 2016 " },
                                                    new SelectListItem { Value = "2015" , Text = " 2015 " },
                                                    new SelectListItem { Value = "2014" , Text = " 2014 " },
+
 
                                                 },
                                               new { @class = "form-control", @id = "ExperianceLevelID" })
@@ -241,22 +259,42 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ConstInput " style="display:none">
+                                @*<div class="form-group">
+                  <label for="">Car model</label>
+                  @Html.DropDownListFor(x => Model.CarModel, new SelectList(carmodel,
+            "ID", "Name"), htmlAttributes: new { @class = "form-control", onchange = "GetValueNew()", id = "CarModel", value = car.CategoryId })
+              </div>*@
+
                                 <div class="form-group">
                                     <label for="">Car model</label>
-                                    @Html.DropDownListFor(x => Model.CarModel, new SelectList(carmodel,
-                              "ID", "Name"), htmlAttributes: new { @class = "form-control", onchange = "GetValueNew()", id = "CarModel", value = car.CategoryId })
+                                    @Html.DropDownListFor(n => Model.CarModel,
+                                   new SelectList(carmodel, "ID", "Name", 0),
+                                   "Please Select Car Model",
+                                   htmlAttributes: new { @class = "form-control", onchange = "GetValueNew()", id = "CarModel", value = car.CategoryId })
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ConstInput " style="display:none">
+                                @*<div class="form-group">
+
+              <label for="">Engine capacity</label>
+
+
+              @Html.DropDownListFor(x => Model.EnginCapacity, new SelectList(EnginCapacityDataNew,
+        "Id", "Name"), htmlAttributes: new { @class = "form-control", @id = "EnginCapacity" })
+          </div>*@
+
                                 <div class="form-group">
-
                                     <label for="">Engine capacity</label>
-
-
-                                    @Html.DropDownListFor(x => Model.EnginCapacity, new SelectList(EnginCapacityDataNew,
-                              "Id", "Name"), htmlAttributes: new { @class = "form-control", @id = "EnginCapacity" })
+                                    @Html.DropDownListFor(n => Model.EnginCapacity,
+                                   new SelectList(EnginCapacityData, "Id", "Name", 0),
+                                   "Please Select Engine capacity",
+                                   htmlAttributes: new { @class = "form-control", id = "EnginCapacity" })
                                 </div>
                             </div>
+
+                            
+
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ConstInput " style="display:none">
                                 <div class="form-group">
                                     <label for="">Mileage</label>

@@ -52,12 +52,12 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     }
                     else
                     {
-                        string _rendom = new Random().Next(1, 999999999).ToString();
-                       
+                        string _rendom = System.Guid.NewGuid().ToString();
+
                         //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
                         
-                        var fileName = _rendom + extention;
+                        var fileName = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + "_" + _rendom + extention;
                         
 
                         var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
@@ -72,9 +72,9 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                         if (uploadattachments_multi != null)
                         {
 
-                            string _rendomtwo = new Random().Next(1, 99999999).ToString();
+                            string _rendomtwo = System.Guid.NewGuid().ToString();
                             string extentiontwo = System.IO.Path.GetExtension(uploadattachments_multi.FileName);
-                            var fileNametwo = _rendomtwo + extentiontwo;
+                            var fileNametwo = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + "_" + _rendomtwo + extentiontwo;
                             var pathtwo = Path.Combine(Server.MapPath("~/attachments"), fileNametwo);
                             uploadattachments_multi.SaveAs(pathtwo);
                             subItem.MainImageTwo = $"/attachments/{fileNametwo}";
@@ -163,12 +163,12 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
 
 
-                        string _rendom = new Random().Next(1, 999999999).ToString();
-                        
+                        string _rendom = System.Guid.NewGuid().ToString();
+
                         //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
                         
-                        var fileName = _rendom + extention;
+                        var fileName = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + "_" + _rendom + extention;
                         
 
                         var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
@@ -200,9 +200,9 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
                     if (uploadattachments_multi != null)
                     {
-                        string _rendomtwo = new Random().Next(1, 99999999).ToString();
+                        string _rendomtwo = System.Guid.NewGuid().ToString();
                         string extentiontwo = System.IO.Path.GetExtension(uploadattachments_multi.FileName);
-                        var fileNametwo = _rendomtwo + extentiontwo;
+                        var fileNametwo = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + "_" + _rendomtwo + extentiontwo;
                         var pathtwo = Path.Combine(Server.MapPath("~/attachments"), fileNametwo);
                         uploadattachments_multi.SaveAs(pathtwo);
                         subItem.MainImageTwo = $"/attachments/{fileNametwo}";

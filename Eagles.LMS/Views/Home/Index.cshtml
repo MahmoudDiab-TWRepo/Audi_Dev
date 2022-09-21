@@ -177,55 +177,54 @@
 
                                                                     @* <input type="checkbox" id="@item.ID" class="checkall">*@
 
-                                                                    @*<form class="filter-content">
-                                                                        <fildest class="filter">*@
-
-                                                                    <div class="MainCarItem">
+                                                               
 
 
-                                                                        <div class="Images">
-                                                                            <img class="MainImgOne" src="@item.MainImageOne" />
-                                                                            <img class="MainImgTwo" src="@item.MainImageTwo" />
-                                                                        </div>
-                                                                        <div class="CarTitle">
-                                                                            <div class="checkbox modelType">
-                                                                                <label>
-                                                                                    <input class="car_category checkallParent " type="checkbox" id="@item.ID">
-                                                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                                    @item.Name <span class="CountCar">(@item.Count)</span>
-                                                                                </label>
+                                                                        <div class="MainCarItem">
+
+
+                                                                            <div class="Images">
+                                                                                <img class="MainImgOne" src="@item.MainImageOne" />
+                                                                                <img class="MainImgTwo" src="@item.MainImageTwo" />
                                                                             </div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                    <div class="GroupChildCars">
-
-                                                                        @foreach (var itemtype in _SubItem.Where(s => s.CategoryID == item.ID).ToList())
-                                                                        {
-
-                                                                            <div class="ChildCarItem">
-                                                                                <div class="Images">
-                                                                                    <img class="MainImgOne" src="@itemtype.MainImageOne" />
-                                                                                    @* @<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
+                                                                            <div class="CarTitle">
+                                                                                <div class="checkbox modelType">
+                                                                                    <label>
+                                                                                        <input class="car_category checkallParent " type="checkbox" id="@item.ID">
+                                                                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                        @item.Name <span class="CountCar">(@item.Count)</span>
+                                                                                    </label>
                                                                                 </div>
-                                                                                <div class="CarTitle">
-                                                                                    <div class="checkbox modelType">
-                                                                                        <label class="checklable">
-                                                                                            <input name="child" class="car_category_items checkChild " type="checkbox" id="@itemtype.Id">
-                                                                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                                            @itemtype.Name <span class="CountCar">(@itemtype.Count)</span>
-                                                                                        </label>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="GroupChildCars">
+
+                                                                            @foreach (var itemtype in _SubItem.Where(s => s.CategoryID == item.ID).ToList())
+                                                                            {
+
+                                                                                <div class="ChildCarItem">
+                                                                                    <div class="Images">
+                                                                                        <img class="MainImgOne" src="@itemtype.MainImageOne" />
+                                                                                        @* @<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
+                                                                                    </div>
+                                                                                    <div class="CarTitle">
+                                                                                        <div class="checkbox modelType  checkbox_Child">
+                                                                                            <label class="checklable">
+                                                                                                <input name="child" class="car_category_items checkChild " type="checkbox" id="@itemtype.Id">
+                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                                @itemtype.Name <span class="CountCar">(@itemtype.Count)</span>
+                                                                                            </label>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
 
 
 
-                                                                        }
-                                                                    </div>
-
-                                                                    @*</fildest>
-                                                                        </form>*@
+                                                                            }
+                                                                        </div>
+                                                                  
+                                                       
                                                                 </div>
 
 
@@ -234,48 +233,7 @@
 
 
 
-                                                        @*<div class="TestDiv">
-                                                                <div class="filter-content">
-                                                                    <div class="ItemOfCars">
-                                                                        <div class="checkbox">
-                                                                            <label class=" all-label" for="allddd">
-                                                                                <input class="car_category checkallParent " type="checkbox" id="allddd">
-                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                                All Bands <span class="CountCar">(1)</span>
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="checkbox modelType">
-                                                                            <label for="0">
-                                                                                <input class="car_category " type="checkbox" id="0">
-                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                                Perfection111 <span class="CountCar">(1)</span>
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="checkbox modelType">
-                                                                            <label for="12">
-                                                                                <input class="car_category " type="checkbox" id="12">
-                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                                Perfection222 <span class="CountCar">(1)</span>
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="checkbox modelType">
-                                                                            <label for="11">
-                                                                                <input class="car_category " type="checkbox" id="11">
-                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                                Bands333 <span class="CountCar">(1)</span>
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="checkbox modelType">
-                                                                            <label for="13">
-                                                                                <input class="car_category " type="checkbox" id="13">
-                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                                Bands444 <span class="CountCar">(1)</span>
-                                                                            </label>
-                                                                        </div>
 
-                                                                    </div>
-                                                                </div>
-                                                            </div>*@
 
 
 
@@ -1241,8 +1199,10 @@
 
 
         $(".ItemOfCars").click(function () {
+
             //debugger;
             $(".ItemOfCars").map(function () {
+            
                 $(".ItemOfCars").removeClass("open")
             });
             //document.querySelector(`#${id}`).classList.add("open")
@@ -1597,36 +1557,63 @@
                         $parent.find('input[type="checkbox"]:not(".checkallParent")').on('change', function () {
                             var $thisParent = $(this).closest('.ItemOfCars');
                             that.activeChildsByParent($thisParent);
+                  
+                         /*   $('.checkbox').trigger('click');*/
+                     
+                            
                         });
 
                         $parent.find('input[type="checkbox"].checkallParent').on('change', function () {
                             var $thisParent = $(this).closest('.ItemOfCars');
                             that.toggleAllChildsByParent($thisParent);
-                        })
-
+                          /*  $($parent).addClass("open");*/
+                           /* $('.checkbox').trigger('click');*/
+                         
+                        
+                        });
+                        
+                        /*$('.checkbox').trigger('click');*/
                     });
+
                 },
+
                 toggleAllChildsByParent: function ($parent) {
                     var $childs = $parent.find('input[type="checkbox"]:not(.checkallParent)'),
                         stateAll = $parent.find('input[type="checkbox"].checkallParent').prop('checked');
 
                     $childs.prop('checked', stateAll);
                     this.activeChildsByParent($parent);
+                    $('.checkbox').trigger('click');
+                    $($parent).addClass("open");
                 },
                 activeChildsByParent: function ($parent) {
                     var $allChilds = $parent.find('input[type="checkbox"].checkallParent'),
                         total = $parent.find('input[type="checkbox"]:not(.checkallParent)').length,
                         actives = $parent.find('input[type="checkbox"]:not(.checkallParent):checked').length;
-
+                        
                     if (actives < total) {
                         $allChilds.prop('checked', false);
-                    } else if (actives == 0) {
+                        /*$('.checkbox').trigger('click');*/
+                       /* $('.checkbox').trigger('click');*/
+                          /* $($parent).addClass("open");*/
 
+
+                    } else if (actives == 0) {
+                      /*  $('.checkbox').trigger('click');*/
+                        
                     } else {
                         $allChilds.prop('checked', true);
-                        $('.checkbox').trigger('click');
+                       /* $('.checkbox').trigger('click');*/
+                      /*  $('.checkbox').trigger('click');*/
+                          /* $($parent).addClass("open");*/
+
+                       
                     }
+                    $('.checkbox').trigger('click');
+                    $($parent).addClass("open");
+                    
                 }
+                
             }
 
             $(document).ready(function () {

@@ -75,15 +75,17 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     if (uploadattachments != null)
                     {
 
-                        _rendom = new Random().Next(1, 99999999).ToString();
+                        _rendom = System.Guid.NewGuid().ToString();
 
                         //fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
-                        fileName = _rendom + extention;
+                        fileName = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") +"_"+ _rendom + extention;
 
                         path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                         uploadattachments.SaveAs(path);
                         car.MainImage = $"/attachments/{fileName}";
+
+
 
                     }
 
@@ -115,11 +117,11 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     {
                         foreach (var item in uploadattachments_multi)
                         {
-                            _rendom = new Random().Next(1, 99999999).ToString();
+                            _rendom = System.Guid.NewGuid().ToString();
 
                             //fileName = _rendom + Path.GetFileName(item.FileName);
                             string extention = System.IO.Path.GetExtension(item.FileName);
-                            fileName = _rendom + extention;
+                            fileName = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + "_" + _rendom + extention;
 
                             path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                             item.SaveAs(path);
@@ -145,7 +147,8 @@ namespace Eagles.LMS.Areas.Admission.Controllers
 
             TempData["RequestStatus"] = requestStatus;
             car.CarImages = _ctx.CarImagesManager.GetAll().Where(s => s.CarId == car.ID).ToList();
-            return View(car);
+            //return View(car);
+            return RedirectToAction(nameof(Index));
 
         }
 
@@ -183,11 +186,13 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                     }
                     else
                     {
-                        string _rendom = new Random().Next(1, 99999999).ToString();
+                        string _rendom = System.Guid.NewGuid().ToString();
 
                         //var fileName = _rendom + Path.GetFileName(uploadattachments.FileName);
                         string extention = System.IO.Path.GetExtension(uploadattachments.FileName);
-                        var fileName = _rendom + extention;
+                        //var fileName = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + extention;
+
+                        var fileName = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + "_" + _rendom + extention;
 
                         var path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                         uploadattachments.SaveAs(path);
@@ -226,12 +231,12 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                         {
                             foreach (var item in uploadattachments_multi)
                             {
-                                _rendom = new Random().Next(1, 99999999).ToString();
+                                _rendom = System.Guid.NewGuid().ToString();
 
                                 //fileName = _rendom + Path.GetFileName(item.FileName);
                                 extention = System.IO.Path.GetExtension(item.FileName);
-                                fileName = _rendom + extention;
-
+                                fileName = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") +"_"+ _rendom + extention;
+                                //fileName = DateTime.Now.ToString("dd_MM_yyyy_hh_mm_ss") + extention;
                                 path = Path.Combine(Server.MapPath("~/attachments"), fileName);
                                 item.SaveAs(path);
                                 _ctx.CarImagesManager.Add(new CarImages
@@ -246,7 +251,7 @@ namespace Eagles.LMS.Areas.Admission.Controllers
                         }
 
                         requestStatus = new ManageRequestStatus().GetStatus(Status.Created);
-                        result = RedirectToAction(nameof(Create));
+                        result = RedirectToAction(nameof(Index));
 
                     }
 
