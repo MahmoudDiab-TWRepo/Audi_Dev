@@ -784,6 +784,7 @@
     <Content Include="assets_Audi\fonts\fa-solid-900.svg" />
     <Content Include="assets_Audi\fonts\Flaticon.svg" />
     <Content Include="assets_Audi\fonts\materialdesignicons-webfonte910.html" />
+    <Content Include="assets_Audi\images\AAP.png" />
     <Content Include="assets_Audi\images\Audiimg\1.png" />
     <Content Include="assets_Audi\images\Audiimg\11.png" />
     <Content Include="assets_Audi\images\Audiimg\111.png" />
@@ -867,6 +868,7 @@
     <Content Include="assets_Audi\js\owl.js" />
     <Content Include="assets_Audi\js\popper.min.js" />
     <Content Include="assets_Audi\js\script.js" />
+    <Content Include="assets_Audi\js\SearchKeyScripts.js" />
     <Content Include="assets_Audi\js\swiper.min.js" />
     <Content Include="assets_Audi\js\TweenMax.min.js" />
     <Content Include="assets_Audi\js\validate.js" />

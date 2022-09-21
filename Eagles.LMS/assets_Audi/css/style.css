@@ -12267,7 +12267,8 @@ input[type=range] {
 /*start our box*/
 /*start login head*/
 .login-head {
-    background-image: url(../images/Audiimg/loginform.png);
+
+    background-image: url('../images/AAP.png');
     background-size: cover !important;
     background-size: 100%;
     background-repeat: no-repeat;
