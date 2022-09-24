@@ -11138,7 +11138,172 @@ img {
                     position: inherit;
                 }
 
+                /**************************/
 
+
+
+
+
+
+            .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo {
+                cursor: pointer;
+                margin-bottom: 0;
+                width: 25%;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                margin-bottom: 0;
+                padding: 0;
+                position: relative;
+                /* width: 100%;*/
+            }
+
+                .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo.open {
+                    background-color: #e7e9ea;
+                }
+
+                .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .MainCarItemTwo {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-flex: 1;
+                    -ms-flex: 1 0 100%;
+                    flex: 1 0 100%;
+                    -ms-flex-wrap: wrap;
+                    flex-wrap: wrap;
+                    position: relative;
+                    padding: 20px 15px;
+                }
+
+                    .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .MainCarItemTwo .Images {
+                        margin-bottom: 10px;
+                        position: relative;
+                        height: 105px;
+                        width: 100%;
+                    }
+
+                        .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .MainCarItemTwo .Images .MainImgOne {
+                            opacity: 1;
+                            height: 100%;
+                            width: 100%;
+                        }
+
+                        .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .MainCarItemTwo .Images .MainImgTwo {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            opacity: 0;
+                            height: 100%;
+                            width: 100%;
+                        }
+
+                    .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .MainCarItemTwo:hover .Images .MainImgOne {
+                        opacity: 0
+                    }
+
+                    .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .MainCarItemTwo:hover .Images .MainImgTwo {
+                        opacity: 1;
+                    }
+
+                    .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .MainCarItemTwo .CarTitle {
+                    }
+
+                        .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .MainCarItemTwo .CarTitle h2 {
+                        }
+
+                .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .GroupChildCars {
+                    left: 0;
+                    -webkit-box-flex: 1;
+                    -ms-flex: 1 0 400%;
+                    flex: 1 0 400%;
+                    display: inline-block;
+                    background-color: #e7e9ea;
+                    width: 100%;
+                    display: none
+                }
+
+                    .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .GroupChildCars .ChildCarItem {
+                        width: calc(100% / 4 );
+                        border-bottom: none;
+                        margin: 0;
+                        max-height: none;
+                        padding: 20px 15px;
+                        display: inline-block;
+                        float: left;
+                    }
+
+                        .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .GroupChildCars .ChildCarItem .Images {
+                            margin-bottom: 10px;
+                            position: relative;
+                            height: 105px;
+                        }
+
+                            .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .GroupChildCars .ChildCarItem .Images .MainImgOne {
+                                opacity: 1;
+                                height: 100%;
+                                width: 100%;
+                            }
+
+                            .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .GroupChildCars .ChildCarItem .Images .MainImgTwo {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                opacity: 0;
+                                height: 100%;
+                                width: 100%;
+                            }
+
+                        .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .GroupChildCars .ChildCarItem:hover .Images .MainImgOne {
+                            opacity: 1;
+                        }
+
+                        .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .GroupChildCars .ChildCarItem:hover .Images .MainImgTwo {
+                            opacity: 0;
+                        }
+
+                        .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .GroupChildCars .ChildCarItem .CarTitle {
+                        }
+
+                            .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo .GroupChildCars .ChildCarItem .CarTitle h2 {
+                            }
+
+
+
+
+                .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo.open .GroupChildCars {
+                    display: block;
+                }
+
+                .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo.open:nth-of-type(4n+1) > .GroupChildCars {
+                    left: 0;
+                    position: inherit;
+                }
+
+                .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo.open:nth-of-type(4n+2) > .GroupChildCars {
+                    left: -100%;
+                    position: inherit;
+                }
+
+                .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo.open:nth-of-type(4n+3) > .GroupChildCars {
+                    left: -200%;
+                    position: inherit;
+                }
+
+                .TapsCars .TapsCarCont .AllCars .ItemOfCarsTwo.open:nth-of-type(4n+4) > .GroupChildCars {
+                    left: -300%;
+                    position: inherit;
+                }
+
+
+
+
+
+                /*******************************/
 
 
 
@@ -11219,7 +11384,83 @@ img {
             opacity: 1;
         }
 
+        /****************************************/
+    .checkboxTwo label:after,
+    .radio label:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
 
+.checkboxTwo .cr,
+.radio .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #000000;
+    border-radius: 0;
+    width: 25px;
+    height: 25px;
+    margin-right: 0.5em;
+    cursor: pointer;
+    position: relative;
+    top: 6px;
+}
+
+.radio .cr {
+    border-radius: 50%;
+}
+
+    .checkboxTwo .cr .cr-icon,
+    .radio .cr .cr-icon {
+        position: absolute;
+        font-size: .8em;
+        line-height: 0;
+        top: 50%;
+        left: 20%;
+    }
+
+    .radio .cr .cr-icon {
+        margin-left: 0.04em;
+    }
+
+.checkboxTwo label {
+    color: #4c4c4c;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+    .checkboxTwo label .CountCar {
+        color: #999;
+        font-weight: 400;
+        white-space: nowrap;
+    }
+
+    .checkboxTwo label input[type="checkbox"],
+    .radio label input[type="radio"] {
+        display: none;
+    }
+
+        .checkboxTwo label input[type="checkbox"] + .cr > .cr-icon,
+        .radio label input[type="radio"] + .cr > .cr-icon {
+            transform: scale(3) rotateZ(-20deg);
+            opacity: 0;
+            transition: all .3s ease-in;
+        }
+
+        .checkboxTwo label input[type="checkbox"]:checked + .cr > .cr-icon,
+        .radio label input[type="radio"]:checked + .cr > .cr-icon {
+            transform: scale(1) rotateZ(0deg);
+            opacity: 1;
+            font-size: 16px;
+            color: #000;
+        }
+
+        .checkboxTwo label input[type="checkbox"]:disabled + .cr,
+        .radio label input[type="radio"]:disabled + .cr {
+            opacity: 1;
+        }
+
+        /**************/
 
 
 

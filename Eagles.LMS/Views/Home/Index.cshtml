@@ -177,54 +177,54 @@
 
                                                                     @* <input type="checkbox" id="@item.ID" class="checkall">*@
 
-                                                               
 
 
-                                                                        <div class="MainCarItem">
+
+                                                                    <div class="MainCarItem">
 
 
-                                                                            <div class="Images">
-                                                                                <img class="MainImgOne" src="@item.MainImageOne" />
-                                                                                <img class="MainImgTwo" src="@item.MainImageTwo" />
+                                                                        <div class="Images">
+                                                                            <img class="MainImgOne" src="@item.MainImageOne" />
+                                                                            <img class="MainImgTwo" src="@item.MainImageTwo" />
+                                                                        </div>
+                                                                        <div class="CarTitle">
+                                                                            <div class="checkbox modelType">
+                                                                                <label>
+                                                                                    <input class="car_category checkallParent " type="checkbox" id="@item.ID">
+                                                                                    <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                    @item.Name <span class="CountCar">(@item.Count)</span>
+                                                                                </label>
                                                                             </div>
-                                                                            <div class="CarTitle">
-                                                                                <div class="checkbox modelType">
-                                                                                    <label>
-                                                                                        <input class="car_category checkallParent " type="checkbox" id="@item.ID">
-                                                                                        <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                                        @item.Name <span class="CountCar">(@item.Count)</span>
-                                                                                    </label>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="GroupChildCars">
+
+                                                                        @foreach (var itemtype in _SubItem.Where(s => s.CategoryID == item.ID).ToList())
+                                                                        {
+
+                                                                            <div class="ChildCarItem">
+                                                                                <div class="Images">
+                                                                                    <img class="MainImgOne" src="@itemtype.MainImageOne" />
+                                                                                    @* @<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
+                                                                                </div>
+                                                                                <div class="CarTitle">
+                                                                                    <div class="checkbox modelType  checkbox_Child">
+                                                                                        <label class="checklable">
+                                                                                            <input name="child" class="car_category_items checkChild " type="checkbox" id="@itemtype.Id">
+                                                                                            <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
+                                                                                            @itemtype.Name <span class="CountCar">(@itemtype.Count)</span>
+                                                                                        </label>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
 
-                                                                        </div>
-                                                                        <div class="GroupChildCars">
-
-                                                                            @foreach (var itemtype in _SubItem.Where(s => s.CategoryID == item.ID).ToList())
-                                                                            {
-
-                                                                                <div class="ChildCarItem">
-                                                                                    <div class="Images">
-                                                                                        <img class="MainImgOne" src="@itemtype.MainImageOne" />
-                                                                                        @* @<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
-                                                                                    </div>
-                                                                                    <div class="CarTitle">
-                                                                                        <div class="checkbox modelType  checkbox_Child">
-                                                                                            <label class="checklable">
-                                                                                                <input name="child" class="car_category_items checkChild " type="checkbox" id="@itemtype.Id">
-                                                                                                <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
-                                                                                                @itemtype.Name <span class="CountCar">(@itemtype.Count)</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
 
 
+                                                                        }
+                                                                    </div>
 
-                                                                            }
-                                                                        </div>
-                                                                  
-                                                       
+
                                                                 </div>
 
 
@@ -247,10 +247,10 @@
                                                         <div class="AllCars">
                                                             @foreach (var item in _types)
                                                             {
-                                                                <div class="ItemOfCars" id="select_ALL_@item.ID" data-getname="select_ALL_@item.ID" onclick="getitem(`${this.id}`)">
+                                                                <div class=" ItemOfCarsTwo" id="select_ALL_s_@item.ID" data-getname="select_ALL_s_@item.ID" onclick="getitemTwo(`${this.id}`)">
 
 
-                                                                    <div class="MainCarItem">
+                                                                    <div class="MainCarItemTwo">
 
 
                                                                         <div class="Images">
@@ -258,9 +258,9 @@
                                                                             <img class="MainImgTwo" src="@item.MainImageTwo" />
                                                                         </div>
                                                                         <div class="CarTitle">
-                                                                            <div class="checkbox modelType">
+                                                                            <div class="checkboxTwo modelType">
                                                                                 <label>
-                                                                                    <input class="car_type checkallParent" type="checkbox" id="@item.ID">
+                                                                                    <input class="car_type checkallParent_Two" type="checkbox" id="@item.ID">
                                                                                     <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                                                                     @item.Name <span class="CountCar">(@item.Count)</span>
                                                                                 </label>
@@ -279,7 +279,7 @@
                                                                                     @*@<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
                                                                                 </div>
                                                                                 <div class="CarTitle">
-                                                                                    <div class="checkbox modelType">
+                                                                                    <div class="checkboxTwo modelType">
                                                                                         <label>
                                                                                             <input class="car_type_items checkChild" type="checkbox" id="@itemcategory.Id">
                                                                                             <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
@@ -942,8 +942,8 @@
                 <div class="modal-body">
                     <div class="COntntModal">
                         @*<div class="images">
-                            <img src="~/assets_Audi/images/Audiimg/loginform.png" />
-                        </div>*@
+                                <img src="~/assets_Audi/images/Audiimg/loginform.png" />
+                            </div>*@
                         <div class="ContentDesc">
                             <h2>Audi Approved <span>:plus</span></h2>
                             <p>When you purchase an Audi Approved <span>:plus</span> pre-owned vehicle, you’re buying peace of mind. Audi Approved <span>:plus</span> guarantees your pre-owned vehicle:</p>
@@ -1202,7 +1202,7 @@
 
             //debugger;
             $(".ItemOfCars").map(function () {
-            
+
                 $(".ItemOfCars").removeClass("open")
             });
             //document.querySelector(`#${id}`).classList.add("open")
@@ -1220,7 +1220,32 @@
             //});
         });
 
+        $(".ItemOfCarsTwo").click(function () {
+            //debugger;
+            $(".ItemOfCarsTwo").map(function () {
+
+                $(".ItemOfCarsTwo").removeClass("open")
+            });
+            //document.querySelector(`#${id}`).classList.add("open")
+
+            //var dataId = $(this).data("id");
+            var datas = $(this).attr("data-getname");
+
+            var d = document.getElementById(datas);
+            d.classList.add("open");
+
+            //$(".ItemOfCars").addClass("open");
+            //var arr = $(".CarCheck:checked").map(function () {
+            //    debugger;
+            //    return $(this).val();
+            //});
+        });
+
         function getitem(id) {
+
+        }
+
+        function getitemTwo(id) {
 
         }
 
@@ -1545,82 +1570,85 @@
     </script>
     <!-- End Script Engin-->
     @*<script>
-            var checkbox = {
-                init: function () {
-                    var that = this;
+        var checkbox = {
+            init: function () {
+                var that = this;
 
-                    $('.ItemOfCars').each(function () {
-                        $parent = $(this);
+                $('.ItemOfCars').each(function () {
+                    $parent = $(this);
 
-                        that.activeChildsByParent($parent);
+                    that.activeChildsByParent($parent);
 
-                        $parent.find('input[type="checkbox"]:not(".checkallParent")').on('change', function () {
-                            var $thisParent = $(this).closest('.ItemOfCars');
-                            that.activeChildsByParent($thisParent);
-                  
-                         /*   $('.checkbox').trigger('click');*/
-                     
-                            
-                        });
+                    $parent.find('input[type="checkbox"]:not(".checkallParent")').on('change', function () {
+                        var $thisParent = $(this).closest('.ItemOfCars');
+                        that.activeChildsByParent($thisParent);
 
-                        $parent.find('input[type="checkbox"].checkallParent').on('change', function () {
-                            var $thisParent = $(this).closest('.ItemOfCars');
-                            that.toggleAllChildsByParent($thisParent);
-                          /*  $($parent).addClass("open");*/
-                           /* $('.checkbox').trigger('click');*/
-                         
-                        
-                        });
-                        
-                        /*$('.checkbox').trigger('click');*/
+                        /*   $('.checkbox').trigger('click');*/
+
+
                     });
 
-                },
-
-                toggleAllChildsByParent: function ($parent) {
-                    var $childs = $parent.find('input[type="checkbox"]:not(.checkallParent)'),
-                        stateAll = $parent.find('input[type="checkbox"].checkallParent').prop('checked');
-
-                    $childs.prop('checked', stateAll);
-                    this.activeChildsByParent($parent);
-                    $('.checkbox').trigger('click');
-                    $($parent).addClass("open");
-                },
-                activeChildsByParent: function ($parent) {
-                    var $allChilds = $parent.find('input[type="checkbox"].checkallParent'),
-                        total = $parent.find('input[type="checkbox"]:not(.checkallParent)').length,
-                        actives = $parent.find('input[type="checkbox"]:not(.checkallParent):checked').length;
-                        
-                    if (actives < total) {
-                        $allChilds.prop('checked', false);
-                        /*$('.checkbox').trigger('click');*/
-                       /* $('.checkbox').trigger('click');*/
-                          /* $($parent).addClass("open");*/
+                    $parent.find('input[type="checkbox"].checkallParent').on('change', function () {
+                        var $thisParent = $(this).closest('.ItemOfCars');
+                        that.toggleAllChildsByParent($thisParent);
+                        /*  $($parent).addClass("open");*/
+                        /* $('.checkbox').trigger('click');*/
 
 
-                    } else if (actives == 0) {
-                      /*  $('.checkbox').trigger('click');*/
-                        
-                    } else {
-                        $allChilds.prop('checked', true);
-                       /* $('.checkbox').trigger('click');*/
-                      /*  $('.checkbox').trigger('click');*/
-                          /* $($parent).addClass("open");*/
+                    });
 
-                       
-                    }
-                    $('.checkbox').trigger('click');
-                    $($parent).addClass("open");
-                    
+                    /*$('.checkbox').trigger('click');*/
+                });
+
+            },
+
+            toggleAllChildsByParent: function ($parent) {
+                var $childs = $parent.find('input[type="checkbox"]:not(.checkallParent)'),
+                    stateAll = $parent.find('input[type="checkbox"].checkallParent').prop('checked');
+
+                $childs.prop('checked', stateAll);
+                this.activeChildsByParent($parent);
+                $('.checkbox').trigger('click');
+                $($parent).addClass("open");
+            },
+            activeChildsByParent: function ($parent) {
+                var $allChilds = $parent.find('input[type="checkbox"].checkallParent'),
+                    total = $parent.find('input[type="checkbox"]:not(.checkallParent)').length,
+                    actives = $parent.find('input[type="checkbox"]:not(.checkallParent):checked').length;
+
+                if (actives < total) {
+                    $allChilds.prop('checked', false);
+                    /*$('.checkbox').trigger('click');*/
+                    /* $('.checkbox').trigger('click');*/
+                    /* $($parent).addClass("open");*/
+
+
+                } else if (actives == 0) {
+                    /*  $('.checkbox').trigger('click');*/
+
+                } else {
+                    $allChilds.prop('checked', true);
+                    /* $('.checkbox').trigger('click');*/
+                    /*  $('.checkbox').trigger('click');*/
+                    /* $($parent).addClass("open");*/
+
+
                 }
-                
+                $('.checkbox').trigger('click');
+                $($parent).addClass("open");
+
             }
 
-            $(document).ready(function () {
-                checkbox.init();
-            })
+        }
 
-        </script>*@
+        $(document).ready(function () {
+            checkbox.init();
+        })
+
+    </script>*@
+
+
+
 
 
 }

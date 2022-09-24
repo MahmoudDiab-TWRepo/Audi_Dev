@@ -8,6 +8,8 @@
     var Orders = new List<OrderEnquiry>();
     Orders = ctx.OrderEnquiryManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.ImAnOudiowner == true).ToList();
 
+    var _OldCarModel = ctx.ColorManager.GetAllBind().ToList();
+
 }
 
 
