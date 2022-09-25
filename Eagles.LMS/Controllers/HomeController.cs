@@ -533,7 +533,7 @@ namespace Eagles.LMS.Controllers
                 return null;
             }
             var DIstinctcars = cars.ToList().Distinct();
-
+            //serializer.MaxJsonLength = Int32.MaxValue;
 
             string CarsList = JsonConvert.SerializeObject(DIstinctcars, Formatting.None, new JsonSerializerSettings()
             {

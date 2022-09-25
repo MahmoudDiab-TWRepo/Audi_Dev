@@ -209,7 +209,7 @@
                                                                                     @* @<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
                                                                                 </div>
                                                                                 <div class="CarTitle">
-                                                                                    <div class="checkbox modelType  checkbox_Child">
+                                                                                    <div class="checkbox modelType checkbox_Child">
                                                                                         <label class="checklable">
                                                                                             <input name="child" class="car_category_items checkChild " type="checkbox" id="@itemtype.Id">
                                                                                             <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
@@ -258,9 +258,9 @@
                                                                             <img class="MainImgTwo" src="@item.MainImageTwo" />
                                                                         </div>
                                                                         <div class="CarTitle">
-                                                                            <div class="checkboxTwo modelType">
+                                                                            <div class="checkbox modelType">
                                                                                 <label>
-                                                                                    <input class="car_type checkallParent_Two" type="checkbox" id="@item.ID">
+                                                                                    <input class="car_type checkallParent" type="checkbox" id="@item.ID">
                                                                                     <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
                                                                                     @item.Name <span class="CountCar">(@item.Count)</span>
                                                                                 </label>
@@ -279,7 +279,7 @@
                                                                                     @*@<img class="MainImgTwo" src="@itemcategory.MainImageTwo" />@*@
                                                                                 </div>
                                                                                 <div class="CarTitle">
-                                                                                    <div class="checkboxTwo modelType">
+                                                                                    <div class="checkbox modelType">
                                                                                         <label>
                                                                                             <input class="car_type_items checkChild" type="checkbox" id="@itemcategory.Id">
                                                                                             <span class="cr"> <i class="cr-icon fas fa-check"></i></span>
@@ -1569,7 +1569,7 @@
 
     </script>
     <!-- End Script Engin-->
-    @*<script>
+    <script>
         var checkbox = {
             init: function () {
                 var that = this;
@@ -1598,7 +1598,34 @@
                     });
 
                     /*$('.checkbox').trigger('click');*/
+                }),
+
+                $('.ItemOfCarsTwo').each(function () {
+                    $parent = $(this);
+
+                    that.activeChildsByParent($parent);
+
+                    $parent.find('input[type="checkbox"]:not(".checkallParent")').on('change', function () {
+                        var $thisParent = $(this).closest('.ItemOfCarsTwo');
+                        that.activeChildsByParent($thisParent);
+
+                        /*   $('.checkbox').trigger('click');*/
+
+
+                    });
+
+                    $parent.find('input[type="checkbox"].checkallParent').on('change', function () {
+                        var $thisParent = $(this).closest('.ItemOfCarsTwo');
+                        that.toggleAllChildsByParent($thisParent);
+                        /*  $($parent).addClass("open");*/
+                        /* $('.checkbox').trigger('click');*/
+
+
+                    });
+
+                    /*$('.checkbox').trigger('click');*/
                 });
+
 
             },
 
@@ -1608,8 +1635,8 @@
 
                 $childs.prop('checked', stateAll);
                 this.activeChildsByParent($parent);
-                $('.checkbox').trigger('click');
-                $($parent).addClass("open");
+               /* $('.checkbox').trigger('click');*/
+                /*$($parent).addClass("open");*/
             },
             activeChildsByParent: function ($parent) {
                 var $allChilds = $parent.find('input[type="checkbox"].checkallParent'),
@@ -1619,7 +1646,8 @@
                 if (actives < total) {
                     $allChilds.prop('checked', false);
                     /*$('.checkbox').trigger('click');*/
-                    /* $('.checkbox').trigger('click');*/
+                    $($parent).trigger('change');
+                    //$('input[name=check1]').prop('checked', true).triggerHandler('click');
                     /* $($parent).addClass("open");*/
 
 
@@ -1629,13 +1657,13 @@
                 } else {
                     $allChilds.prop('checked', true);
                     /* $('.checkbox').trigger('click');*/
-                    /*  $('.checkbox').trigger('click');*/
+                    $($parent).trigger('change');
                     /* $($parent).addClass("open");*/
 
 
                 }
-                $('.checkbox').trigger('click');
-                $($parent).addClass("open");
+                //$('.checkbox').trigger('click');
+                //$($parent).addClass("open");
 
             }
 
@@ -1645,7 +1673,7 @@
             checkbox.init();
         })
 
-    </script>*@
+    </script>
 
 
 
