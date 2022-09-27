@@ -149,7 +149,7 @@
                                             <a href="#">Benefits of Audi Approved :plus</a>
                                         </div>*@
                                     <div class="linksBenifits">
-                                        <a href="#">Contact US</a>
+                                        <a href="https://www.audi-eg.com/eg/web/en/tools/form1/contactus.html">Contact US</a>
                                     </div>
                                 </div>
 
@@ -344,13 +344,13 @@
                                 </div>
 
 
-                                <div class="NextPage">
+                                @*<div class="NextPage">
                                     <div class="container">
                                         <div class="linknextPage">
                                             <a href="/Home/Engine">Engine</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div>*@
 
 
                                 @*@Html.Partial("_Results")*@
@@ -458,13 +458,13 @@
 
                     </div>
 
-                    <div class="NextPage">
+                    @*<div class="NextPage">
                         <div class="">
                             <div class="linknextPage">
                                 <a href="/Home/Equipment">Equipment</a>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
 
 
                     @*@Html.Partial("_Results")*@
@@ -763,13 +763,13 @@
 
 
 
-                    <div class="NextPage">
+                    @*<div class="NextPage">
                         <div class="">
                             <div class="linknextPage">
                                 <a href="/Home/Colour">Colour</a>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
 
 
 
@@ -843,13 +843,13 @@
                     </div>
 
 
-                    <div class="NextPage">
+                    @*<div class="NextPage">
                         <div class="">
                             <div class="linknextPage">
                                 <a href="/Home/Results">Results</a>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
 
 
                     @*@Html.Partial("_Results")*@
@@ -1267,7 +1267,7 @@
                             for (let i = 0; i < jsonresponse.length; i++) {
 
                                 //result
-                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class="ResultItem"><div class="ResutContItem"><div class="Imagess"><div class="services-carousel"><div class="slide-item"><div class="images"><img src="' + jsonresponse[i].MainImage + '"></div></div></div></div><div class="ItemDetails"><h1>' + jsonresponse[i].CarName + '</h1><p>' + jsonresponse[i].ShortDiscription + '<h2>$' + jsonresponse[i].Price + '</h2><div class="LocationDistination"><div class="DistnItem"><div class="icon"><span><i class="bx bx-map"></i></span></div><div class="DitinaDetails"><p>Audi Approved plus<br>in Obour city</div></div><div class="DistnItem"><div class="icon"><img src="/assets_Audi/images/Audiimg/CarImgs/speedo.svg"></div><div class="DitinaDetails"><p>' + jsonresponse[i].Distance + 'km</div></div></div><div class="LinaktElItem"><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '">Explore vehicle</a></li><li><a class="DarkBG" href="/Home/OrderAudi/ ' + jsonresponse[i].ID +'">Enquire Now</a></li></ul></div><div class="FavCompair"><ul><li><a class="FavCOmItem" href="#"><div class="icon"><span><i class="bx bx-star"></i></span></div><div class="favdisc"><p>Add to favourites</div></a></li><li><form action="/Home/AddComparison" method="post"><input type="hidden" name="carID" value="' + jsonresponse[i].ID + '"><button type="submit" class="FavCOmItem"><div class="icon"><span><i class="bx bx-git-compare"></i></span></div><div class="favdisc"><p>Add to comparison</p></div></button></form></li></ul></div></div></div></div></div>')
                             }
                         }
                         else {
@@ -1297,7 +1297,7 @@
                             var jsonresponse = JSON.parse(response);
                             for (let i = 0; i < jsonresponse.length; i++) {
                                 //result
-                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class="ResultItem"><div class="ResutContItem"><div class="Imagess"><div class="services-carousel"><div class="slide-item"><div class="images"><img src="' + jsonresponse[i].MainImage + '"></div></div></div></div><div class="ItemDetails"><h1>' + jsonresponse[i].CarName + '</h1><p>' + jsonresponse[i].ShortDiscription + '<h2>$' + jsonresponse[i].Price + '</h2><div class="LocationDistination"><div class="DistnItem"><div class="icon"><span><i class="bx bx-map"></i></span></div><div class="DitinaDetails"><p>Audi Approved plus<br>in Obour city</div></div><div class="DistnItem"><div class="icon"><img src="/assets_Audi/images/Audiimg/CarImgs/speedo.svg"></div><div class="DitinaDetails"><p>' + jsonresponse[i].Distance + 'km</div></div></div><div class="LinaktElItem"><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '">Explore vehicle</a></li><li><a class="DarkBG" href="/Home/OrderAudi/ ' + jsonresponse[i].ID +'">Enquire Now</a></li></ul></div><div class="FavCompair"><ul><li><a class="FavCOmItem" href="#"><div class="icon"><span><i class="bx bx-star"></i></span></div><div class="favdisc"><p>Add to favourites</div></a></li><li><form action="/Home/AddComparison" method="post"><input type="hidden" name="carID" value="' + jsonresponse[i].ID +'"><button type="submit" class="FavCOmItem"><div class="icon"><span><i class="bx bx-git-compare"></i></span></div><div class="favdisc"><p>Add to comparison</p></div></button></form></li></ul></div></div></div></div></div>')
                             }
                         }
                         else {
@@ -1444,7 +1444,7 @@
                             $('#dasdsad').load('@Url.Action("_SearchKeys", "Home")');
                             if (jsonresponse.length != 0) {
                                 for (let i = 0; i < jsonresponse.length; i++) {
-                                    $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href="/Home/OrderAudi/' + jsonresponse[i].ID + '"> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                                    $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class="ResultItem"><div class="ResutContItem"><div class="Imagess"><div class="services-carousel"><div class="slide-item"><div class="images"><img src="' + jsonresponse[i].MainImage + '"></div></div></div></div><div class="ItemDetails"><h1>' + jsonresponse[i].CarName + '</h1><p>' + jsonresponse[i].ShortDiscription + '<h2>$' + jsonresponse[i].Price + '</h2><div class="LocationDistination"><div class="DistnItem"><div class="icon"><span><i class="bx bx-map"></i></span></div><div class="DitinaDetails"><p>Audi Approved plus<br>in Obour city</div></div><div class="DistnItem"><div class="icon"><img src="/assets_Audi/images/Audiimg/CarImgs/speedo.svg"></div><div class="DitinaDetails"><p>' + jsonresponse[i].Distance + 'km</div></div></div><div class="LinaktElItem"><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '">Explore vehicle</a></li><li><a class="DarkBG" href="/Home/OrderAudi/ ' + jsonresponse[i].ID +'">Enquire Now</a></li></ul></div><div class="FavCompair"><ul><li><a class="FavCOmItem" href="#"><div class="icon"><span><i class="bx bx-star"></i></span></div><div class="favdisc"><p>Add to favourites</div></a></li><li><form action="/Home/AddComparison" method="post"><input type="hidden" name="carID" value="' + jsonresponse[i].ID + '"><button type="submit" class="FavCOmItem"><div class="icon"><span><i class="bx bx-git-compare"></i></span></div><div class="favdisc"><p>Add to comparison</p></div></button></form></li></ul></div></div></div></div></div>')
                                 }
                             }
 
@@ -1494,7 +1494,7 @@
                             var jsonresponse = JSON.parse(response);
                             if (jsonresponse.length != 0) {
                                 for (let i = 0; i < jsonresponse.length; i++) {
-                                    $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href="/Home/OrderAudi/' + jsonresponse[i].ID + '"> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                                    $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class="ResultItem"><div class="ResutContItem"><div class="Imagess"><div class="services-carousel"><div class="slide-item"><div class="images"><img src="' + jsonresponse[i].MainImage + '"></div></div></div></div><div class="ItemDetails"><h1>' + jsonresponse[i].CarName + '</h1><p>' + jsonresponse[i].ShortDiscription + '<h2>$' + jsonresponse[i].Price + '</h2><div class="LocationDistination"><div class="DistnItem"><div class="icon"><span><i class="bx bx-map"></i></span></div><div class="DitinaDetails"><p>Audi Approved plus<br>in Obour city</div></div><div class="DistnItem"><div class="icon"><img src="/assets_Audi/images/Audiimg/CarImgs/speedo.svg"></div><div class="DitinaDetails"><p>' + jsonresponse[i].Distance + 'km</div></div></div><div class="LinaktElItem"><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '">Explore vehicle</a></li><li><a class="DarkBG" href="/Home/OrderAudi/ ' + jsonresponse[i].ID +'">Enquire Now</a></li></ul></div><div class="FavCompair"><ul><li><a class="FavCOmItem" href="#"><div class="icon"><span><i class="bx bx-star"></i></span></div><div class="favdisc"><p>Add to favourites</div></a></li><li><form action="/Home/AddComparison" method="post"><input type="hidden" name="carID" value="' + jsonresponse[i].ID + '"><button type="submit" class="FavCOmItem"><div class="icon"><span><i class="bx bx-git-compare"></i></span></div><div class="favdisc"><p>Add to comparison</p></div></button></form></li></ul></div></div></div></div></div>')
                                 }
                             }
 
@@ -1524,7 +1524,7 @@
                             for (let i = 0; i < jsonresponse.length; i++) {
 
                                 //result
-                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class="ResultItem"><div class="ResutContItem"><div class="Imagess"><div class="services-carousel"><div class="slide-item"><div class="images"><img src="' + jsonresponse[i].MainImage + '"></div></div></div></div><div class="ItemDetails"><h1>' + jsonresponse[i].CarName + '</h1><p>' + jsonresponse[i].ShortDiscription + '<h2>$' + jsonresponse[i].Price + '</h2><div class="LocationDistination"><div class="DistnItem"><div class="icon"><span><i class="bx bx-map"></i></span></div><div class="DitinaDetails"><p>Audi Approved plus<br>in Obour city</div></div><div class="DistnItem"><div class="icon"><img src="/assets_Audi/images/Audiimg/CarImgs/speedo.svg"></div><div class="DitinaDetails"><p>' + jsonresponse[i].Distance + 'km</div></div></div><div class="LinaktElItem"><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '">Explore vehicle</a></li><li><a class="DarkBG" href="/Home/OrderAudi/ ' + jsonresponse[i].ID +'">Enquire Now</a></li></ul></div><div class="FavCompair"><ul><li><a class="FavCOmItem" href="#"><div class="icon"><span><i class="bx bx-star"></i></span></div><div class="favdisc"><p>Add to favourites</div></a></li><li><form action="/Home/AddComparison" method="post"><input type="hidden" name="carID" value="' + jsonresponse[i].ID + '"><button type="submit" class="FavCOmItem"><div class="icon"><span><i class="bx bx-git-compare"></i></span></div><div class="favdisc"><p>Add to comparison</p></div></button></form></li></ul></div></div></div></div></div>')
                             }
                         }
                         else {
@@ -1554,7 +1554,7 @@
                             var jsonresponse = JSON.parse(response);
                             for (let i = 0; i < jsonresponse.length; i++) {
                                 //result
-                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class=ResultItem><div class=ResutContItem><div class=Imagess><div class="services-carousel"><div class=slide-item><div class=images><img src="' + jsonresponse[i].MainImage + '"></div></div> </div></div> <div class=ItemDetails><h1>' + jsonresponse[i].CarName + '</h1> <p>' + jsonresponse[i].ShortDiscription + ' <h2>$' + jsonresponse[i].Price + '</h2> <div class=LocationDistination><div class=DistnItem><div class=icon><span><i class="bx bx-map"></i></span></div> <div class=DitinaDetails><p>Audi Approved plus  <br>in Obour city</div></div> <div class=DistnItem><div class=icon><img src=/assets_Audi/images/Audiimg/CarImgs/speedo.svg></div> <div class=DitinaDetails><p> ' + jsonresponse[i].Distance + 'km </div></div></div> <div class=LinaktElItem><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '" >Explore vehicle</a> <li><a class=DarkBG href=#> Enquire Now</a></ul></div> <div class=FavCompair><ul><li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-star"></i></span></div> <div class=favdisc><p>Add to favourites</div></a> <li><a class=FavCOmItem href=#><div class=icon><span><i class="bx bx-git-compare"></i></span></div> <div class=favdisc><p>Add to comparison</div></a></ul></div></div></div></div></div>')
+                                $("#NewCAr").append('<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 CandDelete"><div class="ResultItem"><div class="ResutContItem"><div class="Imagess"><div class="services-carousel"><div class="slide-item"><div class="images"><img src="' + jsonresponse[i].MainImage + '"></div></div></div></div><div class="ItemDetails"><h1>' + jsonresponse[i].CarName + '</h1><p>' + jsonresponse[i].ShortDiscription + '<h2>$' + jsonresponse[i].Price + '</h2><div class="LocationDistination"><div class="DistnItem"><div class="icon"><span><i class="bx bx-map"></i></span></div><div class="DitinaDetails"><p>Audi Approved plus<br>in Obour city</div></div><div class="DistnItem"><div class="icon"><img src="/assets_Audi/images/Audiimg/CarImgs/speedo.svg"></div><div class="DitinaDetails"><p>' + jsonresponse[i].Distance + 'km</div></div></div><div class="LinaktElItem"><ul><li><a href="/Home/CarDetails/' + jsonresponse[i].ID + '">Explore vehicle</a></li><li><a class="DarkBG" href="/Home/OrderAudi/ ' + jsonresponse[i].ID +'">Enquire Now</a></li></ul></div><div class="FavCompair"><ul><li><a class="FavCOmItem" href="#"><div class="icon"><span><i class="bx bx-star"></i></span></div><div class="favdisc"><p>Add to favourites</div></a></li><li><form action="/Home/AddComparison" method="post"><input type="hidden" name="carID" value="' + jsonresponse[i].ID + '"><button type="submit" class="FavCOmItem"><div class="icon"><span><i class="bx bx-git-compare"></i></span></div><div class="favdisc"><p>Add to comparison</p></div></button></form></li></ul></div></div></div></div></div>')
                             }
                         }
                         else {

@@ -623,7 +623,7 @@ img {
 
 .main-header {
     background: #fff;
-    position: absolute;
+    position: inherit;
     left: 0;
     top: 0px;
     width: 100%;
@@ -11506,6 +11506,8 @@ img {
 
 
 .DemonstratorTop {
+  /*  margin-top: 65px;*/
+  margin-top:0px;
 }
 
 
@@ -12508,8 +12510,8 @@ input[type=range] {
 /*start our box*/
 /*start login head*/
 .login-head {
-
-    background-image: url('../images/AAP.png');
+/*    background-image: url('../images/ui.png');*/
+    background-image: url('../images/Form.jpg');
     background-size: cover !important;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -13346,7 +13348,7 @@ input[type=range] {
             */
             /* border: 2px solid #1d1f4f !important; */
             padding: 15px 50px;
-            width: max-content;
+            width: auto;
             text-align: center;
             display: block;
             margin: auto;

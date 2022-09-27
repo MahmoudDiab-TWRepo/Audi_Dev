@@ -851,6 +851,8 @@
     <Content Include="assets_Audi\images\Audiimg\logo.svg" />
     <Content Include="assets_Audi\images\Audiimg\othercolor.png" />
     <Content Include="assets_Audi\images\Audiimg\speedometer.png" />
+    <Content Include="assets_Audi\images\Form.jpg" />
+    <Content Include="assets_Audi\images\ui.png" />
     <Content Include="assets_Audi\js\appear.js" />
     <Content Include="assets_Audi\js\bootstrap.bundle.min.js" />
     <Content Include="assets_Audi\js\bootstrap.min.js" />

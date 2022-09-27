@@ -6,7 +6,7 @@
     var ctx = new Eagles.LMS.BLL.UnitOfWork();
 
     var Orders = new List<OrderEnquiry>();
-    Orders = ctx.OrderEnquiryManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.ImAnOudiowner == true).ToList();
+    Orders = ctx.OrderEnquiryManager.GetOrderEnquirieswithData().OrderByDescending(s => s.Id).Where(s => s.ImAnOudiowner == true).ToList();
 
     var _OldCarModel = ctx.ColorManager.GetAllBind().ToList();
 
@@ -75,25 +75,25 @@
                                     <td> <p>@item.MobileNumber</p> </td>
                                     <td> <p>@item.EmailAddress </p></td>
 
-                                    <td> <p>@item.CarModel</p> </td>
-                                    <td> <p>@item.EnginCapacity</p> </td>
+                                    <td> <p>@item.CarModelName</p> </td>
+                                    <td> <p>@item.EnginCapacityName</p> </td>
                                     <td> <p>@item.ModelYear </p></td>
                                     <td> <p>@item.Mileage </p></td>
                                     <td> <p>@item.Comment </p></td>
 
-                                    <td> <p>@item.OldCarModel</p> </td>
-                                    <td> <p>@item.OldEnginCapacity</p> </td>
+                                    <td> <p>@item.OldCarModelName</p> </td>
+                                    <td> <p>@item.OldEnginCapacityName</p> </td>
                                     <td> <p>@item.OldModelYear </p></td>
                                     <td> <p>@item.OldMileage </p></td>
                                     <td>
-                                         <a href="@item.ChassisNumber" class="btnIconImages" target="_blank">
-                                             <i class="bx bx-image"></i>
-                                         </a>
+                                        <a href="@item.ChassisNumber" class="btnIconImages" target="_blank">
+                                            <i class="bx bx-image"></i>
+                                        </a>
                                     </td>
                                     <td> <p>@item.OldComment </p></td>
 
 
-                                    
+
                                     <td> <p>@item.Sendtime </p></td>
                                 </tr>
                                     {

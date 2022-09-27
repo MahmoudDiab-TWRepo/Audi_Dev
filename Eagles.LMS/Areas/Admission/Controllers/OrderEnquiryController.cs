@@ -17,12 +17,12 @@ namespace Eagles.LMS.Areas.Admission.Controllers
         // GET: Admission/OrderEnquiry
         public ActionResult Index()
         {
-            return View(new UnitOfWork().OrderEnquiryManager.GetAll().OrderByDescending(s => s.Id).ToList());
+            return View();
 
         }
         public ActionResult indexNewClient()
         {
-            return View(new UnitOfWork().OrderEnquiryManager.GetAll().OrderByDescending(s => s.Id).ToList());
+            return View();
 
         }
 

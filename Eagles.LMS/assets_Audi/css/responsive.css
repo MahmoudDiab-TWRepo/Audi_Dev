@@ -1,4 +1,4 @@
-/* SINAEA - Factory, Industry, and Manufacturing HTML Template  */
+
 
 @media only screen and (max-width: 1479px){
 	.main-header .main-box{
@@ -944,5 +944,26 @@
 		}
 	.SeearchListItem ul li{
 		margin-right:5px;
+	}
+
+	.login-head {
+		height: 130px;
+		margin-top: 65px;
+		background-position: bottom;
+	}
+	.main-header .logo-box {
+		float: right;
+		margin-right: 0;
+	}
+		.main-header .logo-box .logo {
+			display: block;
+			width: 69px;
+			margin-top: 3px;
+			margin-right: 0;
+			float: right;
+		}
+	.TapsCars .TapsCarCont .AllCars .ItemOfCars.open:nth-of-type(4n+3) > .GroupChildCars {
+		left: 0;
+		position: inherit;
 	}
 	}

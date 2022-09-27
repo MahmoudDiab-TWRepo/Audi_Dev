@@ -5,7 +5,7 @@
     int index = 1;
     var ctx = new Eagles.LMS.BLL.UnitOfWork();
     var Orders = new List<OrderEnquiry>();
-    Orders = ctx.OrderEnquiryManager.GetAllBind().OrderByDescending(s => s.Id).Where(s => s.ImAnOudiowner == false).ToList();
+    Orders = ctx.OrderEnquiryManager.GetOrderEnquirieswithData().OrderByDescending(s => s.Id).Where(s => s.ImAnOudiowner == false).ToList();
 
 }
 
@@ -62,8 +62,8 @@
                                         <td> <p>@item.MobileNumber</p> </td>
                                         <td> <p>@item.EmailAddress </p></td>
 
-                                        <td> <p>@item.CarModel</p> </td>
-                                        <td> <p>@item.EnginCapacity</p> </td>
+                                        <td> <p>@item.CarModelName</p> </td>
+                                        <td> <p>@item.EnginCapacityName</p> </td>
                                         <td> <p>@item.ModelYear </p></td>
                                         <td> <p>@item.Mileage </p></td>
                                         <td> <p>@item.Comment </p></td>

@@ -23,16 +23,24 @@ namespace Eagles.LMS.Models
         public string MobileNumber { get; set; }
         public string EmailAddress { get; set; }
         public string OldCarModel { get; set; }
+        [NotMapped]
+        public string OldCarModelName { get; set; }
         public string OldEnginCapacity { get; set; }
+        [NotMapped]
+        public string OldEnginCapacityName { get; set; }
         public string OldModelYear { get; set; }
         public string OldMileage { get; set; }
         public string OldComment { get; set; }
         public string ChassisNumber { get; set; }
 
-
+       
 
         public string CarModel { get; set; }
         public string EnginCapacity { get; set; }
+        [NotMapped]
+        public string EnginCapacityName { get; set; }
+        [NotMapped]
+        public string CarModelName { get; set; }
         public string ModelYear { get; set; }
         public string Mileage { get; set; }
         public string Comment { get; set; }
